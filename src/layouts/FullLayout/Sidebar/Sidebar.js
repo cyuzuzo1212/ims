@@ -42,6 +42,9 @@ const Sidebar = (props) => {
           sx={{
             mt: 4,
           }}
+          style={{
+            flexDirection: "column"
+          }}
         >
           {Menuitems.map((item, index) => {
             //{/********SubHeader**********/}

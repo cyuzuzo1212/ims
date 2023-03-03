@@ -74,7 +74,7 @@ function Home() {
             <p className="contact-text3">
               Skype:<span>Invet.win</span>
             </p>
-            <img src="map.jpg" alt="map" class="center"></img>
+            {/* <img src={require("../../images/map")} alt="map" className="center"></img> */}
           </div>
 
           <div className="contact-right">

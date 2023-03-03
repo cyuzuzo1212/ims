@@ -1,5 +1,4 @@
 import React from 'react'
-import { CiUser } from 'react-icons/ci';
 import { NavLink } from 'react-router-dom';
 import "../../App.css"
 
@@ -15,7 +14,7 @@ export default function Navbar () {
                     <li><NavLink to={'/'} >  About</NavLink></li>
                     <li><NavLink to={'/'} > Services</NavLink></li>
                     <li><NavLink to={'/'} > Contact</NavLink></li>
-                    <button><NavLink to={'/'} > Get Started</NavLink></button>
+                    <button><NavLink to={'/dashboard'} > Get Started</NavLink></button>
 
 
                 </ul>
