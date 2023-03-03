@@ -14,47 +14,47 @@ const Menuitems = [
   {
     title: "Dashboard",
     icon: DashboardOutlined,
-    href: "/dashboards/dashboard1",
+    href: "/dashboard/home",
   },
   {
     title: "Autocomplete",
     icon: AddToPhotosOutlined,
-    href: "/form-elements/autocomplete",
+    href: "/dashboard/form-elements/autocomplete",
   },
   {
     title: "Buttons",
     icon: AspectRatioOutlined,
-    href: "/form-elements/button",
+    href: "/dashboard/form-elements/button",
   },
   {
     title: "Checkbox",
     icon: AssignmentTurnedInOutlined,
-    href: "/form-elements/checkbox",
+    href: "/dashboard/form-elements/checkbox",
   },
   {
     title: "Radio",
     icon: AlbumOutlined,
-    href: "/form-elements/radio",
+    href: "/dashboard/form-elements/radio",
   },
   {
     title: "Slider",
     icon: SwitchCameraOutlined,
-    href: "/form-elements/slider",
+    href: "/dashboard/form-elements/slider",
   },
   {
     title: "Switch",
     icon: SwitchLeftOutlined,
-    href: "/form-elements/switch",
+    href: "/dashboard/form-elements/switch",
   },
   {
     title: "Form",
     icon: DescriptionOutlined,
-    href: "/form-layouts/form-layouts",
+    href: "/dashboard/form-layouts/form-layouts",
   },
   {
     title: "Table",
     icon: AutoAwesomeMosaicOutlined,
-    href: "/tables/basic-table",
+    href: "/dashboard/tables/basic-table",
   },
 ];
 

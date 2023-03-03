@@ -32,22 +32,27 @@ const FormLayouts = lazy(() => import("../views/FormLayouts/FormLayouts"));
 const ThemeRoutes = [
   {
     path: "/",
+    element: <Navigate to="/home" />
+  },
+  {
+    path: "/home",
     element: <Home />
   },
   {
-    path: "/dashboard",
+    path: "/dashboard/",
+    exact: true,
     element: <FullLayout />,
     children: [
-      { path: "/dashboard/", element: <Navigate to="dashboards/dashboard1" /> },
-      { path: "/dashboard/dashboards/dashboard1", exact: true, element: <Dashboard1 /> },
-      { path: "/dashboardtables/basic-table", element: <BasicTable /> },
-      { path: "/dashboard/form-layouts/form-layouts", element: <FormLayouts /> },
-      { path: "/dashboard/form-elements/autocomplete", element: <ExAutoComplete /> },
-      { path: "/dashboard/form-elements/button", element: <ExButton /> },
-      { path: "/dashboard/form-elements/checkbox", element: <ExCheckbox /> },
-      { path: "/dashboard/form-elements/radio", element: <ExRadio /> },
-      { path: "/dashboard/form-elements/slider", element: <ExSlider /> },
-      { path: "/dashboard/form-elements/switch", element: <ExSwitch /> },
+      { path: "/", element: <Navigate to="/dashboard/home" /> },
+      { path: "/home", element: <Dashboard1 /> },
+      { path: "/tables/basic-table", element: <BasicTable /> },
+      { path: "/form-layouts/form-layouts", element: <FormLayouts /> },
+      { path: "/form-elements/autocomplete", element: <ExAutoComplete /> },
+      { path: "/form-elements/button", element: <ExButton /> },
+      { path: "/form-elements/checkbox", element: <ExCheckbox /> },
+      { path: "/form-elements/radio", element: <ExRadio /> },
+      { path: "/form-elements/slider", element: <ExSlider /> },
+      { path: "/form-elements/switch", element: <ExSwitch /> },
     ],
   },
 ];
