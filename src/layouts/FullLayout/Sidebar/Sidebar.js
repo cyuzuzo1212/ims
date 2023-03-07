@@ -30,10 +30,11 @@ const Sidebar = (props) => {
   };
 
   const SidebarContent = (
-    <Box sx={{ p: 3, height: "calc(100vh - 40px)" }}>
+    <Box sx={{ p: 3, height: "calc(100vh - 40px)",backgroundColor:"blue",marginTop:"0px" }}>
       <Link to="/">
         <Box sx={{ display: "flex", alignItems: "Center" }}>
-          <LogoIcon />
+          {/* <LogoIcon /> */}
+          <button style={{padding:"10px",backgroundColor:"#020230",color:"white",fontSize:"larger",border:"none",borderRadius:"10px"}}>IMS</button>
         </Box>
       </Link>
 
@@ -43,7 +44,7 @@ const Sidebar = (props) => {
             mt: 4,
           }}
           style={{
-            flexDirection: "column"
+            flexDirection: "column",color:"white"
           }}
         >
           {Menuitems.map((item, index) => {
@@ -51,7 +52,7 @@ const Sidebar = (props) => {
 
             return (
               <List component="li" disablePadding key={item.title}>
-                <ListItem
+                <ListItem 
                   onClick={() => handleClick(index)}
                   button
                   component={NavLink}

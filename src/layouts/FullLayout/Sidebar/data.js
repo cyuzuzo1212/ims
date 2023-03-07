@@ -6,8 +6,8 @@ import {
   AlbumOutlined,
   SwitchCameraOutlined,
   SwitchLeftOutlined,
-  DescriptionOutlined,
-  AutoAwesomeMosaicOutlined,
+  // DescriptionOutlined,
+  // AutoAwesomeMosaicOutlined,
 } from "@material-ui/icons/";
 
 const Menuitems = [
@@ -17,45 +17,45 @@ const Menuitems = [
     href: "/dashboard/home",
   },
   {
-    title: "Autocomplete",
+    title: "Stock",
     icon: AddToPhotosOutlined,
     href: "/dashboard/form-elements/autocomplete",
   },
   {
-    title: "Buttons",
+    title: "Sales",
     icon: AspectRatioOutlined,
     href: "/dashboard/form-elements/button",
   },
   {
-    title: "Checkbox",
+    title: "Categories",
     icon: AssignmentTurnedInOutlined,
     href: "/dashboard/form-elements/checkbox",
   },
   {
-    title: "Radio",
+    title: "Items",
     icon: AlbumOutlined,
     href: "/dashboard/form-elements/radio",
   },
   {
-    title: "Slider",
+    title: "Reports",
     icon: SwitchCameraOutlined,
     href: "/dashboard/form-elements/slider",
   },
   {
-    title: "Switch",
+    title: "Profile",
     icon: SwitchLeftOutlined,
     href: "/dashboard/form-elements/switch",
   },
-  {
-    title: "Form",
-    icon: DescriptionOutlined,
-    href: "/dashboard/form-layouts/form-layouts",
-  },
-  {
-    title: "Table",
-    icon: AutoAwesomeMosaicOutlined,
-    href: "/dashboard/tables/basic-table",
-  },
+  // {
+  //   title: "Form",
+  //   icon: DescriptionOutlined,
+  //   href: "/dashboard/form-layouts/form-layouts",
+  // },
+  // {
+  //   title: "Table",
+  //   icon: AutoAwesomeMosaicOutlined,
+  //   href: "/dashboard/tables/basic-table",
+  // },
 ];
 
 export default Menuitems;
