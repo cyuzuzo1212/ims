@@ -173,6 +173,10 @@ ul li {
   align-items: center;
   font-weight: 600;
 }
+.image {
+  display: flex;
+  
+}
   
 
   /*contact*/

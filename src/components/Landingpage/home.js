@@ -14,7 +14,7 @@ function Home() {
   const workInfoData = [
     {
       image:
-        "https://th.bing.com/th/id/OIP.nE86R8bSQ8Njh6xYa3eb4gHaHa?w=185&h=185&c=7&r=0&o=5&pid=1.7.jpg",
+        "https://i.pinimg.com/originals/0d/90/f7/0d90f76f03c935f8ca82b24e50a713c1.jpg",
       title: "Inventory management",
       text: "Lorem ipsum dolor sit amet consectetur. Maecenas orci et sagittis duis elementum interdum facilisi bibendum.",
     },
@@ -22,13 +22,13 @@ function Home() {
       image:
         "https://th.bing.com/th/id/OIP.nE86R8bSQ8Njh6xYa3eb4gHaHa?w=185&h=185&c=7&r=0&o=5&pid=1.7.jpg",
       title: "Reporting and analysing",
-      text: "Lorem ipsum dolor sit amet consectetur. Maecenas orci et ",
+      text: "Lorem ipsum dolor sit amet consectetur. Maecenas orci et sagittis duis elementum interdum facilisi bibendum.",
     },
     {
       image:
         "https://th.bing.com/th/id/OIP.nE86R8bSQ8Njh6xYa3eb4gHaHa?w=185&h=185&c=7&r=0&o=5&pid=1.7.jpg",
       title: "Demand forecasting",
-      text: "Lorem ipsum dolor sit amet consectetur. Maecenas orci et lorem ipsum",
+      text: "Lorem ipsum dolor sit amet consectetur. Maecenas orci et sagittis duis elementum interdum facilisi lorem ipsum",
     },
   ];
   return (
@@ -78,10 +78,10 @@ function Home() {
         <div className="work-section-bottom">
           {workInfoData.map((data) => (
             <div className="work-section-info" key={data.title}>
-              <div className="info-boxes-img-container">
-                <img src={data.image} alt="" />
+              <div className="info-boxes-img-container" style={{background:`url(${data.image})`,backgroundPosition:"center",backgroundSize:"cover",height:250,width:400,borderRadius:"8px"}}>
+                {/* <img src={data.image} alt="" /> */}
               </div>
-              <h2>{data.title}</h2>
+              <h2 style={{color:"blue"}}>{data.title}</h2>
               <p>{data.text}</p>
             </div>
           ))}
