@@ -1,9 +1,12 @@
 import React from "react";
-import { Card, CardContent, Typography, Box } from "@material-ui/core";
+import { Card ,CardContent, Typography, Box } from "@material-ui/core";
+
 
 import Chart from "react-apexcharts";
 
+
 const SalesOverview = () => {
+ 
   const optionssalesoverview = {
     grid: {
       show: true,
@@ -18,13 +21,13 @@ const SalesOverview = () => {
     plotOptions: {
       bar: {
         horizontal: false,
-        columnWidth: "42%",
+        columnWidth: "70%",
         endingShape: "rounded",
-        borderRadius: 5,
+        borderRadius: 0,
       },
     },
 
-    colors: ["#1e4db7", "#a7e3f4"],
+    colors: ["#FFE55F", "#5F6FFF"],
     fill: {
       type: "solid",
       opacity: 1,

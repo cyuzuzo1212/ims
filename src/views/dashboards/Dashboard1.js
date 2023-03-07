@@ -1,5 +1,6 @@
 import React from "react";
 import { Grid, Box } from "@material-ui/core";
+import SmallestCard from "./dashboard1-components/smallestCard"
 
 import {
   BlogCard,
@@ -12,8 +13,9 @@ const Dashboard1 = () => {
   // 2
 
   return (
-    <Box>
+    <Box style={{backgroundColor:"#F5F5F5"}}>
       <Grid container spacing={0}>
+        <SmallestCard/>
         {/* ------------------------- row 1 ------------------------- */}
         <Grid item xs={12} lg={12}>
           <SalesOverview />

@@ -5,6 +5,7 @@ import { Navigate } from "react-router-dom";
 
 import Home from "../components/Landingpage/home"
 
+
 /****Layouts*****/
 const FullLayout = lazy(() => import("../layouts/FullLayout/FullLayout.js"));
 /****End Layouts*****/
@@ -38,6 +39,10 @@ const ThemeRoutes = [
     path: "/home",
     element: <Home />
   },
+
+ 
+
+
   {
     path: "/dashboard/",
     exact: true,
