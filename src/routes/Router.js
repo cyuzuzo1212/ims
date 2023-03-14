@@ -1,9 +1,19 @@
 import { lazy } from "react";
 import { Navigate } from "react-router-dom";
+import Stock from "../views/FormElements/stock";
+
 
 /****Screens *****/
 
-import Home from "../components/Landingpage/home"
+import Home from "../components/Landingpage/home";
+import Signup from "../components/Landingpage/Signup";
+import StockForm from "../views/FormElements/StockForm";
+import Login from "../components/Landingpage/Login";
+import AddSale from "../views/FormElements/addSale";
+import Sale from "../views/FormElements/sale";
+import Profile from "../views/FormElements/profile";
+import ForgotPassword from "../components/Landingpage/Forgotpassword";
+
 
 
 /****Layouts*****/
@@ -18,10 +28,10 @@ const BasicTable = lazy(() => import("../views/tables/BasicTable"));
 
 // form elements
 const ExAutoComplete = lazy(() =>
-  import("../views/FormElements/ExAutoComplete")
+  import("../views/FormElements/stock")
 );
-const ExButton = lazy(() => import("../views/FormElements/ExButton"));
-const ExCheckbox = lazy(() => import("../views/FormElements/ExCheckbox"));
+const ExButton = lazy(() => import("../views/FormElements/stock"));
+const ExCheckbox = lazy(() => import("../views/FormElements/sale"));
 const ExRadio = lazy(() => import("../views/FormElements/ExRadio"));
 const ExSlider = lazy(() => import("../views/FormElements/ExSlider"));
 const ExSwitch = lazy(() => import("../views/FormElements/ExSwitch"));
@@ -40,9 +50,36 @@ const ThemeRoutes = [
     element: <Home />
   },
 
- 
+  {
+    path: "/",
+    element: <Navigate to="/signup" />
+  },
+  {
+    path: "/signup",
+     element: <Signup/>
+  },
 
 
+  {
+    path: "/",
+    element: <Navigate to="/login" />
+  },
+  {
+    path: "/login",
+     element: <Login/>
+  },
+
+  {
+    path: "/",
+    element: <Navigate to="/forgotpassword" />
+  },
+  {
+    path: "/forgotpassword",
+     element: <ForgotPassword/>
+  },
+  // {
+  //   path: "/addstock", element: <StockForm />
+  // },
   {
     path: "/dashboard/",
     exact: true,
@@ -52,12 +89,16 @@ const ThemeRoutes = [
       { path: "/home", element: <Dashboard1 /> },
       { path: "/tables/basic-table", element: <BasicTable /> },
       { path: "/form-layouts/form-layouts", element: <FormLayouts /> },
-      { path: "/form-elements/autocomplete", element: <ExAutoComplete /> },
-      { path: "/form-elements/button", element: <ExButton /> },
+      { path: "/form-elements/stock", element: <Stock /> },
+      { path: "/form-elements/sale", element: <Sale /> },
       { path: "/form-elements/checkbox", element: <ExCheckbox /> },
       { path: "/form-elements/radio", element: <ExRadio /> },
       { path: "/form-elements/slider", element: <ExSlider /> },
-      { path: "/form-elements/switch", element: <ExSwitch /> },
+      { path: "/form-elements/profile", element: <Profile /> },
+      { path: "/StockForm", element: <StockForm/>},
+      { path: "/addSale", element: <AddSale/>},
+      { path: "/Signup", element: <Signup/>},
+      // {  },
     ],
   },
 ];

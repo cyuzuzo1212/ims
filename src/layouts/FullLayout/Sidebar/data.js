@@ -19,12 +19,13 @@ const Menuitems = [
   {
     title: "Stock",
     icon: AddToPhotosOutlined,
-    href: "/dashboard/form-elements/autocomplete",
+    // href: "/dashboard/form-elements/stockpage",
+    href: "/dashboard/form-elements/stock",
   },
   {
     title: "Sales",
     icon: AspectRatioOutlined,
-    href: "/dashboard/form-elements/button",
+    href: "/dashboard/form-elements/sale",
   },
   {
     title: "Categories",
@@ -44,7 +45,7 @@ const Menuitems = [
   {
     title: "Profile",
     icon: SwitchLeftOutlined,
-    href: "/dashboard/form-elements/switch",
+    href: "/dashboard/form-elements/profile",
   },
   // {
   //   title: "Form",
