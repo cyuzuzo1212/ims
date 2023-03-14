@@ -1,5 +1,12 @@
 import { lazy } from "react";
 import { Navigate } from "react-router-dom";
+import Category from "../views/FormElements/categories";
+import Items from "../views/FormElements/items";
+import AddCategory from "../views/FormElements/addCategory";
+import AddItem from "../views/FormElements/addItem";
+import Report from "../views/FormElements/report";
+import EditCategory from "../views/FormElements/editCategory";
+import EditItem from "../views/FormElements/editItem";
 
 
 import Category from "../views/FormElements/categories";
@@ -27,6 +34,7 @@ import Profile from "../views/FormElements/profile";
 
 
 
+
 /****Layouts*****/
 const FullLayout = lazy(() => import("../layouts/FullLayout/FullLayout.js"));
 /****End Layouts*****/
@@ -41,11 +49,9 @@ const BasicTable = lazy(() => import("../views/tables/BasicTable"));
 const ExAutoComplete = lazy(() =>
   import("../views/FormElements/stock")
 );
-const ExButton1 = lazy(() => import("../views/FormElements/ExButton"));
-const ExCheckbox1 = lazy(() => import("../views/FormElements/categories"));
+const ExButton = lazy(() => import("../views/FormElements/ExButton"));
+const ExCheckbox = lazy(() => import("../views/FormElements/categories"));
 const ExRadio = lazy(() => import("../views/FormElements/items"));
-const ExButton = lazy(() => import("../views/FormElements/stock"));
-const ExCheckbox = lazy(() => import("../views/FormElements/sale"));
 const ExSlider = lazy(() => import("../views/FormElements/ExSlider"));
 const ExSwitch = lazy(() => import("../views/FormElements/ExSwitch"));
 
@@ -103,30 +109,17 @@ const ThemeRoutes = [
       { path: "/home", element: <Dashboard1 /> },
       { path: "/tables/basic-table", element: <BasicTable /> },
       { path: "/form-layouts/form-layouts", element: <FormLayouts /> },
-      { path: "/form-elements/stock", element: <Stock /> },
-      { path: "/form-elements/sale", element: <Sale /> },
-      { path: "/form-elements/checkbox", element: <ExCheckbox /> },
-      { path: "/form-elements/radio", element: <ExRadio /> },
-      { path: "/form-elements/slider", element: <ExSlider /> },
-      { path: "/form-elements/switch", element: <ExSwitch /> },
+      { path: "/form-elements/autocomplete", element: <ExAutoComplete /> },
+      { path: "/form-elements/button", element: <ExButton /> },
       { path: "/form-elements/category", element: <Category /> },
       { path: "/form-elements/items", element: <Items /> },
+      { path: "/form-elements/slider", element: <ExSlider /> },
+      { path: "/form-elements/switch", element: <ExSwitch /> },
       { path: "/form-elements/report", element: <Report /> },
-      { path: "/form-elements/profile", element: <Profile /> },
-      
-      
       { path: "/addCategory", element: <AddCategory /> },
       { path: "/addItem", element: <AddItem /> },
       { path: "/editCategory", element: <EditCategory/>},
       { path: "/editItem", element: <EditItem/>},
-      
-      
-     
-      
-      { path: "/StockForm", element: <StockForm/>},
-      { path: "/addSale", element: <AddSale/>},
-      // { path: "/Signup", element: <Signup/>},
-      // {  },
     ],
   },
 ];
