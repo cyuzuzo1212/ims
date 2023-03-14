@@ -7,6 +7,8 @@ import AddItem from "../views/FormElements/addItem";
 import Report from "../views/FormElements/report";
 import EditCategory from "../views/FormElements/editCategory";
 import EditItem from "../views/FormElements/editItem";
+import Stock from "../views/FormElements/stock";
+
 
 
 import Category from "../views/FormElements/categories";
@@ -50,9 +52,11 @@ const BasicTable = lazy(() => import("../views/tables/BasicTable"));
 const ExAutoComplete = lazy(() =>
   import("../views/FormElements/stock")
 );
-const ExButton = lazy(() => import("../views/FormElements/ExButton"));
-const ExCheckbox = lazy(() => import("../views/FormElements/categories"));
+const ExButton1 = lazy(() => import("../views/FormElements/ExButton"));
+const ExCheckbox1 = lazy(() => import("../views/FormElements/categories"));
 const ExRadio = lazy(() => import("../views/FormElements/items"));
+const ExButton = lazy(() => import("../views/FormElements/stock"));
+const ExCheckbox = lazy(() => import("../views/FormElements/sale"));
 const ExSlider = lazy(() => import("../views/FormElements/ExSlider"));
 const ExSwitch = lazy(() => import("../views/FormElements/ExSwitch"));
 
@@ -102,6 +106,26 @@ const ThemeRoutes = [
   //   path: "/addstock", element: <StockForm />
   // },
   {
+    path: "/",
+    element: <Navigate to="/login" />
+  },
+  {
+    path: "/login",
+     element: <Login/>
+  },
+
+  {
+    path: "/",
+    element: <Navigate to="/forgotpassword" />
+  },
+  {
+    path: "/forgotpassword",
+     element: <ForgotPassword/>
+  },
+  // {
+  //   path: "/addstock", element: <StockForm />
+  // },
+  {
     path: "/dashboard/",
     exact: true,
     element: <FullLayout />,
@@ -121,6 +145,16 @@ const ThemeRoutes = [
       { path: "/addItem", element: <AddItem /> },
       { path: "/editCategory", element: <EditCategory/>},
       { path: "/editItem", element: <EditItem/>},
+      { path: "/form-elements/stock", element: <Stock /> },
+      { path: "/form-elements/sale", element: <Sale /> },
+      { path: "/form-elements/checkbox", element: <ExCheckbox /> },
+      { path: "/form-elements/radio", element: <ExRadio /> },
+      { path: "/form-elements/slider", element: <ExSlider /> },
+      { path: "/form-elements/profile", element: <Profile /> },
+      { path: "/StockForm", element: <StockForm/>},
+      { path: "/addSale", element: <AddSale/>},
+      { path: "/Signup", element: <Signup/>},
+      // {  },
     ],
   },
 ];
