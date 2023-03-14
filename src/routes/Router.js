@@ -9,6 +9,8 @@ import AddItem from "../views/FormElements/addItem";
 import Report from "../views/FormElements/report";
 import EditCategory from "../views/FormElements/editCategory";
 import EditItem from "../views/FormElements/editItem";
+import Stock from "../views/FormElements/stock";
+
 
 /****Screens *****/
 
@@ -38,9 +40,11 @@ const BasicTable = lazy(() => import("../views/tables/BasicTable"));
 const ExAutoComplete = lazy(() =>
   import("../views/FormElements/stock")
 );
+const ExButton1 = lazy(() => import("../views/FormElements/ExButton"));
+const ExCheckbox1 = lazy(() => import("../views/FormElements/categories"));
+const ExRadio = lazy(() => import("../views/FormElements/items"));
 const ExButton = lazy(() => import("../views/FormElements/stock"));
 const ExCheckbox = lazy(() => import("../views/FormElements/sale"));
-const ExRadio = lazy(() => import("../views/FormElements/ExRadio"));
 const ExSlider = lazy(() => import("../views/FormElements/ExSlider"));
 const ExSwitch = lazy(() => import("../views/FormElements/ExSwitch"));
 
@@ -98,6 +102,17 @@ const ThemeRoutes = [
       { path: "/home", element: <Dashboard1 /> },
       { path: "/tables/basic-table", element: <BasicTable /> },
       { path: "/form-layouts/form-layouts", element: <FormLayouts /> },
+      { path: "/form-elements/stock", element: <Stock /> },
+      { path: "/form-elements/sale", element: <Sale /> },
+      { path: "/form-elements/checkbox", element: <ExCheckbox /> },
+      { path: "/form-elements/radio", element: <ExRadio /> },
+      { path: "/form-elements/slider", element: <ExSlider /> },
+      { path: "/form-elements/switch", element: <ExSwitch /> },
+      { path: "/form-elements/report", element: <Report /> },
+      { path: "/addCategory", element: <AddCategory /> },
+      { path: "/addItem", element: <AddItem /> },
+      { path: "/editCategory", element: <EditCategory/>},
+      { path: "/editItem", element: <EditItem/>},
       { path: "/form-elements/stock", element: <Stock /> },
       { path: "/form-elements/sale", element: <Sale /> },
       { path: "/form-elements/checkbox", element: <ExCheckbox /> },
