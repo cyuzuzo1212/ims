@@ -108,17 +108,20 @@ const ThemeRoutes = [
       { path: "/form-elements/radio", element: <ExRadio /> },
       { path: "/form-elements/slider", element: <ExSlider /> },
       { path: "/form-elements/switch", element: <ExSwitch /> },
+      { path: "/form-elements/category", element: <Category /> },
+      { path: "/form-elements/items", element: <Items /> },
       { path: "/form-elements/report", element: <Report /> },
+      { path: "/form-elements/profile", element: <Profile /> },
+      
+      
       { path: "/addCategory", element: <AddCategory /> },
       { path: "/addItem", element: <AddItem /> },
       { path: "/editCategory", element: <EditCategory/>},
       { path: "/editItem", element: <EditItem/>},
-      { path: "/form-elements/stock", element: <Stock /> },
-      { path: "/form-elements/sale", element: <Sale /> },
-      { path: "/form-elements/checkbox", element: <ExCheckbox /> },
-      { path: "/form-elements/radio", element: <ExRadio /> },
-      { path: "/form-elements/slider", element: <ExSlider /> },
-      { path: "/form-elements/profile", element: <Profile /> },
+      
+      
+     
+      
       { path: "/StockForm", element: <StockForm/>},
       { path: "/addSale", element: <AddSale/>},
       { path: "/Signup", element: <Signup/>},
