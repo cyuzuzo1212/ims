@@ -2,6 +2,13 @@ import { lazy } from "react";
 import { Navigate } from "react-router-dom";
 import Stock from "../views/FormElements/stock";
 
+import Category from "../views/FormElements/categories";
+import Items from "../views/FormElements/items";
+import AddCategory from "../views/FormElements/addCategory";
+import AddItem from "../views/FormElements/addItem";
+import Report from "../views/FormElements/report";
+import EditCategory from "../views/FormElements/editCategory";
+import EditItem from "../views/FormElements/editItem";
 
 /****Screens *****/
 
@@ -13,6 +20,7 @@ import AddSale from "../views/FormElements/addSale";
 import Sale from "../views/FormElements/sale";
 import Profile from "../views/FormElements/profile";
 import ForgotPassword from "../components/Landingpage/Forgotpassword";
+
 
 
 
@@ -35,6 +43,7 @@ const ExCheckbox = lazy(() => import("../views/FormElements/sale"));
 const ExRadio = lazy(() => import("../views/FormElements/ExRadio"));
 const ExSlider = lazy(() => import("../views/FormElements/ExSlider"));
 const ExSwitch = lazy(() => import("../views/FormElements/ExSwitch"));
+
 // form layouts
 const FormLayouts = lazy(() => import("../views/FormLayouts/FormLayouts"));
 

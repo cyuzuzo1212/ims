@@ -30,11 +30,11 @@ const Sidebar = (props) => {
   };
 
   const SidebarContent = (
-    <Box sx={{ p: 3, height: "calc(100vh - 40px)",backgroundColor:"blue",marginTop:"0px" }}>
+    <Box sx={{ p: 3, height: "calc(100vh - 40px)",backgroundColor:"#1565C0",marginTop:"0px",color:"white" }}>
       <Link to="/">
         <Box sx={{ display: "flex", alignItems: "Center" }}>
           {/* <LogoIcon /> */}
-          <button style={{padding:"10px",backgroundColor:"#020230",color:"white",fontSize:"larger",border:"none",borderRadius:"10px"}}>IMS</button>
+          <button style={{padding:"10px",backgroundColor:"#101540",color:"white",textDecoration:"none",fontSize:"larger",border:"none",borderRadius:"10px"}}>IMS</button>
         </Box>
       </Link>
 
@@ -44,8 +44,9 @@ const Sidebar = (props) => {
             mt: 4,
           }}
           style={{
-            flexDirection: "column",color:"white"
+            flexDirection: "column",
           }}
+          
         >
           {Menuitems.map((item, index) => {
             //{/********SubHeader**********/}
@@ -68,7 +69,7 @@ const Sidebar = (props) => {
                   }}
                 >
                   <ListItemIcon
-                    sx={{
+                    sx={{color:"white",
                       ...(pathDirect === item.href && { color: "white" }),
                     }}
                   >

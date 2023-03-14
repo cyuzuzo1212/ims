@@ -57,10 +57,11 @@ const FullLayout = () => {
           maxWidth={false}
           sx={{
             paddingTop: "20px",
+            backgroundColor:"#EDF0F2",
             paddingLeft: isSidebarOpen && lgUp ? "280px!important" : "",
           }}
         >
-          <Box sx={{ minHeight: "calc(100vh - 170px)" }}>
+          <Box sx={{ minHeight: "calc(100vh - 170px)"}}>
             <Outlet />
           </Box>
           <Footer />

@@ -21,7 +21,7 @@ const SalesOverview = () => {
     plotOptions: {
       bar: {
         horizontal: false,
-        columnWidth: "70%",
+        columnWidth: "65%",
         endingShape: "rounded",
         borderRadius: 0,
       },
