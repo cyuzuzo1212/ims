@@ -1,5 +1,12 @@
 import { lazy } from "react";
 import { Navigate } from "react-router-dom";
+import Category from "../views/FormElements/categories";
+import Items from "../views/FormElements/items";
+import AddCategory from "../views/FormElements/addCategory";
+import AddItem from "../views/FormElements/addItem";
+import Report from "../views/FormElements/report";
+import EditCategory from "../views/FormElements/editCategory";
+import EditItem from "../views/FormElements/editItem";
 
 import ForgotPassword from "../components/Landingpage/Forgotpassword"
 import Signup from "../components/Landingpage/Signup";
@@ -24,6 +31,7 @@ import AddSale from "../views/FormElements/addSale";
 import Sale from "../views/FormElements/sale";
 import Profile from "../views/FormElements/profile";
 // import ForgotPassword from "../components/Landingpage/Forgotpassword";
+
 
 
 
