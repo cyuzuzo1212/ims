@@ -8,8 +8,7 @@ import Report from "../views/FormElements/report";
 import EditCategory from "../views/FormElements/editCategory";
 import EditItem from "../views/FormElements/editItem";
 
-import ForgotPassword from "../components/Landingpage/Forgotpassword"
-import Signup from "../components/Landingpage/Signup";
+import ForgotPassword from "../components/Landingpage/Forgotpassword";
 import Login from "../components/Landingpage/Login";
 
 import Stock from "../views/FormElements/stock";
@@ -18,13 +17,12 @@ import Stock from "../views/FormElements/stock";
 /****Screens *****/
 
 import Home from "../components/Landingpage/home";
-// import Signup from "../components/Landingpage/Signup";
+import Signup from "../components/Landingpage/Signup";
 import StockForm from "../views/FormElements/StockForm";
-// import Login from "../components/Landingpage/Login";
 import AddSale from "../views/FormElements/addSale";
 import Sale from "../views/FormElements/sale";
 import Profile from "../views/FormElements/profile";
-// import ForgotPassword from "../components/Landingpage/Forgotpassword";
+
 
 
 
@@ -70,17 +68,21 @@ const ThemeRoutes = [
     path: "/home",
     element: <Home />
   },
-
+  {
+    path: "/signup",
+     element: <Signup/>
+  },
+  {
+    path: "/login",
+     element: <Login/>
+  },
+  {
+    path: "/forgotpassword",
+     element: <ForgotPassword/>
+  },
   // {
-  //   path: "/",
-  //   element: <Navigate to="/signup" />
+  //   path: "/addstock", element: <StockForm />
   // },
-  // {
-  //   path: "/signup",
-  //    element: <Signup/>
-  // },
-
-
   // {
   //   path: "/",
   //   element: <Navigate to="/login" />
@@ -98,26 +100,6 @@ const ThemeRoutes = [
   //   path: "/forgotpassword",
   //    element: <ForgotPassword/>
   // },
-  // {
-  //   path: "/addstock", element: <StockForm />
-  // },
-  {
-    path: "/",
-    element: <Navigate to="/login" />
-  },
-  {
-    path: "/login",
-     element: <Login/>
-  },
-
-  {
-    path: "/",
-    element: <Navigate to="/forgotpassword" />
-  },
-  {
-    path: "/forgotpassword",
-     element: <ForgotPassword/>
-  },
   // {
   //   path: "/addstock", element: <StockForm />
   // },

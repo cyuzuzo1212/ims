@@ -6,6 +6,7 @@ import { token } from "./authentication";
 const initialState ={
     EstateCategory: false,
     categories: [],
+    category:{},
 };
 
 export const categSlice = createSlice({
@@ -62,7 +63,7 @@ axios({
 export const getCateg =(id) =>(dispatch)=> {
     axios({
         method:"GET",
-        url:"https://inventory-ciul.onrender.com/api/category/63caaf3527b29e1d399896da",
+        url:`https://inventory-ciul.onrender.com/api/category/${id}`,
     })
     .then((Response)=>{
         console.log(Response)

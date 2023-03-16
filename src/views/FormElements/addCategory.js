@@ -1,10 +1,29 @@
 
 import React from "react"
-import { TextField, MenuItem,Typography ,Box } from "@material-ui/core";
+import { TextField, MenuItem,Typography ,Button } from "@material-ui/core";
+import { useState,useEffect } from "react";
+import { useDispatch,useSelector } from "react-redux";
+import { createCateg } from "../../components/Landingpage/categoryslice";
 
 
 
-function AddCategory () {
+
+
+export const AddCategory =() =>{
+        const [addingCategory,setAddingCategory]= useState("");
+        const [addingItemNum,setAddingItemNum]= useState("");
+
+
+        const dispatch=useDispatch();
+        const handlePost = (e) => {
+                e.preventDefault();
+                const data = {
+                        name:addingCategory,
+                        numberOfItems:  addingItemNum
+                }
+                dispatch(createCateg(data));
+        };
+
     return (
  <div className="add-category-container" style={{backgroundColor:"white",paddingBottom:"50px",borderRadius:"10px",justifyContent:"center"}}>
     
@@ -28,9 +47,12 @@ function AddCategory () {
               sx={{
                 mb: 2,
               }}
+              onChange={(category)=>{
+                setAddingCategory(category.target.value);
+              }}
             />
 
-<Typography>Add Item</Typography>
+<Typography>Add Item Number</Typography>
 {/* <input  style={{padding:"8px 380px 8px 0px",borderRadius:"8px"}}
         type="text"
         placeholder="Name of Item"
@@ -47,6 +69,9 @@ function AddCategory () {
               sx={{
                 mb: 2,
               }}
+              onChange={(itemname)=>{
+                setAddingItemNum(itemname.target.value);
+        }}
             />
 
 
@@ -62,7 +87,7 @@ function AddCategory () {
         required
         /> */}
 
-<Box style={{
+<Button onClick={handlePost} style={{
 //     display:"flex",
 //     marginTop:"30px",
 //     paddingRight:"80px",
@@ -79,7 +104,7 @@ function AddCategory () {
         type="save"
         className="save-data"
         >{" "}Save{" "}
-        </Box>
+        </Button>
 
 </div>
  </div>

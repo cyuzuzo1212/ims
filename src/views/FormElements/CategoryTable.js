@@ -1,4 +1,5 @@
 import React from "react";
+import { useState,useEffect } from "react";
 import {
   Typography,
   Box,
@@ -13,48 +14,24 @@ import {AiFillEye} from "react-icons/ai";
 import {FaPenAlt} from "react-icons/fa";
 import {RiDeleteBin6Fill} from "react-icons/ri";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Delete, EditCategory, getCategory } from "../../components/Landingpage/categoryslice";
 
-const products = [
-  {
-    id: "1",
-    category: "foods",
-    // post: "Web Designer",
-    itemname: "12",
-    priority:
-    <div>  <NavLink to={'/dashboard/editCategory'}><FaPenAlt/> </NavLink><RiDeleteBin6Fill/> </div>,
-    pbg: "primary.main",
-    // budget: "3.9",
-  },
-  {
-    id: "2",
-    category: "drinks",
-    // post: "Project Manager",
-    itemname: "23",
-    priority: <div><NavLink to={'/dashboard/editCategory'}> <FaPenAlt/></NavLink> <RiDeleteBin6Fill/> </div>,
-    pbg: "secondary.main",
-    // budget: "24.5",
-  },
-  {
-    id: "3",
-    category: "beer",
-    // post: "Project Manager",
-    itemname: "25",
-    priority: <div style={{padding:"0"}}> <NavLink to={'/dashboard/editCategory'}><FaPenAlt/></NavLink> <RiDeleteBin6Fill/> </div>,
-    pbg: "error.main",
-    // budget: "12.8",
-  },
-  {
-    id: "4",
-    category: "clothes",
-    // post: "Frontend Engineer",
-    itemname: "10",
-    priority: <div> <NavLink to={'/dashboard/editCategory'}><FaPenAlt/></NavLink> <RiDeleteBin6Fill/> </div>,
-    pbg: "success.main",
-    // budget: "2.4",
-  },
-];
 
-const CategoryTable = () => {
+
+export const CategoryTable = () => {
+  const dispatch = useDispatch()
+  const categories = useSelector((state)=>state.categories.categories)
+  
+
+  useEffect(()=>{
+    console.log("On Category Table")
+    dispatch(getCategory())
+  },[])
+
+console.log(categories.categories)
+
+
   return (
     <Table
       aria-label="simple table"
@@ -85,16 +62,12 @@ const CategoryTable = () => {
               Actions
             </Typography>
           </TableCell>
-          {/* <TableCell align="right">
-            <Typography color="textSecondary" variant="h6">
-              Budget
-            </Typography>
-          </TableCell> */}
+         
         </TableRow>
       </TableHead>
       <TableBody>
-        {products.map((product) => (
-          <TableRow key={product.category}>
+      {categories?.categories?.map((item, index) => (
+          <TableRow key={item.category}>
             <TableCell>
               <Typography
                 sx={{
@@ -102,7 +75,7 @@ const CategoryTable = () => {
                   fontWeight: "500",
                 }}
               >
-                {product.id}
+                {index + 1}
               </Typography>
             </TableCell>
             <TableCell>
@@ -119,45 +92,24 @@ const CategoryTable = () => {
                       fontWeight: "500",
                     }}
                   >
-                    {product.category}
+                    {item.name}
                   </Typography>
-                  {/* <Typography color="textSecondary" sx={{
-                      fontSize: "15px",
-                    }}
-                  >
-                    {product.post}
-                  </Typography> */}
+                  
                 </Box>
               </Box>
             </TableCell>
             <TableCell>
               <Typography style={{fontSize:"15px"}}>
-                {product.itemname}
+              {item.numberOfItems}
               </Typography>
             </TableCell>
 
             <TableCell>
               <Typography style={{fontSize:"15px",marginLeft:"10px"}}>
-                {product.priority}
+              <div style={{padding:"0"}}> <NavLink to={`/dashboard/editCategory/${item._id}`}><FaPenAlt/></NavLink> <RiDeleteBin6Fill onClick={Delete}/> </div>
               </Typography>
             </TableCell>
-            {/* <TableCell>
-              <Chip
-                sx={{
-                  pl: "15px",
-                  pr: "20px",
-                  padding:"20px",
-                  backgroundColor: "grey",
-                  // color: "black",
-                  
-                }}
-                size="large"
-                label={product.priority}
-              ></Chip>
-            </TableCell> */}
-            {/* <TableCell align="right">
-              <Typography variant="h6">${product.budget}k</Typography>
-            </TableCell> */}
+            
           </TableRow>
         ))}
       </TableBody>
