@@ -1,5 +1,4 @@
 import React from "react";
-import  { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -14,64 +13,32 @@ import ItemTable from "./itemTable";
 import { NavLink } from "react-router-dom";
 
 const Items = () => {
-  const [age, setAge] = useState("10");
-  const [items, setItems] = useState([]);
+  const [age, setAge] = React.useState("10");
 
   const handleChange = (event) => {
     setAge(event.target.value);
   };
-
-  useEffect(() => {
-    fetch("https://inventory-ciul.onrender.com/api/items", {
-      headers: {
-        "content-type": "application/json",
-        token: localStorage.getItem("inv-token"),
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => setItems(data.items))
-      .catch((err) => console.log(err));
-  }, []);
-
   return (
-    <Card variant="outlined">
+    <Card variant="outlined" >
       <CardContent>
         <Box
-          sx={{
-            display: {
+          sx={{display: {
               sm: "flex",
               xs: "block",
             },
-            alignItems: "flex-start",
-          }}
-        >
+            alignItems: "flex-start",}}>
           <Box>
-            <Typography
-              variant="h3"
-              sx={{ marginBottom: "0", color: "blue", fontSize: "25px" }}
-              gutterBottom
-            >
+            <Typography variant="h3" sx={{marginBottom: "0",color:"blue",fontSize:"25px"}} gutterBottom >
               Items
-              <button
-                style={{
-                  display: "flex",
-                  marginLeft: "880px",
-                  marginTop: "-20px",
-                  color: "white",
-                  backgroundColor: "blue",
-                  padding: "10px",
-                  borderRadius: "8px",
-                  border: "none",
-                }}
-              >
-                {" "}
-                <NavLink
-                  to={"/dashboard/addItem"}
-                  style={{ color: "white", textDecoration: "none" }}
-                >
-                  Add Item
-                </NavLink>
-              </button>
+              <button style={{display:"flex",
+              marginLeft:"880px",
+              marginTop:"-20px",
+              color:"white",
+              backgroundColor:"blue",
+              padding:"10px",
+              borderRadius:"8px",
+              border:"none",
+              }}> <NavLink to={'/dashboard/addItem'} style={{color:"white",textDecoration:"none"}}>Add Item</NavLink></button>
             </Typography>
           </Box>
 
@@ -83,7 +50,7 @@ const Items = () => {
                 xs: 2,
               },
             }}
-          >
+            >
             {/* <FormControl variant="standard" sx={{ minWidth: 120 }}>
               <Select
                 labelId="demo-simple-select-standard-label"
@@ -108,7 +75,7 @@ const Items = () => {
             mt: 3,
           }}
         >
-          <ItemTable items={items} setItems={setItems}/>
+          <ItemTable />
         </Box>
       </CardContent>
     </Card>
