@@ -1,6 +1,6 @@
 import { lazy } from "react";
 import { Navigate } from "react-router-dom";
-import Stock from "../views/FormElements/stock";
+
 
 import Category from "../views/FormElements/categories";
 import Items from "../views/FormElements/items";
@@ -22,6 +22,7 @@ import AddSale from "../views/FormElements/addSale";
 import Sale from "../views/FormElements/sale";
 import Profile from "../views/FormElements/profile";
 import ForgotPassword from "../components/Landingpage/Forgotpassword";
+
 
 
 
