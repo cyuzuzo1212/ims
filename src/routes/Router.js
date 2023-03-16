@@ -14,14 +14,14 @@ import Stock from "../views/FormElements/stock";
 
 /****Screens *****/
 
-import Home from "../components/Landingpage/home";
-import Signup from "../components/Landingpage/Signup";
+// import Home from "../components/Landingpage/home";
+// import Signup from "../components/Landingpage/Signup";
 import StockForm from "../views/FormElements/StockForm";
-import Login from "../components/Landingpage/Login";
+// import Login from "../components/Landingpage/Login";
 import AddSale from "../views/FormElements/addSale";
 import Sale from "../views/FormElements/sale";
 import Profile from "../views/FormElements/profile";
-import ForgotPassword from "../components/Landingpage/Forgotpassword";
+// import ForgotPassword from "../components/Landingpage/Forgotpassword";
 
 
 
@@ -55,42 +55,42 @@ const FormLayouts = lazy(() => import("../views/FormLayouts/FormLayouts"));
 /*****Routes******/
 
 const ThemeRoutes = [
-  {
-    path: "/",
-    element: <Navigate to="/home" />
-  },
-  {
-    path: "/home",
-    element: <Home />
-  },
+  // {
+  //   path: "/",
+  //   element: <Navigate to="/home" />
+  // },
+  // {
+  //   path: "/home",
+  //   element: <Home />
+  // },
 
-  {
-    path: "/",
-    element: <Navigate to="/signup" />
-  },
-  {
-    path: "/signup",
-     element: <Signup/>
-  },
+  // {
+  //   path: "/",
+  //   element: <Navigate to="/signup" />
+  // },
+  // {
+  //   path: "/signup",
+  //    element: <Signup/>
+  // },
 
 
-  {
-    path: "/",
-    element: <Navigate to="/login" />
-  },
-  {
-    path: "/login",
-     element: <Login/>
-  },
+  // {
+  //   path: "/",
+  //   element: <Navigate to="/login" />
+  // },
+  // {
+  //   path: "/login",
+  //    element: <Login/>
+  // },
 
-  {
-    path: "/",
-    element: <Navigate to="/forgotpassword" />
-  },
-  {
-    path: "/forgotpassword",
-     element: <ForgotPassword/>
-  },
+  // {
+  //   path: "/",
+  //   element: <Navigate to="/forgotpassword" />
+  // },
+  // {
+  //   path: "/forgotpassword",
+  //    element: <ForgotPassword/>
+  // },
   // {
   //   path: "/addstock", element: <StockForm />
   // },
@@ -125,7 +125,7 @@ const ThemeRoutes = [
       
       { path: "/StockForm", element: <StockForm/>},
       { path: "/addSale", element: <AddSale/>},
-      { path: "/Signup", element: <Signup/>},
+      // { path: "/Signup", element: <Signup/>},
       // {  },
     ],
   },
