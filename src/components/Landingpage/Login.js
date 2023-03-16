@@ -34,9 +34,9 @@ function Login() {
 
   return (
     <div className="login-form">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleLogin}>
         <h2>Login</h2>
-        <form>
+        <div className="form-group">
           <label>Email</label>
           <input
             type="email"
@@ -67,4 +67,4 @@ function Login() {
   );
 };
 
-export default LoginForm;
+export default Login;

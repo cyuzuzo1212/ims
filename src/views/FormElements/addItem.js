@@ -1,6 +1,4 @@
 import { React, useEffect, useState } from "react";
-import Category from "./categories";
-import { IoIosArrowDown } from "react-icons/io";
 import axios from "axios";
 import Select from "react-select";
 import { useNavigate } from "react-router-dom";

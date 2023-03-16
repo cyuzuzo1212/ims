@@ -1,16 +1,9 @@
 import { lazy } from "react";
 import { Navigate } from "react-router-dom";
-import Category from "../views/FormElements/categories";
-import Items from "../views/FormElements/items";
-import AddCategory from "../views/FormElements/addCategory";
-import AddItem from "../views/FormElements/addItem";
-import Report from "../views/FormElements/report";
-import EditCategory from "../views/FormElements/editCategory";
-import EditItem from "../views/FormElements/editItem";
-import Stock from "../views/FormElements/stock";
 
-
-
+import ForgotPassword from "../components/Landingpage/Forgotpassword"
+import Signup from "../components/Landingpage/Signup";
+import Login from "../components/Landingpage/Login";
 import Category from "../views/FormElements/categories";
 import Items from "../views/FormElements/items";
 import AddCategory from "../views/FormElements/addCategory";
@@ -23,7 +16,7 @@ import Stock from "../views/FormElements/stock";
 
 /****Screens *****/
 
-// import Home from "../components/Landingpage/home";
+import Home from "../components/Landingpage/home";
 // import Signup from "../components/Landingpage/Signup";
 import StockForm from "../views/FormElements/StockForm";
 // import Login from "../components/Landingpage/Login";
@@ -66,14 +59,14 @@ const FormLayouts = lazy(() => import("../views/FormLayouts/FormLayouts"));
 /*****Routes******/
 
 const ThemeRoutes = [
-  // {
-  //   path: "/",
-  //   element: <Navigate to="/home" />
-  // },
-  // {
-  //   path: "/home",
-  //   element: <Home />
-  // },
+  {
+    path: "/",
+    element: <Navigate to="/home" />
+  },
+  {
+    path: "/home",
+    element: <Home />
+  },
 
   // {
   //   path: "/",

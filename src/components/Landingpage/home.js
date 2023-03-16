@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 import "../../App.css";
 import LoginForm from "./Login";
 import img from "../../images/aboutimage.jpg";
-import { TiSocialFacebook, TiSocialLinkedin, TiSocialTwitter,TiSocialUtube} from "react-icons/ti";
+import { TiSocialFacebook, TiSocialLinkedin, TiSocialTwitter,TiSocialYoutube} from "react-icons/ti";
 import { NavLink } from "react-router-dom";
 
 function Home() {
@@ -192,32 +192,23 @@ function Home() {
                <h4>coming soon</h4>
                 <div className="socialmedia">
                   {/* <p><img src={Facebook} alt=""/></p> */}
-                  <FaFacebookSquare />
+                  <TiSocialFacebook />
                   {/* <p><img src={Twitter} alt=""/></p> */}
-                  <FaTwitterSquare />
-                  <p>
+                  <TiSocialTwitter />
+                  {/* <p>
                     <img src={LinkedIn} alt="" />
-                  </p>
-                  <FaLinkedin />
+                  </p> */}
+                  <TiSocialLinkedin />
                   {/* <p><img src={utube} alt=""/></p> */}
-                  <FaYoutube />
+                  <TiSocialYoutube />
                 </div>
               </div>
             </div>
-            <div className="sb-footer-links-div">
-              <h4>resourses</h4>
-              <a href="employer">
-                <p>employer</p></a>
-                <a href="plan">
-                <p>plan</p></a>
-
-                <a href="individual">
-                <p>individual</p></a>
-                </div>
+           
                 
           </div></div>
         </div>
-      </div>
+      {/* </div> */}
     </div>
   );
 }
