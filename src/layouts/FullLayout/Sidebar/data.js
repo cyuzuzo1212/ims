@@ -30,17 +30,17 @@ const Menuitems = [
   {
     title: "Categories",
     icon: AssignmentTurnedInOutlined,
-    href: "/dashboard/form-elements/checkbox",
+    href: "/dashboard/form-elements/category",
   },
   {
     title: "Items",
     icon: AlbumOutlined,
-    href: "/dashboard/form-elements/radio",
+    href: "/dashboard/form-elements/items",
   },
   {
     title: "Reports",
     icon: SwitchCameraOutlined,
-    href: "/dashboard/form-elements/slider",
+    href: "/dashboard/form-elements/report",
   },
   {
     title: "Profile",

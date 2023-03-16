@@ -14,7 +14,9 @@ export default function Navbar () {
                     <li><NavLink to={'/'} >  About</NavLink></li>
                     <li><NavLink to={'/'} > Services</NavLink></li>
                     <li><NavLink to={'/'} > Contact</NavLink></li>
-                    <button><NavLink to={'/signup'} > Get Started</NavLink></button>
+                
+
+                    <button><NavLink to={'/dashboard'} > Get Started</NavLink></button>
 
 
                 </ul>

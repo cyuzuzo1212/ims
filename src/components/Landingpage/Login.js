@@ -1,43 +1,48 @@
-import React, { useState } from "react";
-import "./Login.css";
-import { Link, NavLink } from "react-router-dom";
+import React, { useState } from 'react';
+import "../../App.css";
+import Navbar from './Navbar';
 
-function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const LoginForm = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Perform login logic here
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log('Email:', email);
+    console.log('Password:', password);
   };
 
   return (
-    <div className="login-container">
-      <div className="left-container">
+    <div className="login-form">
+      <form onSubmit={handleSubmit}>
         <h2>Login</h2>
-        <form onSubmit={handleSubmit}>
+        <div className="form-group">
           <label>Email</label>
           <input
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(event) => setEmail(event.target.value)}
+            placeholder="Enter email"
+            required
           />
+        </div>
+        <div className="form-group">
           <label>Password</label>
           <input
             type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(event) => setPassword(event.target.value)}
+            placeholder="Enter password"
+            required
           />
-          <button type="submit"><Link to="/dashboard">Login</Link>Login</button>
-          
-        </form>
-        <NavLink to="/ForgotPassword">Forgot Password</NavLink>
-      </div>
-      <div className="right-container">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyU4UAYQLyRqkbkNgr2PW-3I7ILBsX4bZDCw&usqp=CAU" alt="Square" />
+        </div>
+        <button type="submit">Login</button>
+      </form>
+      <div className="image-container">
+        <img src="https://via.placeholder.com/150" alt="small picture" />
       </div>
     </div>
   );
-}
+};
 
-export default Login;
+export default LoginForm;
