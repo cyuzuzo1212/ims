@@ -1,7 +1,9 @@
 import { lazy } from "react";
 import { Navigate } from "react-router-dom";
 
-
+import ForgotPassword from "../components/Landingpage/Forgotpassword"
+import Signup from "../components/Landingpage/Signup";
+import Login from "../components/Landingpage/Login";
 import Category from "../views/FormElements/categories";
 import Items from "../views/FormElements/items";
 import AddCategory from "../views/FormElements/addCategory";
@@ -14,7 +16,7 @@ import Stock from "../views/FormElements/stock";
 
 /****Screens *****/
 
-// import Home from "../components/Landingpage/home";
+import Home from "../components/Landingpage/home";
 // import Signup from "../components/Landingpage/Signup";
 import StockForm from "../views/FormElements/StockForm";
 // import Login from "../components/Landingpage/Login";
@@ -22,6 +24,8 @@ import AddSale from "../views/FormElements/addSale";
 import Sale from "../views/FormElements/sale";
 import Profile from "../views/FormElements/profile";
 // import ForgotPassword from "../components/Landingpage/Forgotpassword";
+
+
 
 
 
@@ -55,14 +59,14 @@ const FormLayouts = lazy(() => import("../views/FormLayouts/FormLayouts"));
 /*****Routes******/
 
 const ThemeRoutes = [
-  // {
-  //   path: "/",
-  //   element: <Navigate to="/home" />
-  // },
-  // {
-  //   path: "/home",
-  //   element: <Home />
-  // },
+  {
+    path: "/",
+    element: <Navigate to="/home" />
+  },
+  {
+    path: "/home",
+    element: <Home />
+  },
 
   // {
   //   path: "/",
@@ -95,6 +99,26 @@ const ThemeRoutes = [
   //   path: "/addstock", element: <StockForm />
   // },
   {
+    path: "/",
+    element: <Navigate to="/login" />
+  },
+  {
+    path: "/login",
+     element: <Login/>
+  },
+
+  {
+    path: "/",
+    element: <Navigate to="/forgotpassword" />
+  },
+  {
+    path: "/forgotpassword",
+     element: <ForgotPassword/>
+  },
+  // {
+  //   path: "/addstock", element: <StockForm />
+  // },
+  {
     path: "/dashboard/",
     exact: true,
     element: <FullLayout />,
@@ -103,29 +127,26 @@ const ThemeRoutes = [
       { path: "/home", element: <Dashboard1 /> },
       { path: "/tables/basic-table", element: <BasicTable /> },
       { path: "/form-layouts/form-layouts", element: <FormLayouts /> },
+      { path: "/form-elements/autocomplete", element: <ExAutoComplete /> },
+      { path: "/form-elements/button", element: <ExButton /> },
+      { path: "/form-elements/category", element: <Category /> },
+      { path: "/form-elements/items", element: <Items /> },
+      { path: "/form-elements/slider", element: <ExSlider /> },
+      { path: "/form-elements/switch", element: <ExSwitch /> },
+      { path: "/form-elements/report", element: <Report /> },
+      { path: "/addCategory", element: <AddCategory /> },
+      { path: "/addItem", element: <AddItem /> },
+      { path: "/editCategory/:id", element: <EditCategory/>},
+      { path: "/editItem", element: <EditItem/>},
       { path: "/form-elements/stock", element: <Stock /> },
       { path: "/form-elements/sale", element: <Sale /> },
       { path: "/form-elements/checkbox", element: <ExCheckbox /> },
       { path: "/form-elements/radio", element: <ExRadio /> },
       { path: "/form-elements/slider", element: <ExSlider /> },
-      { path: "/form-elements/switch", element: <ExSwitch /> },
-      { path: "/form-elements/category", element: <Category /> },
-      { path: "/form-elements/items", element: <Items /> },
-      { path: "/form-elements/report", element: <Report /> },
       { path: "/form-elements/profile", element: <Profile /> },
-      
-      
-      { path: "/addCategory", element: <AddCategory /> },
-      { path: "/addItem", element: <AddItem /> },
-      { path: "/editCategory", element: <EditCategory/>},
-      { path: "/editItem", element: <EditItem/>},
-      
-      
-     
-      
       { path: "/StockForm", element: <StockForm/>},
       { path: "/addSale", element: <AddSale/>},
-      // { path: "/Signup", element: <Signup/>},
+      { path: "/Signup", element: <Signup/>},
       // {  },
     ],
   },

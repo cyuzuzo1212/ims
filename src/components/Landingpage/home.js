@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 import "../../App.css";
 import LoginForm from "./Login";
 import img from "../../images/aboutimage.jpg";
-import { TiSocialFacebook, TiSocialLinkedin, TiSocialTwitter,TiSocialUtube} from "react-icons/ti";
+import { TiSocialFacebook, TiSocialLinkedin, TiSocialTwitter,TiSocialYoutube} from "react-icons/ti";
 import { NavLink } from "react-router-dom";
 
 function Home() {
@@ -16,13 +16,13 @@ function Home() {
     },
     {
       image:
-        "https://th.bing.com/th/id/OIP.nE86R8bSQ8Njh6xYa3eb4gHaHa?w=185&h=185&c=7&r=0&o=5&pid=1.7.jpg",
+        "https://www.patriotsoftware.com/wp-content/uploads/2017/06/what-is-an-income-statement.jpg",
       title: "Reporting and analysing",
       text: "Lorem ipsum dolor sit amet consectetur. Maecenas orci et ",
     },
     {
       image:
-        "https://th.bing.com/th/id/OIP.nE86R8bSQ8Njh6xYa3eb4gHaHa?w=185&h=185&c=7&r=0&o=5&pid=1.7.jpg",
+        "https://learn.g2.com/hubfs/iStock-1024926532.jpg",
       title: "Demand forecasting",
       text: "Lorem ipsum dolor sit amet consectetur. Maecenas orci et lorem ipsum",
     },
@@ -146,38 +146,69 @@ function Home() {
             <div className="sb-footer-links">
               <div className="sb-footer-links-div">
                 <h4>For Business</h4>
-                <a href="employer">
-                <p>employer</p></a>
-                <a href="plan">
-                <p>plan</p></a>
+                <a href="employer"  style={{color:"white",textDecoration:"none"}}>
+                  <p>Employers</p>
+                </a>
+                <a href="plan"  style={{color:"white",textDecoration:"none"}}>
+                  <p>Plans</p>
+                </a>
 
-                <a href="individual">
-                <p>individual</p></a>
+                <a href="individual"  style={{color:"white",textDecoration:"none"}}>
+                  <p>Individuals</p>
+                </a>
               </div>
               <div className="sb-footer-links-div">
-              <h4>resourses</h4>
-              <a href="employer">
-                <p>employer</p></a>
-                <a href="plan">
-                <p>plan</p></a>
+                <h4>Useful links</h4>
+                <a href="employer"  style={{color:"white",textDecoration:"none"}}>
+                  <p>Pricing</p>
+                </a>
+                <a href="plan"  style={{color:"white",textDecoration:"none"}}>
+                  <p>Certifications</p>
+                </a>
 
-                <a href="individual">
-                <p>individual</p></a>
-            </div>
-            <div className="sb-footer-links-div">
-              <h4>resourses</h4>
-              <a href="employer">
-                <p>employer</p></a>
-                <a href="plan">
-                <p>plan</p></a>
+                <a href="individual"  style={{color:"white",textDecoration:"none"}}>
+                  <p>Services</p>
+                </a>
+              </div>
+              <div className="sb-footer-links-div" >
+                <h4>Useful links</h4>
+                <a href="employer"   style={{color:"white",textDecoration:"none"}}>
+                  <p>Sales</p>
+                </a>
+                <a href="plan"  style={{color:"white",textDecoration:"none"}}>
+                  <p>Customers</p>
+                </a>
 
-                <a href="individual">
-                <p>individual</p></a>
+                <a href="individual"  style={{color:"white",textDecoration:"none"}}>
+                  <p>Stocking</p>
+                </a>
+              </div>
+              
+              <div className="sb-footer-links-div"  >
+              <h4>Address</h4>
+               <p>Kigali</p>
+               <p style={{marginTop:"-10px"}}> Nyarugenge</p>
+               <p style={{marginTop:"-10px"}}>KG ave 234</p>
+               <h4>coming soon</h4>
+                <div className="socialmedia">
+                  {/* <p><img src={Facebook} alt=""/></p> */}
+                  <TiSocialFacebook />
+                  {/* <p><img src={Twitter} alt=""/></p> */}
+                  <TiSocialTwitter />
+                  {/* <p>
+                    <img src={LinkedIn} alt="" />
+                  </p> */}
+                  <TiSocialLinkedin />
+                  {/* <p><img src={utube} alt=""/></p> */}
+                  <TiSocialYoutube />
                 </div>
+              </div>
+            </div>
+           
                 
           </div></div>
         </div>
-      </div>
+      {/* </div> */}
     </div>
   );
 }

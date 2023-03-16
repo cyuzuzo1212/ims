@@ -1,7 +1,26 @@
 import React from "react"
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { EditCategories } from "../../components/Landingpage/categoryslice";
 
 
-function EditCategory () {
+export const EditCategory =()=> {
+        const params = useParams();
+        const id = params.id;
+        console.log(id, "User ID")
+        const [editingCategory,setEditingCategory]= useState("");
+        const [editingItemNum,setEditingItemNum]= useState("");
+
+        const dispatch=useDispatch();
+        const handlePost = (e) => {
+                e.preventDefault();
+                const data = {
+                        name:editingCategory,
+                        numberOfItems:  editingItemNum
+                }
+                dispatch(EditCategories(id, "token", data));
+        };
     return (
  <div className="add-category-container" style={{display:"flex",backgroundColor:"white",paddingBottom:"50px",borderRadius:"10px",justifyContent:"center"}}>
     
@@ -13,6 +32,9 @@ function EditCategory () {
         placeholder="Name of Category"
         name="Category"
         required
+        onChange={(category)=>{
+                setEditingCategory(category.target.value);
+        }}
         />
 
 <p>Edit Item</p>
@@ -21,6 +43,9 @@ function EditCategory () {
         placeholder="Name of Item"
         name="Item"
         required
+        onChange={(itemname)=>{
+                setEditingItemNum(itemname.target.value);
+        }}
         />
 
 {/* <p>Edit Unit</p>
@@ -31,7 +56,7 @@ function EditCategory () {
         required
         /> */}
 
-<button style={{
+<button onClick={handlePost} style={{
     display:"flex",
     marginTop:"30px",
     paddingRight:"80px",

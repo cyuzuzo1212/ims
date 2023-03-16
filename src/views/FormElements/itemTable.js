@@ -9,11 +9,11 @@ import {
   TableRow,
   Chip,
 } from "@material-ui/core";
-import { AiFillEye } from "react-icons/ai";
-import { FaPenAlt } from "react-icons/fa";
-import { RiDeleteBin6Fill } from "react-icons/ri";
+import {AiFillEye} from "react-icons/ai";
+import {FaPenAlt} from "react-icons/fa";
+import {RiDeleteBin6Fill} from "react-icons/ri";
 import { NavLink } from "react-router-dom";
-import { Delete, Edit } from "@material-ui/icons";
+
 
 const products = [
   {
@@ -24,14 +24,7 @@ const products = [
     quantity: "20 boxes",
     category: "cleaning",
     pbg: "primary.main",
-    action: (
-      <div>
-        <NavLink to={"/dashboard/editItem"}>
-          <FaPenAlt />{" "}
-        </NavLink>
-        <RiDeleteBin6Fill />{" "}
-      </div>
-    ),
+    action: <div><NavLink to={'/dashboard/editItem'}><FaPenAlt/> </NavLink><RiDeleteBin6Fill/> </div>,
   },
   {
     id: "2",
@@ -41,15 +34,7 @@ const products = [
     quantity: "30 casses",
     category: "drinking",
     pbg: "secondary.main",
-    action: (
-      <div>
-        {" "}
-        <NavLink to={"/dashboard/editItem"}>
-          <FaPenAlt />{" "}
-        </NavLink>
-        <RiDeleteBin6Fill />{" "}
-      </div>
-    ),
+    action: <div> <NavLink to={'/dashboard/editItem'}><FaPenAlt/> </NavLink><RiDeleteBin6Fill/> </div>,
   },
   {
     id: "3",
@@ -59,15 +44,7 @@ const products = [
     quantity: "5 packages",
     category: "foods",
     pbg: "error.main",
-    action: (
-      <div>
-        <NavLink to={"/dashboard/editItem"}>
-          {" "}
-          <FaPenAlt />
-        </NavLink>{" "}
-        <RiDeleteBin6Fill />{" "}
-      </div>
-    ),
+    action: <div><NavLink to={'/dashboard/editItem'}> <FaPenAlt/></NavLink> <RiDeleteBin6Fill/> </div>,
   },
   {
     id: "4",
@@ -77,34 +54,11 @@ const products = [
     quantity: "7 packages",
     category: "clothes",
     pbg: "success.main",
-    action: (
-      <div>
-        {" "}
-        <NavLink to={"/dashboard/editItem"}>
-          <FaPenAlt />{" "}
-        </NavLink>
-        <RiDeleteBin6Fill />{" "}
-      </div>
-    ),
+    action: <div> <NavLink to={'/dashboard/editItem'}><FaPenAlt/> </NavLink><RiDeleteBin6Fill/> </div>,
   },
 ];
 
-const ItemTable = ({ items, setItems }) => {
-  const handleDelete = (id) => {
-    fetch(`https://inventory-ciul.onrender.com/api/items/delete/${id}`,{
-      method: "DELETE",
-      headers: {
-        "token": localStorage.getItem("inv-token")
-      }
-    })
-      .then((res) => res.json())
-      .then((res) => setItems(items.filter(item => item._id !== id)))
-      .catch((err) => console.log(err));
-  };
-
-  const handleEdit = (id) => {
-  };
-
+const ItemTable = () => {
   return (
     <Table
       aria-label="simple table"
@@ -116,17 +70,17 @@ const ItemTable = ({ items, setItems }) => {
       <TableHead>
         <TableRow>
           <TableCell>
-            <Typography style={{ color: "black", fontWeight: "600" }}>
+            <Typography style={{color:"black",fontWeight:"600"}}>
               No
             </Typography>
           </TableCell>
           <TableCell>
-            <Typography style={{ color: "black", fontWeight: "600" }}>
+            <Typography style={{color:"black",fontWeight:"600"}}>
               Item Name
             </Typography>
           </TableCell>
           <TableCell>
-            <Typography style={{ color: "black", fontWeight: "600" }}>
+            <Typography style={{color:"black",fontWeight:"600"}}>
               Quantity
             </Typography>
           </TableCell>
@@ -138,34 +92,40 @@ const ItemTable = ({ items, setItems }) => {
           </TableCell> */}
 
           <TableCell>
-            <Typography style={{ color: "black", fontWeight: "600" }}>
+            <Typography style={{color:"black",fontWeight:"600"}}>
               Category
             </Typography>
           </TableCell>
           <TableCell align="right">
-            <Typography style={{ color: "black", fontWeight: "600" }}>
+            <Typography style={{color:"black",fontWeight:"600"}}>
               Actions
             </Typography>
           </TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
-        {items.length > 0 &&
-          items.map((item, index) => (
-            <TableRow key={item._id}>
-              <TableCell>
-                <Typography style={{ color: "black", fontWeight: "400" }}>
-                  {index + 1}
-                </Typography>
-              </TableCell>
-              <TableCell>
-                <Box sx={{ display: "flex", alignItems: "center" }}>
-                  <Box>
-                    <Typography style={{ color: "black", fontWeight: "400" }}>
-                      {item.name}
-                    </Typography>
+        {products.map((product) => (
+          <TableRow key={product.itemname}>
+            <TableCell>
+              <Typography style={{color:"black",fontWeight:"400"}}>
+                {product.id}
+              </Typography>
 
-                    {/* <Typography
+
+
+            </TableCell>
+            <TableCell>
+              <Box sx={{display: "flex",alignItems: "center",}}>
+
+                
+                <Box>
+                  <Typography style={{color:"black",fontWeight:"400"}}>
+                    {product.itemname}
+                  </Typography>
+
+                 
+
+                  {/* <Typography
                     color="textSecondary"
                     sx={{
                       fontSize: "13px",
@@ -173,29 +133,31 @@ const ItemTable = ({ items, setItems }) => {
                   >
                     {product.post}
                   </Typography> */}
-                  </Box>
                 </Box>
-              </TableCell>
+              </Box>
+            </TableCell>
 
-              <TableCell>
-                <Typography style={{ color: "black", fontWeight: "400" }}>
-                  {item.category.numberOfItems}
-                </Typography>
-              </TableCell>
+ 
 
-              <TableCell>
-                <Typography style={{ color: "black", fontWeight: "400" }}>
-                  {item.category.name}
-                </Typography>
-              </TableCell>
+            <TableCell>
+              <Typography style={{color:"black",fontWeight:"400"}}>
+                {product.quantity}
+              </Typography>
+            </TableCell>
 
-              {/* <TableCell>
+             <TableCell>
+              <Typography style={{color:"black",fontWeight:"400"}}>
+                {product.category}
+              </Typography>
+            </TableCell>
+
+            {/* <TableCell>
               <Typography color="textSecondary" variant="h6">
                 {product.action}
               </Typography>
             </TableCell> */}
 
-              {/* <TableCell>
+            {/* <TableCell>
               <Chip
                 sx={{
                   pl: "4px",
@@ -207,20 +169,11 @@ const ItemTable = ({ items, setItems }) => {
                 label={product.priority}
               ></Chip>
             </TableCell> */}
-              <TableCell align="right">
-                <Typography
-                  style={{
-                    color: "black",
-                    fontWeight: "600",
-                    marginRight: "10px",
-                  }}
-                >
-                  <Delete color="danger" onClick={() => handleDelete(item._id)} />
-                  <Edit color="primary" onClick={() => handleEdit(item._id)} />
-                </Typography>
-              </TableCell>
-            </TableRow>
-          ))}
+            <TableCell align="right">
+              <Typography style={{color:"black",fontWeight:"600",marginRight:"10px"}}>{product.action}</Typography>
+            </TableCell>
+          </TableRow>
+        ))}
       </TableBody>
     </Table>
   );

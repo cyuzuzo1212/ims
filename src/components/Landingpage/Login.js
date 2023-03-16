@@ -1,20 +1,40 @@
-import React, { useState } from 'react';
-import "../../App.css";
-import Navbar from './Navbar';
+import React, { useState, useEffect } from "react";
+import "./Login.css";
+import { Link, NavLink } from "react-router-dom";
+import {useDispatch} from "react-redux";
+import { useSelector } from "react-redux";
+import {  loginUser } from "../Landingpage/authentication";
+import { useNavigate } from "react-router-dom";
 
-const LoginForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+function Login() {
+  const dispatch = useDispatch();
+  
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { isLoggedIn, error ,loginSuccess } = useSelector((state) => state.auth);
+  
+  
+  
+  useEffect(() => {
+    if (isLoggedIn ) {
+      navigate("/dashboard");
+    }
+  }, [isLoggedIn]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log('Email:', email);
-    console.log('Password:', password);
+  const handleLogin = (e) => {
+    e.preventDefault()
+    dispatch(
+      loginUser({
+        email: email,
+        password: password,
+      })
+    );
   };
 
   return (
     <div className="login-form">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleLogin}>
         <h2>Login</h2>
         <div className="form-group">
           <label>Email</label>
@@ -35,14 +55,16 @@ const LoginForm = () => {
             placeholder="Enter password"
             required
           />
-        </div>
-        <button type="submit">Login</button>
-      </form>
-      <div className="image-container">
-        <img src="https://via.placeholder.com/150" alt="small picture" />
+          <button color="white" textDecoration="none"><Link to="/dashboard"  onClick={handleLogin}>Login</Link></button>
+          
+        <NavLink to="/ForgotPassword">Forgot Password</NavLink>
       </div>
+      <div className="right-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyU4UAYQLyRqkbkNgr2PW-3I7ILBsX4bZDCw&usqp=CAU" alt="Square" />
+      </div>
+        </form>
     </div>
   );
 };
 
-export default LoginForm;
+export default Login;
