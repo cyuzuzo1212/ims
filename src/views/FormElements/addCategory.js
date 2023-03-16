@@ -1,9 +1,29 @@
-import React from "react"
+import React from "react";
+import { useState,useEffect } from "react";
+import { useDispatch,useSelector } from "react-redux";
+import { createCateg } from "../../components/Landingpage/categoryslice";
 
 
 
 
-function AddCategory () {
+export const AddCategory =()=>{
+        const [addingCategory,setAddingCategory]= useState("");
+        const [addingItemNum,setAddingItemNum]= useState("");
+
+
+        const dispatch=useDispatch();
+        const handlePost = (e) => {
+                e.preventDefault();
+                const data = {
+                        name:addingCategory,
+                        numberOfItems:  addingItemNum
+                }
+                dispatch(createCateg(data));
+        };
+
+       
+        
+
     return (
  <div className="add-category-container" style={{display:"flex",backgroundColor:"white",paddingBottom:"50px",borderRadius:"10px",justifyContent:"center"}}>
     
@@ -15,6 +35,9 @@ function AddCategory () {
         placeholder="Name of Category"
         name="Category"
         required
+        onChange={(category)=>{
+                setAddingCategory(category.target.value);
+        }}
         />
 
 <p>Add Item</p>
@@ -23,6 +46,9 @@ function AddCategory () {
         placeholder="Name of Item"
         name="Item"
         required
+        onChange={(itemname)=>{
+                setAddingItemNum(itemname.target.value);
+        }}
         />
 
 {/* <p>Add Unit</p>
@@ -33,7 +59,7 @@ function AddCategory () {
         required
         /> */}
 
-<button style={{
+<button onClick={handlePost} style={{
     display:"flex",
     marginTop:"30px",
     paddingRight:"80px",

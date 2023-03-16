@@ -143,7 +143,7 @@ const ThemeRoutes = [
       { path: "/form-elements/report", element: <Report /> },
       { path: "/addCategory", element: <AddCategory /> },
       { path: "/addItem", element: <AddItem /> },
-      { path: "/editCategory", element: <EditCategory/>},
+      { path: "/editCategory/:id", element: <EditCategory/>},
       { path: "/editItem", element: <EditItem/>},
       { path: "/form-elements/stock", element: <Stock /> },
       { path: "/form-elements/sale", element: <Sale /> },
