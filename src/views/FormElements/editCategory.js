@@ -1,99 +1,53 @@
-
-import React, { useEffect } from "react"
-import { TextField, MenuItem,Typography ,Button } from "@material-ui/core";
-import { useState } from "react";
-import { useDispatch,useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { EditCategories } from "../../components/Landingpage/categoryslice";
+import React from "react"
 
 
-
-export const EditCategory =()=> {
-        const params = useParams();
-        const id = params.id;
-        console.log(id, "User ID")
-        const [editingCategory,setEditingCategory]= useState("");
-        const [editingItemNum,setEditingItemNum]= useState("");
-                
-        
-        dispatch(EditCategory())
-
-        const category = useSelector((state)=>state.categories.category)
-
-        const dispatch=useDispatch();
-        const handlePost = (e) => {
-                e.preventDefault();
-                const data = {
-                        name:editingCategory,
-                        numberOfItems:  editingItemNum
-                }
-                dispatch(EditCategories(id, "token", data));
-                
-        };
-        console.log(category)
-
+function EditCategory () {
     return (
- <div className="add-category-container" style={{backgroundColor:"white",paddingBottom:"50px",borderRadius:"10px",justifyContent:"center"}}>
+ <div className="add-category-container" style={{display:"flex",backgroundColor:"white",paddingBottom:"50px",borderRadius:"10px",justifyContent:"center"}}>
     
-<div className="add-category-form" style={{marginTop:"0px",padding:"15px 100px"}}>
-<Typography style={{color:"blue",fontSize:"25px",marginBottom:"50px"}}>Edit Category</Typography>
-<Typography >Edit Category </Typography>
+<div className="add-category-form" style={{marginTop:"30px",paddingLeft:"50px"}}>
+<p style={{color:"blue",fontSize:"30px",marginBottom:"80px"}}>Edit Category</p>
+<p >Edit Category </p>
+<input  style={{padding:"8px 380px 8px 0px",borderRadius:"8px"}}
+        type="text"
+        placeholder="Name of Category"
+        name="Category"
+        required
+        />
 
+<p>Edit Item</p>
+<input  style={{padding:"8px 380px 8px 0px",borderRadius:"8px"}}
+        type="text"
+        placeholder="Name of Item"
+        name="Item"
+        required
+        />
 
+{/* <p>Edit Unit</p>
+<input  style={{padding:"4px 100px 4px 0px"}}
+        type="text"
+        placeholder="Symbol of Unit"
+        name="Unit"
+        required
+        /> */}
 
-<TextField
-              id="edit-category-text"
-              label="category"
-              type="edit"
-              variant="outlined"
-              fullWidth
-              sx={{
-                mb: 2,
-              }}
-              onChange={(category)=>{
-                setEditingCategory(category.target.value);
-              }}
-            />
-
-<Typography>Edit Item</Typography>
-
-
-<TextField
-              id="edit-item-text"
-              label="item name"
-              type="edit"
-              variant="outlined"
-              fullWidth
-              sx={{
-                mb: 2,
-              }}
-              onChange={(itemname)=>{
-                setEditingItemNum(itemname.target.value);
-        }}
-            />
-
-
-
-
-
-
-
-
-<Button onClick={handlePost} style={{
-
+<button style={{
+    display:"flex",
+    marginTop:"30px",
+    paddingRight:"80px",
+    paddingLeft:"80px",
     backgroundColor:"blue",
     textAlign:"center",
     border:"none",
     borderRadius:"6px",
     color:"white",
-    paddingTop:"10px",
-    paddingBottom:"10px",
-    textAlign:"center",
+    paddingTop:"8px",
+    paddingBottom:"8px",
 }}
         type="save"
         className="save-data"
         >{" "}Save{" "}
-        </Button>
+        </button>
 
 </div>
  </div>

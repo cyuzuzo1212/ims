@@ -20,6 +20,8 @@ const Sidebar = (props) => {
   const { pathname } = useLocation();
   const pathDirect = pathname;
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"));
+  const invRole = localStorage.getItem("inv-role");
+  console.log(invRole);
 
   const handleClick = (index) => {
     if (open === index) {
@@ -30,11 +32,31 @@ const Sidebar = (props) => {
   };
 
   const SidebarContent = (
-    <Box sx={{ p: 3, height: "calc(100vh - 40px)",backgroundColor:"#1565C0",marginTop:"0px",color:"white" }}>
+    <Box
+      sx={{
+        p: 3,
+        height: "calc(100vh - 40px)",
+        backgroundColor: "#1565C0",
+        marginTop: "0px",
+        color: "white",
+      }}
+    >
       <Link to="/">
         <Box sx={{ display: "flex", alignItems: "Center" }}>
           {/* <LogoIcon /> */}
-          <button style={{padding:"10px",backgroundColor:"#101540",color:"white",textDecoration:"none",fontSize:"larger",border:"none",borderRadius:"10px"}}>IMS</button>
+          <button
+            style={{
+              padding: "10px",
+              backgroundColor: "#101540",
+              color: "white",
+              textDecoration: "none",
+              fontSize: "larger",
+              border: "none",
+              borderRadius: "10px",
+            }}
+          >
+            IMS
+          </button>
         </Box>
       </Link>
 
@@ -46,37 +68,65 @@ const Sidebar = (props) => {
           style={{
             flexDirection: "column",
           }}
-          
         >
           {Menuitems.map((item, index) => {
             //{/********SubHeader**********/}
-
+            console.log(item);
             return (
               <List component="li" disablePadding key={item.title}>
-                <ListItem 
-                  onClick={() => handleClick(index)}
-                  button
-                  component={NavLink}
-                  to={item.href}
-                  selected={pathDirect === item.href}
-                  sx={{
-                    mb: 1,
-                    ...(pathDirect === item.href && {
-                      color: "white",
-                      backgroundColor: (theme) =>
-                        `${theme.palette.primary.main}!important`,
-                    }),
-                  }}
-                >
-                  <ListItemIcon
-                    sx={{color:"white",
-                      ...(pathDirect === item.href && { color: "white" }),
+                {invRole === "admin" && item.title === "User" ? (
+                    <ListItem
+                      onClick={() => handleClick(index)}
+                      button
+                      component={NavLink}
+                      to={item.href}
+                      selected={pathDirect === item.href}
+                      sx={{
+                        mb: 1,
+                        ...(pathDirect === item.href && {
+                          color: "white",
+                          backgroundColor: (theme) =>
+                            `${theme.palette.primary.main}!important`,
+                        }),
+                      }}
+                    >
+                      <ListItemIcon
+                        sx={{
+                          color: "white",
+                          ...(pathDirect === item.href && { color: "white" }),
+                        }}
+                      >
+                        <item.icon width="20" height="20" />
+                      </ListItemIcon>
+                      <ListItemText>{item.title}</ListItemText>
+                    </ListItem>
+                ) : (invRole !== "admin" && 
+                  <ListItem
+                    onClick={() => handleClick(index)}
+                    button
+                    component={NavLink}
+                    to={item.href}
+                    selected={pathDirect === item.href}
+                    sx={{
+                      mb: 1,
+                      ...(pathDirect === item.href && {
+                        color: "white",
+                        backgroundColor: (theme) =>
+                          `${theme.palette.primary.main}!important`,
+                      }),
                     }}
                   >
-                    <item.icon width="20" height="20" />
-                  </ListItemIcon>
-                  <ListItemText>{item.title}</ListItemText>
-                </ListItem>
+                    <ListItemIcon
+                      sx={{
+                        color: "white",
+                        ...(pathDirect === item.href && { color: "white" }),
+                      }}
+                    >
+                      <item.icon width="20" height="20" />
+                    </ListItemIcon>
+                    <ListItemText>{item.title}</ListItemText>
+                  </ListItem>
+                )}
               </List>
             );
           })}

@@ -1,78 +1,130 @@
-import { Box, Button, FormControl } from '@material-ui/core';
+import { Box, Button, MenuItem,Typography,TextField} from '@material-ui/core';
 import * as React from 'react';
 
 export default function StockForm() {
   return (
-    <Box
-    >
-      <FormControl sx={{
-        marginTop: "100px",
-        marginLeft: "22%"
-
-      }}>
-        <Box sx={{
-          display: "flex",
-
-        }}>
-          <Box sx={{
-            marginRight: "10px"
-          }}>
-            <label for="my-input">category</label><br />
-            <select style={{ width: "190px", padding: "10px", borderRadius: "5px" }}>
-              <option>Fashion</option>
-            </select>
-          </Box>
-          <Box>
-            <label for="my-input">Select Input</label><br />
-            <select style={{ width: "190px", padding: "10px", borderRadius: "5px" }}>
-              <option>kg</option>
-              <option>Liters</option>
-            </select>
-          </Box>
-        </Box>
-        <Box sx={{
-          display: "flex"
-        }}>
-          <Box sx={{
-            marginRight: "10px",
-            marginTop: "20px"
-          }}>
-            <label for="my-input">Item Name</label><br />
-            <input id="my-input" aria-describedby="my-helper-text" style={{ padding: "10px", borderRadius: "5px" }} />
-          </Box>
-          <Box sx={{
-            marginTop: "20px"
-          }}>
-            <label for="my-input">Item Name</label><br />
-            <input id="my-input" aria-describedby="my-helper-text" style={{ padding: "10px", borderRadius: "5px" }} />
-          </Box>
-        </Box>
-        <Box sx={{
-          display: "flex"
-        }}>
-          <Box sx={{
-            marginRight: "10px",
-            marginTop: "20px"
-          }}>
-            <label for="my-input">Item Name</label><br />
-            <input id="my-input" aria-describedby="my-helper-text" style={{ padding: "10px", borderRadius: "5px" }} />
-          </Box>
-          <Box sx={{
-            marginTop: "20px"
-          }}>
-            <label for="my-input">Item Name</label><br />
-            <input id="my-input" aria-describedby="my-helper-text" style={{ padding: "10px", borderRadius: "5px" }} />
-          </Box>
-        </Box>
-        <Box sx={{
-            marginTop: "20px",
-            display:"flex",
-            marginLeft:"150px",
+    <div style={{backgroundColor:"white",borderRadius:"10px",marginBottom:"20px"}}>
+      <div style={{padding:"50px 100px 50px 100px"}}>
+       
+            <Typography for="my-input">Category</Typography>
+            <TextField
+           fullWidth
+           id="category"
+           variant="outlined"
+           select
+           label="Select"
+           sx={{
+             mb: 0,
+           }}
+           >
+           {[{name: "Food", value: "food"}, {name: "Drinks", value: "drinks"}].map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.name}
+                </MenuItem>
+              ))}
+            </TextField>
             
-        }}>
+            <Typography for="my-input">Item</Typography>
+
+            <TextField
+           fullWidth
+           id="item"
+           variant="outlined"
+           select
+           label="Item"
+           sx={{
+             mb: 0,
+           }}
+           >
+           {[{name: "Food", value: "food"}, {name: "Drinks", value: "drinks"}].map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.name}
+                </MenuItem>
+              ))}
+            </TextField>
+            
+            <Typography for="my-input">Quantity</Typography>
+            {/* <TextField id="my-input" aria-describedby="my-helper-text"   fullWidth
+            variant="outlined"
+            label="Quantity"
+            
+            sx={{
+              mb: 0,}}/> */}
+
+<div style={{ display: "flex", justifyContent: "space-between" }}>
+          <TextField
+            id="my-input"
+            aria-describedby="my-helper-text"
+            fullWidth
+            variant="outlined"
+            label="Quantity"
+            sx={{
+              mb: 2,
+            }}
+            // onChange={(quantity) => {
+            //   console.log(quantity, "Quantity")
+            //   setAddQuantity(quantity.target.value);
+            // }}
+          />
+
+          <TextField
+            fullWidth
+            id="standard-select-item"
+            variant="outlined"
+            select
+            label="Select"
+            sx={{
+              mb: 2,
+            }}
+            // onChange={(itemId) => {
+            //   setMeasurementType(itemId.target.value);
+            // }}
+          >
+            {[
+              { name: "Box", value: "box" },
+              { name: "Piece", value: "piece" },
+              { name: "1 Kg", value: "kilogram" },
+              { name: "1 Liter", value: "liter" },
+            ].map((option) => (
+              <MenuItem
+                key={option.value}
+                value={option.value}
+                style={{ flexDirection: "column" }}
+              >
+                {option.name}
+              </MenuItem>
+            ))}
+          </TextField>
+
+          {/* <TextField id="my-input" aria-describedby="my-helper-text" fullWidth 
+            variant="outlined"  label="Quantity per box"
+            sx={{
+              mb: 2,}} 
+              onChange={(box)=>{
+                setAddBoxPrice(box.target.value);
+              }}
+              /> */}
+        </div>
+         
+            <Typography for="my-input">Price Per Unit</Typography>
+            <TextField id="my-input" aria-describedby="my-helper-text"   fullWidth
+            variant="outlined"
+            label="Price per unit"
+            
+            sx={{
+              mb: 0,}}/>
+         
+            <Typography for="my-input">Price per box</Typography>
+            <TextField id="my-input" aria-describedby="my-helper-text"   fullWidth
+            variant="outlined"
+            label="Price per box"
+            
+            sx={{
+              mb: 2,}}/>
+          
           <Button variant="contained" color="secondary">Save</Button>
-        </Box>
-      </FormControl>
-    </Box>
+        
+      </div>
+    </div>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link , NavLink} from 'react-router-dom';
 import Navbar from "./Navbar";
 import "./Signup.css";
 
@@ -8,10 +8,25 @@ function Signup() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
 
-  const handleSignup = (e) => {
-    e.preventDefault();
-    // handle the signup logic here
+  const handleSignup = (event) => {
+    event.preventDefault();
+    fetch("https://inventory-ciul.onrender.com/api/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ firstName, lastName, email, password}),
+    })
+    .then((response) => response.json())
+    .then ((data) => {
+      console.log("Success", data);
+    })
+    .catch((error) =>{
+      console.error("Error:", error);
+    });
+    
   };
 
   return (
@@ -35,7 +50,7 @@ function Signup() {
                   type="text"
                   id="firstName"
                   value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
+                  onChange={(event) => setFirstName(event.target.value)}
                 />
               </div>
               <div className="form-group-column">
@@ -44,7 +59,7 @@ function Signup() {
                   type="text"
                   id="lastName"
                   value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
+                  onChange={(event) => setLastName(event.target.value)}
                 />
               </div>
             </div>
@@ -55,7 +70,7 @@ function Signup() {
                   type="email"
                   id="email"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(event) => setEmail(event.target.value)}
                 />
               </div>
               <div className="form-group-column">
@@ -64,7 +79,7 @@ function Signup() {
                   type="password"
                   id="password"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(event) => setPassword(event.target.value)}
                 />
               </div>
             </div>
@@ -79,6 +94,7 @@ function Signup() {
           
         </form>
         <p>Already have an account? <Link to="/login">Login</Link></p>
+        {/* <p>Already have an account? <Link to="/businessform">Login</Link></p> */}
       </div>
     </div>
   );

@@ -20,7 +20,8 @@ const products = [
     category: "Fashion",
     item: "Pant",
     quantity: "30kg",
-    unit: "100",
+    unitprice: "100",
+    unitbox:"qw",
     Actions: <div> <NavLink to={'/dashboard/editsale'}><FaPenAlt/></NavLink> <RiDeleteBin6Fill/> </div>,
   },
 
@@ -29,7 +30,8 @@ const products = [
     category: "Food",
     item: "Spaghetti",
     quantity: "30kg",
-    unit: "200",
+    unitprice: "200",
+    unitbox:"we",
     Actions: <div> <NavLink to={'/dashboard/editsale'}><FaPenAlt/></NavLink> <RiDeleteBin6Fill/> </div>,
   },
   
@@ -47,34 +49,41 @@ const StockTable = () => {
       <TableHead>
         <TableRow>
           <TableCell>
-            <Typography color="textSecondary" variant="h6">
+            <Typography fontWeight="600">
               Id
             </Typography>
           </TableCell>
           <TableCell>
-            <Typography color="textSecondary" variant="h6">
+            <Typography fontWeight="600">
               Category
             </Typography>
           </TableCell>
           <TableCell>
-            <Typography color="textSecondary" variant="h6">
-              Itemname
+            <Typography fontWeight="600">
+              Item name
             </Typography>
           </TableCell>
           <TableCell>
-            <Typography color="textSecondary" variant="h6">
+            <Typography fontWeight="600">
               Quantity
             </Typography>
           </TableCell>
           <TableCell>
-            <Typography color="textSecondary" variant="h6">
-              Unit
+            <Typography fontWeight="600">
+              Unit per price
             </Typography>
           </TableCell>
           <TableCell align="right">
-            <Typography color="textSecondary" variant="h6">
-              Unitprice 
+            <Typography fontWeight="600">
+              Unit per box
             </Typography>
+          </TableCell>
+
+          <TableCell align="center" >
+            <Typography fontWeight="600">
+            Actions
+              </Typography >
+              
           </TableCell>
         </TableRow>
       </TableHead>
@@ -83,27 +92,18 @@ const StockTable = () => {
           <TableRow key={product.category}>
             <TableCell>
               <Typography
-                sx={{
-                  fontSize: "15px",
-                  fontWeight: "500",
-                }}
+                
               >
                 {product.id}
               </Typography>
             </TableCell>
             <TableCell>
               <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                }}
+               
               >
                 <Box>
                   <Typography
-                    variant="h6"
-                    sx={{
-                      fontWeight: "600",
-                    }}
+                   
                   >
                     {product.category}
                   </Typography>
@@ -112,26 +112,31 @@ const StockTable = () => {
               </Box>
             </TableCell>
             <TableCell>
-              <Typography color="textSecondary" variant="h6">
+              <Typography >
                 {product.item}
               </Typography>
             </TableCell>
             <TableCell>
-              <Typography color="textSecondary" variant="h6">
+              <Typography >
                 {product.quantity}
               </Typography>
             </TableCell>
             <TableCell>
-              <Typography color="textSecondary" variant="h6">
-                {product.unit}
-              </Typography>
-            </TableCell>
-            <TableCell>
-              <Typography color="textSecondary" variant="h6">
+              <Typography >
                 {product.unitprice}
               </Typography>
             </TableCell>
+            <TableCell>
+              <Typography >
+                {product.unitbox}
+              </Typography>
+            </TableCell>
             
+            <TableCell>
+              <Typography  >
+                {product.Actions}
+              </Typography>
+            </TableCell>
             
           </TableRow>
         ))}

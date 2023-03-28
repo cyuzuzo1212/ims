@@ -10,13 +10,15 @@ import {
     Button,
 } from "@material-ui/core";
 
-import StockTable from "./StockTable";
+import UserTable from "./UserTable";
 import { Link, NavLink } from "react-router-dom";
 
 
-const Stock = () => {
+const UserForm = () => {
     const [age, setAge] = React.useState("10");
 
+   
+    
     const handleChange = (event) => {
         setAge(event.target.value);
     };
@@ -44,7 +46,7 @@ const Stock = () => {
                                 }}
                                 gutterBottom
                             >
-                                Stock
+                                User oF the system
                             </Typography>
                         </Box>
 
@@ -57,33 +59,52 @@ const Stock = () => {
                                 },
                             }}
                         >
-                            
+                            {/* <FormControl variant="standard" sx={{ minWidth: 120 }}>
+              <Select
+                labelId="demo-simple-select-standard-label"
+                id="demo-simple-select-standard"
+                value={age}
+                onChange={handleChange}
+                label="Age"
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={10}>March 2021</MenuItem>
+                <MenuItem value={20}>April 2021</MenuItem>
+                <MenuItem value={30}>Jun 2021</MenuItem>
+              </Select>
+            </FormControl> */}
                         </Box>
                     </Box>
-                   
+                    {/* <Box >
+                       
+                        <NavLink to ={'/dashboard/addstock'}>Add Stock</NavLink>
+                    </Box> */}
 
                 </Box>
-                <button 
-              style={{
-              marginLeft:"850px",
+                {/* <button 
+              style={{display:"flex",
+              marginLeft:"900px",
               marginTop:"-10px",
               color:"white",
               backgroundColor:"blue",
-              width:"110px",
+              padding:"10px",
               borderRadius:"4px",
               border:"none",
-              }}>  <NavLink to={'/dashboard/stockform'} style={{color:"white",textDecoration:"none"}}>Add Stock</NavLink></button>
+              }}>  
+              <NavLink to={'/dashboard/stockform'}>Add Stock</NavLink></button> */}
                 <Box
                     sx={{
                         overflow: "auto",
                         mt: 3,
                     }}
                 >
-                    <StockTable />
+                    <UserTable />
                 </Box>
             </CardContent>
         </Card>
     );
 };
 
-export default Stock;
+export default UserForm;

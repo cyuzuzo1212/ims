@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Box } from "@material-ui/core";
-import SmallestCard from "./dashboard1-components/smallestCard"
-import RunOutStock from "./dashboard1-components/runOutStock"
+import SmallestCard from "./dashboard1-components/smallestCard";
+import RunOutStock from "./dashboard1-components/runOutStock";
 
 import {
   BlogCard,
@@ -15,15 +15,15 @@ const Dashboard1 = () => {
   // 2
 
   return (
-    <Box style={{backgroundColor:"#F5F5F5"}}>
+    <Box style={{ backgroundColor: "#F5F5F5" }}>
       <Grid container spacing={0}>
-        <SmallestCard/>
+        <SmallestCard />
         {/* ------------------------- row 1 ------------------------- */}
         <Grid item xs={12} lg={12}>
           <SalesOverview />
         </Grid>
-{/* addition row */}
-      <div style={{display: "flex",flexDirection: "row"}}>  
+        {/* addition row */}
+        <div style={{ display: "flex", flexDirection: "row" }}>
           <RunOutStock />
           <TopSelling />
         </div>
