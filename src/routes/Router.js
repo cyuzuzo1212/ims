@@ -7,31 +7,22 @@ import AddItem from "../views/FormElements/addItem";
 import Report from "../views/FormElements/report";
 import EditCategory from "../views/FormElements/editCategory";
 import EditItem from "../views/FormElements/editItem";
-
-import ForgotPassword from "../components/Landingpage/Forgotpassword"
-import Signup from "../components/Landingpage/Signup";
-import Login from "../components/Landingpage/Login";
-
 import Stock from "../views/FormElements/stock";
-
+import UserForm from "../views/FormElements/userForm";
+import SalesReport from "../views/FormElements/salesReport";
 
 /****Screens *****/
 
 import Home from "../components/Landingpage/home";
-// import Signup from "../components/Landingpage/Signup";
+import Signup from "../components/Landingpage/Signup";
 import StockForm from "../views/FormElements/StockForm";
-// import Login from "../components/Landingpage/Login";
+import Login from "../components/Landingpage/Login";
 import AddSale from "../views/FormElements/addSale";
 import Sale from "../views/FormElements/sale";
 import Profile from "../views/FormElements/profile";
-// import ForgotPassword from "../components/Landingpage/Forgotpassword";
-
-
-
-
-
-
-
+import ForgotPassword from "../components/Landingpage/Forgotpassword";
+import BusinessForm from "../components/Landingpage/BusinessForm";
+import ProfitReport from "../components/Landingpage/ProfitReport";
 
 
 /****Layouts*****/
@@ -45,15 +36,14 @@ const Dashboard1 = lazy(() => import("../views/dashboards/Dashboard1"));
 const BasicTable = lazy(() => import("../views/tables/BasicTable"));
 
 // form elements
-const ExAutoComplete = lazy(() =>
-  import("../views/FormElements/stock")
-);
+const ExAutoComplete = lazy(() => import("../views/FormElements/stock"));
 const ExButton1 = lazy(() => import("../views/FormElements/ExButton"));
 const ExCheckbox1 = lazy(() => import("../views/FormElements/categories"));
 const ExRadio = lazy(() => import("../views/FormElements/items"));
 const ExButton = lazy(() => import("../views/FormElements/stock"));
 const ExCheckbox = lazy(() => import("../views/FormElements/sale"));
-const ExSlider = lazy(() => import("../views/FormElements/ExSlider"));
+const ExSlider = lazy(() => import("../views/FormElements/salesReport"));
+//const ExSlider = lazy(() => import("../views/FormElements/ExSlider"));
 const ExSwitch = lazy(() => import("../views/FormElements/ExSwitch"));
 
 // form layouts
@@ -64,59 +54,51 @@ const FormLayouts = lazy(() => import("../views/FormLayouts/FormLayouts"));
 const ThemeRoutes = [
   {
     path: "/",
-    element: <Navigate to="/home" />
+    element: <Navigate to="/home" />,
   },
   {
     path: "/home",
-    element: <Home />
+    element: <Home />,
   },
-
-  // {
-  //   path: "/",
-  //   element: <Navigate to="/signup" />
-  // },
-  // {
-  //   path: "/signup",
-  //    element: <Signup/>
-  // },
-
-
-  // {
-  //   path: "/",
-  //   element: <Navigate to="/login" />
-  // },
-  // {
-  //   path: "/login",
-  //    element: <Login/>
-  // },
-
-  // {
-  //   path: "/",
-  //   element: <Navigate to="/forgotpassword" />
-  // },
-  // {
-  //   path: "/forgotpassword",
-  //    element: <ForgotPassword/>
-  // },
-  // {
-  //   path: "/addstock", element: <StockForm />
-  // },
   {
     path: "/",
-    element: <Navigate to="/login" />
+    element: <Navigate to="/profitreport" />,
+  },
+  { path: "/profitreport", element: <ProfitReport /> },
+
+
+  {
+    path: "/",
+    element: <Navigate to="/businessform" />,
+  },
+
+  { path: "/businessform", element: <BusinessForm /> },
+
+  {
+    path: "/",
+    element: <Navigate to="/signup" />,
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
+  },
+
+  {
+    path: "/",
+    element: <Navigate to="/login" />,
   },
   {
     path: "/login",
-     element: <Login/>
+    element: <Login />,
   },
 
   {
     path: "/",
-    element: <Navigate to="/forgotpassword" />
+    element: <Navigate to="/forgotpassword" />,
   },
   {
     path: "/forgotpassword",
-     element: <ForgotPassword/>
+    element: <ForgotPassword />,
   },
   // {
   //   path: "/addstock", element: <StockForm />
@@ -130,26 +112,26 @@ const ThemeRoutes = [
       { path: "/home", element: <Dashboard1 /> },
       { path: "/tables/basic-table", element: <BasicTable /> },
       { path: "/form-layouts/form-layouts", element: <FormLayouts /> },
-      { path: "/form-elements/autocomplete", element: <ExAutoComplete /> },
-      { path: "/form-elements/button", element: <ExButton /> },
+      { path: "/form-elements/stock", element: <Stock /> },
+      { path: "/form-elements/user", element: <UserForm /> },
+      { path: "/form-elements/sale", element: <Sale /> },
       { path: "/form-elements/category", element: <Category /> },
       { path: "/form-elements/items", element: <Items /> },
       { path: "/form-elements/slider", element: <ExSlider /> },
       { path: "/form-elements/switch", element: <ExSwitch /> },
       { path: "/form-elements/report", element: <Report /> },
+      { path: "/form-elements/salesReport", element: <SalesReport /> },
+      { path: "/form-elements/profile", element: <Profile /> },
+
       { path: "/addCategory", element: <AddCategory /> },
       { path: "/addItem", element: <AddItem /> },
-      { path: "/editCategory/:id", element: <EditCategory/>},
-      { path: "/editItem", element: <EditItem/>},
-      { path: "/form-elements/stock", element: <Stock /> },
-      { path: "/form-elements/sale", element: <Sale /> },
-      { path: "/form-elements/checkbox", element: <ExCheckbox /> },
-      { path: "/form-elements/radio", element: <ExRadio /> },
-      { path: "/form-elements/slider", element: <ExSlider /> },
-      { path: "/form-elements/profile", element: <Profile /> },
-      { path: "/StockForm", element: <StockForm/>},
-      { path: "/addSale", element: <AddSale/>},
-      { path: "/Signup", element: <Signup/>},
+      { path: "/editCategory", element: <EditCategory /> },
+      { path: "/editItem", element: <EditItem /> },
+
+      { path: "/StockForm", element: <StockForm /> },
+      { path: "/addSale", element: <AddSale /> },
+      
+      { path: "/Signup", element: <Signup /> },
       // {  },
     ],
   },

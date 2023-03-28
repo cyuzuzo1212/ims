@@ -1,8 +1,9 @@
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
 import { Card, CardContent, Typography, Button, Grid } from "@material-ui/core";
-import image1 from "../../images/service1.jpg";
-import image2 from "../../images/service2.jpg";
 
+ import image1 from "../../images/service1.jpeg";
+ import image2 from "../../images/service2.jpeg";
 const BlogSheet = [
     {
     image:image1,
@@ -76,7 +77,9 @@ sx={{
       color={blog.btncolor}
     >
       Generate {blog.title}
+      
     </Button>
+    <NavLink to ="/profitreport">ProfitReport</NavLink>
 
     {/* <Button
       variant="contained"

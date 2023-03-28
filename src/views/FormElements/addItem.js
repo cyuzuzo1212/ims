@@ -1,89 +1,159 @@
-import { Select } from "@material-ui/core";
-import {React} from "react"
-import { TextField, MenuItem,Typography ,Box } from "@material-ui/core"
+import { React, useEffect, useState } from "react";
 import Category from "./categories";
-import {IoIosArrowDown} from "react-icons/io"
+import { IoIosArrowDown } from "react-icons/io";
+import axios from "axios";
+import Select from "react-select";
+import { useNavigate } from "react-router-dom";
 
+function AddItem() {
+  const [date, setDate] = useState("");
+  const [category, setCategory] = useState("");
+  const [itemName, setItemName] = useState("");
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const navigate = useNavigate();
 
+  const handleItemSave = (event) => {
+    event.preventDefault();
+    fetch(
+      `https://inventory-ciul.onrender.com/api/items/${selectedCategory.id}/create`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          token: localStorage.getItem("inv-token"),
+        },
+        body: JSON.stringify({ name: itemName }),
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        navigate("/dashboard/form-elements/items");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
 
-function AddItem () {
-    return (
-        <div className="add-item-container" style={{backgroundColor:"white",borderRadius:"10px",justifyContent:"center",paddingBottom:"20px"}}>
-<div style={{padding:"20px 100px 0px 100px"}}>
-    
-    <Typography style={{color:"blue",fontSize:"25px",marginBottom:"50px"}}>Add Item</Typography>
-    <Typography>Date</Typography>
-    {/* <input  style={{padding:"8px 380px 8px 0px",borderRadius:"8px"}}
+  useEffect(() => {
+    fetch("https://inventory-ciul.onrender.com/api/category/all", {
+      headers: {
+        token: localStorage.getItem("inv-token"),
+      },
+    })
+      .then((res) => res.json())
+      .then((data) =>
+        setCategories([
+          ...data.categories.map((category) => ({
+            id: category._id,
+            label: category.name,
+            value: category.name,
+          })),
+        ])
+      )
+      .catch((err) => console.log(err));
+  }, []);
+
+  return (
+    <div className="add-item-container">
+      <div className="add-item-form">
+        <div className="add-item-part1">
+          <p style={{ color: "blue", fontSize: "25px", marginBottom: "80px" }}>
+            Add Item
+          </p>
+          <p>Date</p>
+          <input
+            className="form-control"
+            type="date"
+            placeholder="Date of entry"
+            name="date"
+            required
+          />
+
+          <p>Select category of item</p>
+          <Select
+            options={categories}
+            value={selectedCategory}
+            onChange={(selected) => setSelectedCategory(selected)}
+            placeholder="Select category"
+            name="category"
+            required
+            isSearchable
+          />
+          <p>Add name of Item</p>
+          <input
+            className="form-control"
+            type="text"
+            placeholder="Enter name of item"
+            name="item"
+            value={itemName}
+            onChange={(e) => setItemName(e.target.value)}
+            required
+          />
+        </div>
+
+        {/* <div className="add-item-part2"  style={{padding:"20px 20px 0px 0px",marginTop:"116px"}}> */}
+        {/* <p style={{marginLeft:"-290px"}}>Select category of item</p>
+    <input  style={{padding:"4px 100px 4px 0px",marginLeft:"-290px"}}
         type="text"
-        placeholder="Date of entry"
-        name="Date"
+        placeholder="Select category"
+        name="Category"
         required
         /> */}
-        <TextField
-              id="date-text"
-              label=""
-              type="date"
-              variant="outlined"
-              fullWidth
-              sx={{
-                mb: 2,
-              }}
-            />
 
-<Typography >Select category of item</Typography>
-    
-<TextField
-              fullWidth
-              id="standard-select-number"
-              variant="outlined"
-              select
-              label="Select"
-              sx={{
-                mb: 2,
-              }}
-            >
-              {[{name: "Food", value: "food"}, {name: "Drinks", value: "drinks"}].map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.name}
-                </MenuItem>
-              ))}
-            </TextField>
-<Typography>Add name of Item</Typography>
-   
+        {/* <p>Select unit of item</p>
+    <input  style={{padding:"4px 100px 4px 0px"}}
+        type="text"
+        placeholder="Select Unit"
+        name="Unit"
+        required
+        /> */}
 
+        {/* <p>Price per piece</p>
+    <input  style={{padding:"4px 100px 4px 0px"}}
+        type="text"
+        placeholder="Enter price per piece"
+        name="Price"
+        required
+        />  */}
+        {/* </div> */}
 
-<TextField
-              id="add-item-text"
-              label="item name"
-              type="add"
-              variant="outlined"
-              fullWidth
-              sx={{
-                mb: 2,
-              }}
-            />
+        {/* <div className="add-item-part3" style={{marginTop:"135px"}}>
 
+ <p>Add quantity</p>
+    <input  style={{padding:"4px 100px 4px 0px"}}
+        type="text"
+        placeholder="Enter Quantity"
+        name="Quantity"
+        required
+        />
 
+<p>Price of unit</p>
+    <input  style={{padding:"4px 100px 4px 0px"}}
+        type="text"
+        placeholder="Enter price of unit"
+        name="Price"
+        required
+        />
 
-
-
-<Box style={{
-            
-            backgroundColor:"blue",
-            color:"white",
-            padding:"10px 0px 10px 0px",
-            textAlign:"center",
-            border:"none",
-            borderRadius:"5px",
-        }}
-        type="save"
-        className="save-data"
-        >{" "}Save{" "}
-        </Box>
-        
-        </div>       
-</div>
-        
-    )
+<p>Total amount</p>
+    <input  style={{padding:"4px 100px 4px 0px"}}
+        type="text"
+        placeholder="Enter amount"
+        name="Amount"
+        required
+        />
+        </div> */}
+        <button
+          type="save"
+          className="btn btn-primary"
+          onClick={handleItemSave}
+        >
+          {" "}
+          Save{" "}
+        </button>
+      </div>
+    </div>
+  );
 }
 export default AddItem;

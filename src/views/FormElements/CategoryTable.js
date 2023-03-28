@@ -77,7 +77,7 @@ const CategoryTable = () => {
           </TableCell>
           <TableCell>
             <Typography style={{color:"black",fontWeight:"600"}}>
-              Item Number
+              Category Number
             </Typography>
           </TableCell>
           <TableCell>

@@ -1,70 +1,95 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Login.css";
-import { Link, NavLink } from "react-router-dom";
-import {useDispatch} from "react-redux";
-import { useSelector } from "react-redux";
-import {  loginUser } from "../Landingpage/authentication";
-import { useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+
 
 function Login() {
-  const dispatch = useDispatch();
-  
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { isLoggedIn, error ,loginSuccess } = useSelector((state) => state.auth);
-  
-  
-  
-  useEffect(() => {
-    if (isLoggedIn ) {
-      navigate("/dashboard");
-    }
-  }, [isLoggedIn]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState();
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
-    e.preventDefault()
-    dispatch(
-      loginUser({
-        email: email,
-        password: password,
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      setLoading(true);
+      await fetch("https://inventory-ciul.onrender.com/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
       })
-    );
-  };
+        .then((res) => res.json())
+        .then((data) => {
+          // if(data.message){
+          //   setError("user  not found")
+          //   setLoading(false)
+          // }else{
+          localStorage.setItem("inv-token", "Bearer " + data.token);
+          localStorage.setItem("inv-role", data.data.role);
+          navigate("/dashboard");
+          setLoading(false);
+          // }
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
+          
+        });
+    } catch (error) {
+      setLoading(false);
+     
+    }
+  }
 
+  console.log(error);
   return (
-    <div className="login-form">
-      <form onSubmit={handleLogin}>
+    <div className="login-container">
+      <div className="left-container">
         <h2>Login</h2>
-        <div className="form-group">
+        <form>
+          <div>
           <label>Email</label>
           <input
             type="email"
             value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            placeholder="Enter email"
-            required
+            onChange={(e) => setEmail(e.target.value)}
           />
-        </div>
-        <div className="form-group">
-          <label>Password</label>
+         
+          </div>
+         <div>
+         <label>Password</label>
           <input
             type="password"
             value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            placeholder="Enter password"
-            required
+            onChange={(e) => setPassword(e.target.value)}
           />
-          <button color="white" textDecoration="none"><Link to="/dashboard"  onClick={handleLogin}>Login</Link></button>
           
+         </div>
+          {loading ? (
+            <button type="submit" onClick={handleSubmit}>
+              loading.....
+            </button>
+          ) : (
+            <button type="submit" onClick={handleSubmit}>
+              Login
+            </button>
+          )}
+        </form>
         <NavLink to="/ForgotPassword">Forgot Password</NavLink>
       </div>
       <div className="right-container">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyU4UAYQLyRqkbkNgr2PW-3I7ILBsX4bZDCw&usqp=CAU" alt="Square" />
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyU4UAYQLyRqkbkNgr2PW-3I7ILBsX4bZDCw&usqp=CAU"
+          alt="Square"
+        />
       </div>
-        </form>
     </div>
   );
-};
+}
 
 export default Login;
+

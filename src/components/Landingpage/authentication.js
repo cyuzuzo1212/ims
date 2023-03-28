@@ -31,11 +31,6 @@ const initialState = {
       loginSuccess: (state, action) => {
         state.error = action.payload;
       },
-
-      ForgotPassword: (state, action) => {
-        state.error = action.payload;
-      },
-
     },
   });
   
@@ -65,8 +60,25 @@ const initialState = {
         dispatch(loginError(err.response.data.message));
       });
   };
+  
+  export const createUser = (data) =>(dispatch) => {
+    console.log(data)
+    axios ({
+      method: "POST",
+      url: "https://inventory-ciul.onrender.com/api/auth/register",
+      data: data,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+        accept: "application/json",
+      },
+    }).then((res) =>{
+      dispatch(register())
+    })
+    
+    
+  };
 
- 
   
   export const { login, token, loginError ,register } = authSlice.actions;
   export default authSlice.reducer;

@@ -1,89 +1,114 @@
-import { Select } from "@material-ui/core";
 import {React} from "react"
-import { TextField, MenuItem,Typography ,Box, Button } from "@material-ui/core"
-import Category from "./categories";
-import {IoIosArrowDown} from "react-icons/io"
 
 
 
 function EditItem () {
     return (
-        <div className="add-item-container" style={{backgroundColor:"white",borderRadius:"10px",justifyContent:"center",paddingBottom:"20px"}}>
-<div style={{padding:"20px 100px 0px 100px"}}>
-    
-    <Typography style={{color:"blue",fontSize:"25px",marginBottom:"50px"}}>Edit Item</Typography>
-    <Typography>Date</Typography>
-    {/* <input  style={{padding:"8px 380px 8px 0px",borderRadius:"8px"}}
+        <div className="add-item-container" style={{backgroundColor:"white",borderRadius:"10px"}}>
+<div className="add-item-form" style={{display:"flex",padding:"10px 0px 20px 20px",marginLeft:"150px"}}>
+    <div className="add-item-part1" style={{padding:"20px 20px 0px 0px",marginTop:"-2px"}}>
+    <p style={{color:"blue",fontSize:"25px",marginBottom:"80px"}}>Edit Item</p>
+    <p>Edit Date</p>
+    <input  style={{padding:"8px 380px 8px 0px",borderRadius:"8px"}}
         type="text"
         placeholder="Date of entry"
         name="Date"
         required
+        />
+
+<p >Select category of item</p>
+    <input  style={{padding:"8px 380px 8px 0px",borderRadius:"8px"}}
+        type="text"
+        placeholder="Select category"
+        name="Category"
+        required
+        />
+
+
+<p>Edit name of Item</p>
+    <input  style={{padding:"8px 380px 8px 0px",borderRadius:"8px"}}
+        type="text"
+        placeholder="Enter name of item"
+        name="Item"
+        required
+        />
+
+{/* <p>Edit Price per box</p>
+    <input  style={{padding:"4px 100px 4px 0px"}}
+        type="text"
+        placeholder="Enter price per box"
+        name="Price"
+        required
         /> */}
-        <TextField
-              id="date-text"
-              label=""
-              type="date"
-              variant="outlined"
-              fullWidth
-              sx={{
-                mb: 2,
-              }}
-            />
+        </div>
 
-<Typography >Select category of item</Typography>
-    
-<TextField
-              fullWidth
-              id="standard-select-number"
-              variant="outlined"
-              select
-              label="Select"
-              sx={{
-                mb: 2,
-              }}
-            >
-              {[{name: "Food", value: "food"}, {name: "Drinks", value: "drinks"}].map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.name}
-                </MenuItem>
-              ))}
-            </TextField>
-<Typography>Edit name of Item</Typography>
-   
+        {/* <div className="add-item-part2"  style={{padding:"20px 20px 0px 0px",marginTop:"116px"}}>
+        <p style={{marginLeft:"-290px"}}>Select category of item</p>
+    <input  style={{padding:"4px 100px 4px 0px",marginLeft:"-290px"}}
+        type="text"
+        placeholder="Select category"
+        name="Category"
+        required
+        /> */}
 
+{/* <p>Select unit of item</p>
+    <input  style={{padding:"4px 100px 4px 0px"}}
+        type="text"
+        placeholder="Select Unit"
+        name="Unit"
+        required
+        />
 
-<TextField
-              id="add-item-text"
-              label="item name"
-              type="add"
-              variant="outlined"
-              fullWidth
-              sx={{
-                mb: 2,
-              }}
-            />
+<p>Edit Price per piece</p>
+    <input  style={{padding:"4px 100px 4px 0px"}}
+        type="text"
+        placeholder="Enter price per piece"
+        name="Price"
+        required
+        />  */}
+        {/* </div> */}
 
+        {/* <div className="add-item-part3" style={{marginTop:"135px"}}>
 
+ <p>Edit quantity</p>
+    <input  style={{padding:"4px 100px 4px 0px"}}
+        type="text"
+        placeholder="Enter Quantity"
+        name="Quantity"
+        required
+        />
 
+<p>Edit Price of unit</p>
+    <input  style={{padding:"4px 100px 4px 0px"}}
+        type="text"
+        placeholder="Enter price of unit"
+        name="Price"
+        required
+        />
 
-
-<Box style={{
-            
+<p>New total amount</p>
+    <input  style={{padding:"4px 100px 4px 0px"}}
+        type="text"
+        placeholder="Enter amount"
+        name="Amount"
+        required
+        />
+        </div> */}
+        <button style={{
+            marginTop:"410px",
+            marginLeft:"-570px",
             backgroundColor:"blue",
             color:"white",
-            padding:"10px 0px 10px 0px",
-            textAlign:"center",
+            padding:"8px 80px 8px 80px",
             border:"none",
             borderRadius:"5px",
         }}
         type="save"
         className="save-data"
         >{" "}Save{" "}
-        </Box>
-        
-        </div>       
+        </button>
 </div>
-        
+        </div>
     )
 }
 export default EditItem;
