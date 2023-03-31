@@ -7,23 +7,47 @@ function AddCategory () {
     return (
  <div className="add-category-container" style={{display:"flex",backgroundColor:"white",paddingBottom:"50px",borderRadius:"10px",justifyContent:"center"}}>
     
-<div className="add-category-form" style={{marginTop:"30px",paddingLeft:"50px"}}>
-<p style={{color:"blue",fontSize:"20px",marginBottom:"80px"}}>Add Category</p>
-<p >Add Category </p>
-<input  style={{padding:"8px 380px 8px 0px",borderRadius:"8px"}}
-        type="text"
-        placeholder="Name of Category"
-        name="Category"
-        required
-        />
+<div className="add-category-form" style={{marginTop:"0px",padding:"15px 100px"}}>
+<Typography style={{color:"blue",fontSize:"25px",marginBottom:"50px"}}>Add Category</Typography>
+<Typography >Add Category </Typography>
 
-<p>Add Item</p>
-<input  style={{padding:"8px 380px 8px 0px",borderRadius:"8px"}}
-        type="text"
-        placeholder="Name of Item"
-        name="Item"
-        required
-        />
+
+
+<TextField
+              id="edit-category-text"
+              label="Category Name"
+              type="edit"
+              variant="outlined"
+              fullWidth
+              sx={{
+                mb: 2,
+              }}
+              onChange={(category)=>{
+                setAddingCategory(category.target.value);
+              }}
+            />
+
+<Typography>Add Category Number</Typography>
+
+
+<TextField
+              id="edit-item-text"
+              label="Category Number"
+              type="edit"
+              variant="outlined"
+              fullWidth
+              sx={{
+                mb: 2,
+              }}
+              onChange={(itemname)=>{
+                setAddingItemNum(itemname.target.value);
+        }}
+            />
+
+
+
+
+
 
 {/* <p>Add Unit</p>
 <input  style={{padding:"4px 100px 4px 0px"}}
@@ -33,11 +57,8 @@ function AddCategory () {
         required
         /> */}
 
-<button style={{
-    display:"flex",
-    marginTop:"30px",
-    paddingRight:"80px",
-    paddingLeft:"80px",
+<Button onClick={handlePost} style={{
+
     backgroundColor:"blue",
     textAlign:"center",
     border:"none",
@@ -49,7 +70,7 @@ function AddCategory () {
         type="save"
         className="save-data"
         >{" "}Save{" "}
-        </button>
+        </Button>
 
 </div>
  </div>

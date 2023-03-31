@@ -14,80 +14,75 @@ import { FaPenAlt } from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
 import { Delete, Edit } from "@material-ui/icons";
+import Items from "./items";
 
-const products = [
-  {
-    id: "1",
-    itemname: "Soap",
-    // post: "Web Designer",
-    // action:"edit",
-    quantity: "20 boxes",
-    category: "cleaning",
-    pbg: "primary.main",
-    action: (
-      <div>
-        <NavLink to={"/dashboard/editItem"}>
-          <FaPenAlt />{" "}
-        </NavLink>
-        <RiDeleteBin6Fill />{" "}
-      </div>
-    ),
-  },
-  {
-    id: "2",
-    itemname: "fanta",
-    // post: "Project Manager",
-    //  action:"edit",
-    quantity: "30 casses",
-    category: "drinking",
-    pbg: "secondary.main",
-    action: (
-      <div>
-        {" "}
-        <NavLink to={"/dashboard/editItem"}>
-          <FaPenAlt />{" "}
-        </NavLink>
-        <RiDeleteBin6Fill />{" "}
-      </div>
-    ),
-  },
-  {
-    id: "3",
-    itemname: "potatoes",
-    // post: "Project Manager",
-    //  action:"edit",
-    quantity: "5 packages",
-    category: "foods",
-    pbg: "error.main",
-    action: (
-      <div>
-        <NavLink to={"/dashboard/editItem"}>
-          {" "}
-          <FaPenAlt />
-        </NavLink>{" "}
-        <RiDeleteBin6Fill />{" "}
-      </div>
-    ),
-  },
-  {
-    id: "4",
-    itemname: "cotes",
-    // post: "Frontend Engineer",
-    //  action:"edit",
-    quantity: "7 packages",
-    category: "clothes",
-    pbg: "success.main",
-    action: (
-      <div>
-        {" "}
-        <NavLink to={"/dashboard/editItem"}>
-          <FaPenAlt />{" "}
-        </NavLink>
-        <RiDeleteBin6Fill />{" "}
-      </div>
-    ),
-  },
-];
+
+
+// const products = [
+//   {
+//     id: "1",
+//     itemname: "Soap",
+//     // post: "Web Designer",
+//     // action:"edit",
+//     quantity: "20 boxes",
+//     category: "cleaning",
+//     pbg: "primary.main",
+//     action: (
+//       <div>
+//         <NavLink to={"/dashboard/editItem"}>
+//           <FaPenAlt />{" "}
+//         </NavLink>
+//         {/* <RiDeleteBin6Fill />{" "} */}
+//       </div>
+//     ),
+//   },
+//   {
+//     id: "2",
+//     itemname: "fanta",
+//     // post: "Project Manager",
+//     //  action:"edit",
+//     quantity: "30 casses",
+//     category: "drinking",
+//     pbg: "secondary.main",
+//     action: (
+//       <div>
+//         {" "}
+//         <NavLink to={"/dashboard/editItem"}><FaPenAlt />{" "}</NavLink>
+//         <NavLink><RiDeleteBin6Fill /> </NavLink>{" "}
+//       </div>
+//     ),
+//   },
+//   {
+//     id: "3",
+//     itemname: "potatoes",
+//     // post: "Project Manager",
+//     //  action:"edit",
+//     quantity: "5 packages",
+//     category: "foods",
+//     pbg: "error.main",
+//     action: (
+//       <div>
+//         <NavLink to={"/dashboard/editItem"}>
+//           {" "}
+//           <FaPenAlt />
+//         </NavLink>{" "}
+//         <RiDeleteBin6Fill />{" "}
+//       </div>
+//     ),
+//   },
+//   {
+//     id: "4",
+//     itemname: "cotes",
+//     // post: "Frontend Engineer",
+//     //  action:"edit",
+//     quantity: "7 packages",
+//     category: "clothes",
+//     pbg: "success.main",
+//     action: (
+//       <div>{" "}<NavLink to={"/dashboard/editItem"}><FaPenAlt />{" "}</NavLink><RiDeleteBin6Fill />{" "}</div>
+//     ),
+//   },
+// ];
 
 const ItemTable = ({ items, setItems }) => {
   const handleDelete = (id) => {
@@ -150,7 +145,7 @@ const ItemTable = ({ items, setItems }) => {
         </TableRow>
       </TableHead>
       <TableBody>
-        {items.length > 0 &&
+        {items && items.length > 0 &&
           items.map((item, index) => (
             <TableRow key={item._id}>
               <TableCell>
@@ -213,8 +208,8 @@ const ItemTable = ({ items, setItems }) => {
                     color: "black",
                     fontWeight: "600",
                     marginRight: "10px",
-                  }}
-                >
+                  }}>
+                    {/* <div>{" "}<NavLink to={"/dashboard/editItem"}><FaPenAlt />{" "}</NavLink><RiDeleteBin6Fill />{" "}</div> */}
                   <Delete color="danger" onClick={() => handleDelete(item._id)} />
                   <Edit color="primary" onClick={() => handleEdit(item._id)} />
                 </Typography>

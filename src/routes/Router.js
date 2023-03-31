@@ -7,9 +7,18 @@ import AddItem from "../views/FormElements/addItem";
 import Report from "../views/FormElements/report";
 import EditCategory from "../views/FormElements/editCategory";
 import EditItem from "../views/FormElements/editItem";
+import Expenses from "../views/FormElements/expenses";
+import AddExpenses from "../views/FormElements/addExpenses";
+import ForgotPassword from "../components/Landingpage/Forgotpassword";
+import Login from "../components/Landingpage/Login";
+import ExpServices from "../views/FormElements/expServices";
 import Stock from "../views/FormElements/stock";
-import UserForm from "../views/FormElements/userForm";
-import SalesReport from "../views/FormElements/salesReport";
+import ExpenseCategory from "../views/FormElements/expenseCategory";
+import AddExpCateg from "../views/FormElements/addExpCateg";
+import EditStock from "../views/FormElements/editStock";
+import EditSale from "../views/FormElements/editSale";
+import EditExpCateg from "../views/FormElements/editExpCateg";
+
 
 /****Screens *****/
 
@@ -23,6 +32,19 @@ import Profile from "../views/FormElements/profile";
 import ForgotPassword from "../components/Landingpage/Forgotpassword";
 import BusinessForm from "../components/Landingpage/BusinessForm";
 import ProfitReport from "../components/Landingpage/ProfitReport";
+import AddStock from "../views/FormElements/addStock";
+import AddSale from "../views/FormElements/addSale";
+import Sale from "../views/FormElements/sale";
+import Profile from "../views/FormElements/profile";
+import EditExpenses from "../views/FormElements/editExpenses";
+
+
+
+
+
+
+
+
 
 
 /****Layouts*****/
@@ -47,7 +69,8 @@ const ExSlider = lazy(() => import("../views/FormElements/salesReport"));
 const ExSwitch = lazy(() => import("../views/FormElements/ExSwitch"));
 
 // form layouts
-const FormLayouts = lazy(() => import("../views/FormLayouts/FormLayouts"));
+// const FormLayouts = lazy(() => import("../views/FormLayouts/FormLayouts"));
+const FormLayouts = lazy(() => import("../views/FormElements/expenses"));
 
 /*****Routes******/
 
@@ -100,9 +123,7 @@ const ThemeRoutes = [
     path: "/forgotpassword",
     element: <ForgotPassword />,
   },
-  // {
-  //   path: "/addstock", element: <StockForm />
-  // },
+  
   {
     path: "/dashboard/",
     exact: true,
@@ -115,6 +136,12 @@ const ThemeRoutes = [
       { path: "/form-elements/stock", element: <Stock /> },
       { path: "/form-elements/user", element: <UserForm /> },
       { path: "/form-elements/sale", element: <Sale /> },
+      // { path: "/form-layouts/form-layouts", element: <FormLayouts /> },
+      { path: "/form-elements/expenses", element: <Expenses/>},
+      { path: "/form-elements/expServices", element: <ExpServices/>},
+      { path: "/editExpenses", element:<EditExpenses/>},
+      { path: "/form-elements/autocomplete", element: <ExAutoComplete /> },
+      { path: "/form-elements/button", element: <ExButton /> },
       { path: "/form-elements/category", element: <Category /> },
       { path: "/form-elements/items", element: <Items /> },
       { path: "/form-elements/slider", element: <ExSlider /> },
@@ -125,14 +152,24 @@ const ThemeRoutes = [
 
       { path: "/addCategory", element: <AddCategory /> },
       { path: "/addItem", element: <AddItem /> },
-      { path: "/editCategory", element: <EditCategory /> },
-      { path: "/editItem", element: <EditItem /> },
-
-      { path: "/StockForm", element: <StockForm /> },
-      { path: "/addSale", element: <AddSale /> },
-      
-      { path: "/Signup", element: <Signup /> },
-      // {  },
+      { path: "/editCategory/:id", element: <EditCategory/>},
+      // { path: "/editItem", element: <EditItem/>},
+      { path: "/form-elements/stock", element: <Stock /> },
+      { path: "/form-elements/sale", element: <Sale /> },
+      { path: "/addExpenses", element: <AddExpenses/>},
+      { path: "/form-elements/checkbox", element: <ExCheckbox /> },
+      { path: "/form-elements/radio", element: <ExRadio /> },
+      { path: "/form-elements/slider", element: <ExSlider /> },
+      { path: "/form-elements/profile", element: <Profile /> },
+      { path: "/addStock", element: <AddStock/>},
+      { path: "/addSale", element: <AddSale/>},
+      { path: "/Signup", element: <Signup/>},
+      { path: "/form-elements/expenseCategory", element: <ExpenseCategory /> },
+      { path: "/addExpCateg", element: <AddExpCateg/>},
+      { path: "/editStock", element: <EditStock/>},
+      { path: "/editSale", element: <EditSale/>},
+      { path: "/editItem", element: <EditItem/>},
+      { path: "/editExpCateg", element: <EditExpCateg/>},
     ],
   },
 ];

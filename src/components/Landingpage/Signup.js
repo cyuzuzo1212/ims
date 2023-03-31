@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Link , NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Navbar from "./Navbar";
 import "./Signup.css";
+import { TextField ,Button, Typography} from "@material-ui/core";
 
 function Signup() {
   const [firstName, setFirstName] = useState("");
@@ -45,18 +46,20 @@ function Signup() {
           <div className="form-group">
             <div className="form-group-row">
               <div className="form-group-column">
-                <label htmlFor="firstName">First Name</label>
-                <input
-                  type="text"
+                {/* <label htmlFor="firstName">First Name</label> */}
+                <TextField
+                  type=""
+                  label="First Name"
                   id="firstName"
                   value={firstName}
                   onChange={(event) => setFirstName(event.target.value)}
                 />
               </div>
               <div className="form-group-column">
-                <label htmlFor="lastName">Last Name</label>
-                <input
-                  type="text"
+                {/* <label htmlFor="lastName">Last Name</label> */}
+                <TextField
+                  type=""
+                  label="Last Name"
                   id="lastName"
                   value={lastName}
                   onChange={(event) => setLastName(event.target.value)}
@@ -65,19 +68,21 @@ function Signup() {
             </div>
             <div className="form-group-row">
               <div className="form-group-column">
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
+                {/* <label htmlFor="email">Email</label> */}
+                <TextField
+                  type=""
+                  label="Email"
                   id="email"
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
                 />
               </div>
               <div className="form-group-column">
-                <label htmlFor="password">Password</label>
-                <input
-                  type="password"
+                {/* <label htmlFor="password">Password</label> */}
+                <TextField
+                  type=""
                   id="password"
+                  label="Password"
                   value={password}
                   onChange={(event) => setPassword(event.target.value)}
                 />
@@ -85,16 +90,15 @@ function Signup() {
             </div>
             <div className="form-group-row">
               <div className="form-group-column">
-                <label htmlFor="confirmPassword">Confirm Pswd</label>
-                <input type="password" id="confirmPassword" />
+                {/* <label htmlFor="confirmPassword">Confirm Password</label> */}
+                <TextField type="" label="Confirm Your Password" id="confirmPassword" style={{width:"594px"}}/>
               </div>
             </div>
           </div>
-          <button type="submit">Sign Up</button>
+          <Button className=" signup-button" type="submit"  style={{paddingLeft:"10px"}}>Sign Up</Button>
           
         </form>
-        <p>Already have an account? <Link to="/login">Login</Link></p>
-        {/* <p>Already have an account? <Link to="/businessform">Login</Link></p> */}
+        <Typography>Already have an account? <NavLink to="/login">Login</NavLink></Typography>
       </div>
     </div>
   );

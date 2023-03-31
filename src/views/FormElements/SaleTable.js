@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { FaPenAlt } from "react-icons/fa";
 import { RiDeleteBin6Fill} from "react-icons/ri";
@@ -13,46 +13,61 @@ import {
   Chip,
   Button,
 } from "@material-ui/core";
+import { useDispatch,useSelector } from "react-redux";
+import { getSale } from "../../components/Landingpage/salesSlice";
 
-const products = [
-  {
-    id: "1",
-    name: "Sandals",
-    pname: "30kg",
-    price:"300",
+// const products = [
+//   {
+//     id: "1",
+//     // category:"wears",
+//     name: "Sandals",
+//     pname: "30kg",
+//     price:"300",
     
-    customer:"Nana",
-    priority: "Low",
-    pbg: "primary.main",
-    actions:<div> <NavLink to={'/dashboard/editsale'}><FaPenAlt/></NavLink> <RiDeleteBin6Fill/> </div> ,
-  },
+//     customer:"Nana",
+//     priority: "Low",
+//     pbg: "primary.main",
+//     actions:<div> <NavLink to={'/dashboard/editsale'}><FaPenAlt/></NavLink> <RiDeleteBin6Fill/> </div> ,
+//   },
   
-  {
-    id: "2",
-    name: "Dresses",
-    pname: "30m",
-    price:"300",
+//   {
+//     id: "2",
+//     // category:"wears",
+//     name: "Dresses",
+//     pname: "30m",
+//     price:"300",
     
-    customer:"Keke",
-    priority: "Low",
-    pbg: "primary.main",
-    actions: <div> <NavLink to={'/dashboard/editsale'}><FaPenAlt/></NavLink> <RiDeleteBin6Fill/> </div>,
-  },
+//     customer:"Keke",
+//     priority: "Low",
+//     pbg: "primary.main",
+//     actions: <div> <NavLink to={'/dashboard/editsale'}><FaPenAlt/></NavLink> <RiDeleteBin6Fill/> </div>,
+//   },
 
-  {
-    id: "3",
-    name: "Juices",
-    pname: "300L",
-    price:"300",
+//   {
+//     id: "3",
+//     // category:"drinks",
+//     name: "Juices",
+//     pname: "300L",
+//     price:"300",
     
-    customer:"Carla",
-    priority: "High",
-    pbg: "primary.main",
-    actions: <div> <NavLink to={'/dashboard/editsale'}><FaPenAlt/></NavLink> <RiDeleteBin6Fill/> </div>,
-  },
-];
+//     customer:"Carla",
+//     priority: "High",
+//     pbg: "primary.main",
+//     actions: <div> <NavLink to={'/dashboard/editsale'}><FaPenAlt/></NavLink> <RiDeleteBin6Fill/> </div>,
+//   },
+// ];
 
 const SaleTable = () => {
+  const dispatch=useDispatch()
+  const salesTable=useSelector((state)=>state.sales.salesTable);
+
+  useEffect(()=>{
+  console.log("on sales table");
+dispatch(getSale());
+
+},[]);
+console.log(salesTable,"uuuuuuu");
+
   return (
     <Table
       aria-label="simple table"
@@ -64,113 +79,111 @@ const SaleTable = () => {
       <TableHead>
         <TableRow>
           <TableCell>
-            <Typography color="textSecondary" variant="h6">
+            <Typography fontWeight="600">
               Id
             </Typography>
           </TableCell>
+          
           <TableCell>
-            <Typography color="textSecondary" variant="h6">
+            <Typography fontWeight="600">
               Item
             </Typography>
           </TableCell>
           <TableCell>
-            <Typography color="textSecondary" variant="h6">
+            <Typography fontWeight="600">
               Quantity
             </Typography>
           </TableCell>
           <TableCell>
-            <Typography color="textSecondary" variant="h6">
+            <Typography fontWeight="600">
               Sales price
             </Typography>
           </TableCell>
           
           <TableCell>
-            <Typography color="textSecondary" variant="h6">
-              Customer
+            <Typography fontWeight="600">
+              Total Amount
             </Typography>
           </TableCell>
+
           <TableCell>
-            <Typography color="textSecondary" variant="h6">
+            <Typography fontWeight="600">
+              Customer Name
+            </Typography>
+          </TableCell>
+          {/* <TableCell>
+            <Typography fontWeight="600">
               Status
             </Typography>
-          </TableCell>
+          </TableCell> */}
           <TableCell align="right">
-            <Typography color="textSecondary" variant="h6">
+            <Typography fontWeight="600">
               Actions
             </Typography>
           </TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
-        {products.map((product) => (
-          <TableRow key={product.name}>
+        {salesTable?.map((salesItem,index) => (
+          <TableRow key={index}>
             <TableCell>
-              <Typography
-                sx={{
-                  fontSize: "15px",
-                  fontWeight: "500",
-                }}
-              >
-                {product.id}
-              </Typography>
-            </TableCell>
-            <TableCell>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <Box>
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      fontWeight: "600",
-                    }}
-                  >
-                    {product.name}
-                  </Typography>
-                  <Typography
-                    color="textSecondary"
-                    sx={{
-                      fontSize: "13px",
-                    }}
-                  >
-                    {product.post}
-                  </Typography>
-                </Box>
-              </Box>
-            </TableCell>
-            <TableCell>
-              <Typography color="textSecondary" variant="h6">
-                {product.pname}
-              </Typography>
-            </TableCell>
-            <TableCell>
-              <Typography color="textSecondary" variant="h6">
-                {product.price}
+              <Typography>
+                {/* {product.id} */}
+                {index + 1}
               </Typography>
             </TableCell>
             
             <TableCell>
-              <Typography color="textSecondary" variant="h6">
-                {product.customer}
+              <Box >
+                <Box>
+                  <Typography>
+                    {salesItem?.items[0].item?.name}
+                    
+                  </Typography>
+                  
+                </Box>
+              </Box>
+            </TableCell>
+            <TableCell>
+              <Typography >
+                {/* {product.pname} */}
+                {salesItem?.items[0].quantity?.box?.numberOfBoxes}
               </Typography>
             </TableCell>
             <TableCell>
+              <Typography >
+                {salesItem?.items[0].salesPrice?.box?.price}
+              </Typography>
+            </TableCell>
+
+            <TableCell>
+              <Typography >
+                {salesItem?.items[0].totalAmount}
+              </Typography>
+            </TableCell>
+            
+            <TableCell>
+              <Typography >
+                {salesItem?.customerName}
+              </Typography>
+            </TableCell>
+            {/* <TableCell>
               <Chip
                 sx={{
                   pl: "4px",
                   pr: "4px",
-                  backgroundColor: product.pbg,
+                  backgroundColor: salesItem?.pbg,
                   color: "#fff",
                 }}
                 size="small"
-                label={product.priority}
+                label={salesItem?.priority}
               ></Chip>
-            </TableCell>
+            </TableCell> */}
             <TableCell align="right">
-              <Typography variant="h6">{product.actions}</Typography>
+              <Typography >
+                {/* {product.actions} */}
+                <div> <NavLink to={'/dashboard/editSale'}><FaPenAlt/></NavLink> <RiDeleteBin6Fill/> </div>
+              </Typography>
             </TableCell>
           </TableRow>
         ))}

@@ -1,16 +1,60 @@
 import React from "react";
+import { useState } from "react";
+import axios from "axios";
 import Navbar from "./Navbar";
 import "../../App.css";
 import img from "../../images/aboutimage.jpg";
-import { Facebook, LinkedIn, Twitter } from "@material-ui/icons";
-import {
-  FaFacebookSquare,
-  FaTwitterSquare,
-  FaLinkedin,
-  FaYoutube,
-} from "react-icons/fa";
+import { TiSocialFacebook, TiSocialLinkedin, TiSocialTwitter,TiSocialYoutube} from "react-icons/ti";
+import { NavLink } from "react-router-dom";
+import { Typography,TextField,Button } from "@material-ui/core"; 
 
-function Home() {
+export const Home=()=> {
+  const [name ,setName]= useState("");
+  const [email, setEmail]= useState("");
+  const [subject, setSubject]= useState("");
+  const [ message, setMessage]= useState("");
+
+  const handleNameChange= (event)=>{
+    setName(event.target.value);
+  };
+
+  const handleEmailChange = (event)=>{
+    setEmail(event.target.value);
+  };
+
+  const handleSubjectChange = (event)=>{
+    setSubject(event.target.value);
+  };
+
+  const handleMessageChange = (event)=>{
+    setMessage(event.target.value);
+  };
+
+  const handleSubmit = (event)=>{
+    event.preventDefault();
+
+    if(!name || !email || !subject || !message ){
+      alert('please fill in all fields');
+      return;
+    }
+    axios.post('https://inventory-ciul.onrender.com/api/message/send',{
+      name,
+      email,
+      subject,
+      message,
+    })
+    .then((Response) => {
+      alert('Your message has been sent');
+      setName('');
+      setEmail('');
+      setSubject('');
+      setMessage('');
+    })
+    .catch((error) => {
+      console.log(error);
+      alert('There was an error sending your message');
+    });
+  };
   const workInfoData = [
     {
       image:
@@ -44,6 +88,11 @@ function Home() {
             This is a short description of the services we give and the benefits
             of using this system.
           </p>
+
+          
+        
+        <button className="learn">Learn more</button>
+      
         </div>
         <div>
           <button className="learn">Learn More</button>

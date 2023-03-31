@@ -2,54 +2,25 @@ import {React} from "react"
 
 
 
-function EditItem () {
+export const EditItem =()=> {
     return (
-        <div className="add-item-container" style={{backgroundColor:"white",borderRadius:"10px"}}>
-<div className="add-item-form" style={{display:"flex",padding:"10px 0px 20px 20px",marginLeft:"150px"}}>
-    <div className="add-item-part1" style={{padding:"20px 20px 0px 0px",marginTop:"-2px"}}>
-    <p style={{color:"blue",fontSize:"25px",marginBottom:"80px"}}>Edit Item</p>
-    <p>Edit Date</p>
-    <input  style={{padding:"8px 380px 8px 0px",borderRadius:"8px"}}
-        type="text"
-        placeholder="Date of entry"
-        name="Date"
-        required
-        />
+        <div className="add-item-container" style={{backgroundColor:"white",borderRadius:"10px",justifyContent:"center",paddingBottom:"20px"}}>
+<div style={{padding:"20px 100px 0px 100px"}}>
+    
+    <Typography style={{color:"blue",fontSize:"25px",marginBottom:"50px"}}>Edit Items</Typography>
+    <Typography>Edit Item Name</Typography>
+    
+        <TextField
+              id="date-text"
+              label="Item Name"
+              type="item"
+              variant="outlined"
+              fullWidth
+              sx={{
+                mb: 2,
+              }}
+            />
 
-<p >Select category of item</p>
-    <input  style={{padding:"8px 380px 8px 0px",borderRadius:"8px"}}
-        type="text"
-        placeholder="Select category"
-        name="Category"
-        required
-        />
-
-
-<p>Edit name of Item</p>
-    <input  style={{padding:"8px 380px 8px 0px",borderRadius:"8px"}}
-        type="text"
-        placeholder="Enter name of item"
-        name="Item"
-        required
-        />
-
-{/* <p>Edit Price per box</p>
-    <input  style={{padding:"4px 100px 4px 0px"}}
-        type="text"
-        placeholder="Enter price per box"
-        name="Price"
-        required
-        /> */}
-        </div>
-
-        {/* <div className="add-item-part2"  style={{padding:"20px 20px 0px 0px",marginTop:"116px"}}>
-        <p style={{marginLeft:"-290px"}}>Select category of item</p>
-    <input  style={{padding:"4px 100px 4px 0px",marginLeft:"-290px"}}
-        type="text"
-        placeholder="Select category"
-        name="Category"
-        required
-        /> */}
 
 {/* <p>Select unit of item</p>
     <input  style={{padding:"4px 100px 4px 0px"}}
@@ -59,16 +30,6 @@ function EditItem () {
         required
         />
 
-<p>Edit Price per piece</p>
-    <input  style={{padding:"4px 100px 4px 0px"}}
-        type="text"
-        placeholder="Enter price per piece"
-        name="Price"
-        required
-        />  */}
-        {/* </div> */}
-
-        {/* <div className="add-item-part3" style={{marginTop:"135px"}}>
 
  <p>Edit quantity</p>
     <input  style={{padding:"4px 100px 4px 0px"}}
@@ -94,7 +55,7 @@ function EditItem () {
         required
         />
         </div> */}
-        <button style={{
+        <Button style={{
             marginTop:"410px",
             marginLeft:"-570px",
             backgroundColor:"blue",
@@ -106,9 +67,11 @@ function EditItem () {
         type="save"
         className="save-data"
         >{" "}Save{" "}
-        </button>
-</div>
-        </div>
+        </Button>
+        
+        </div>       
+// </div>
+        
     )
 }
 export default EditItem;

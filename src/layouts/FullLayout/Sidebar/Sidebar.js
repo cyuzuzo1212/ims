@@ -42,7 +42,7 @@ const Sidebar = (props) => {
       }}
     >
       <Link to="/">
-        <Box sx={{ display: "flex", alignItems: "Center" }}>
+        <Box sx={{  alignItems: "Center",width:"60px" }}>
           {/* <LogoIcon /> */}
           <button
             style={{

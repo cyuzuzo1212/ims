@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import {
   Card,
   CardContent,
   Typography,
-  Box,
-  FormControl,
-  MenuItem,
-  Select,
+  Box, Button,
 } from "@material-ui/core";
 
 import ItemTable from "./itemTable";
@@ -24,12 +22,19 @@ const Items = () => {
     fetch("https://inventory-ciul.onrender.com/api/items", {
       headers: {
         "content-type": "application/json",
-        token: localStorage.getItem("inv-token"),
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     })
       .then((res) => res.json())
-      .then((data) => setItems(data.items))
+      .then((data) =>{
+      console.log(data) 
+    
+      setItems(data.items)
+       console.log(items)
+  })
+      
       .catch((err) => console.log(err));
+      
   }, []);
 
   return (
@@ -51,11 +56,28 @@ const Items = () => {
               gutterBottom
             >
               Items
-              <button
+             
+            </Typography>
+          </Box>
+
+          <Box
+            sx={{
+              marginLeft: "auto",
+              mt: {
+                lg: 0,
+                xs: 2,
+              },
+            }}
+          >
+            
+          </Box>
+
+          <button
                 style={{
-                  display: "flex",
-                  marginLeft: "880px",
-                  marginTop: "-20px",
+                 
+                  width:"100px",
+                  float:"right",
+                  marginTop: "-10px",
                   color: "white",
                   backgroundColor: "blue",
                   padding: "10px",
@@ -71,35 +93,6 @@ const Items = () => {
                   Add Item
                 </NavLink>
               </button>
-            </Typography>
-          </Box>
-
-          <Box
-            sx={{
-              marginLeft: "auto",
-              mt: {
-                lg: 0,
-                xs: 2,
-              },
-            }}
-          >
-            {/* <FormControl variant="standard" sx={{ minWidth: 120 }}>
-              <Select
-                labelId="demo-simple-select-standard-label"
-                id="demo-simple-select-standard"
-                value={age}
-                onChange={handleChange}
-                label="Age"
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={10}>March 2021</MenuItem>
-                <MenuItem value={20}>April 2021</MenuItem>
-                <MenuItem value={30}>Jun 2021</MenuItem>
-              </Select>
-            </FormControl> */}
-          </Box>
         </Box>
         <Box
           sx={{

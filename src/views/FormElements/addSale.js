@@ -1,159 +1,276 @@
-// import { React, useEffect, useState } from "react";
-// import Category from "./categories";
-// import { IoIosArrowDown } from "react-icons/io";
-// import axios from "axios";
-// import Select from "react-select";
-// import { useNavigate } from "react-router-dom";
+import { MenuItem, Button, Typography, TextField } from "@material-ui/core";
+import axios from "axios";
+import React from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  createSales,
+  getStockItem,
+} from "../../components/Landingpage/salesSlice";
 
-// function AddItem() {
-//   const [date, setDate] = useState("");
-//   const [category, setCategory] = useState("");
-//   const [itemName, setItemName] = useState("");
-//   const [categories, setCategories] = useState([]);
-//   const [selectedCategory, setSelectedCategory] = useState("");
-//   const navigate = useNavigate();
+export const AddSale = () => {
+  const [selectedItem, setSelectedItem] = useState("");
+  const [addQuantity, setAddQuantity] = useState("");
+  const [addSalesPrice, setAddSalesPrice] = useState("");
+  const [addCustomerName, setAddCustomerName] = useState("");
+  const [selectBox, setSelectBox] = useState("");
+  const [addBoxNumber, setAddBoxNumber] = useState("");
+  const [addSubItemQuant, setAddSubItemQuant] = useState("");
+  const [addPiece, setAddPiece] = useState("");
+  const [selectBoxPrice, setSelectBoxPrice] = useState("");
+  const [addBoxPrice, setAddBoxPrice] = useState("");
+  const [addSubItem, setAddSubItem] = useState("");
+  const [addSubItemPrice, setAddSubItemPrice] = useState("");
+  const [measurementType, setMeasurementType] = useState("");
+  const [totalAmount, setTotalAmount] = useState("");
+  const [stock, setStock] = useState([]);
 
-//   const handleItemSave = (event) => {
-//     event.preventDefault();
-//     fetch(
-//       `https://inventory-ciul.onrender.com/api/items/${selectedCategory.id}/create`,
-//       {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//           token: localStorage.getItem("inv-token"),
-//         },
-//         body: JSON.stringify({ name: itemName }),
-//       }
-//     )
-//       .then((response) => response.json())
-//       .then((data) => {
-//         navigate("/dashboard/form-elements/items");
-//       })
-//       .catch((error) => {
-//         console.error("Error:", error);
-//       });
-//   };
+  const dispatch = useDispatch();
+  const handlePost = (e) => {
+    e.preventDefault();
+    const data = {
+      itemId: selectedItem,
+      quantity: addQuantity,
+      salesPrice: addSalesPrice,
+      customerName: addCustomerName,
+      box: selectBox,
+      numberOfBoxes: addBoxNumber,
+      subItems: addSubItemQuant,
+      pieces: addPiece,
+      box: selectBoxPrice,
+      price: addBoxPrice,
+      subItems: addSubItem,
+      price: addSubItemPrice,
+      totalAmount:totalAmount,
+    };
+    dispatch(createSales(data));
+  };
 
-//   useEffect(() => {
-//     fetch("https://inventory-ciul.onrender.com/api/category/all", {
-//       headers: {
-//         token: localStorage.getItem("inv-token"),
-//       },
-//     })
-//       .then((res) => res.json())
-//       .then((data) =>
-//         setCategories([
-//           ...data.categories.map((category) => ({
-//             id: category._id,
-//             label: category.name,
-//             value: category.name,
-//           })),
-//         ])
-//       )
-//       .catch((err) => console.log(err));
-//   }, []);
+  console.log(measurementType.measurementType);
 
-//   return (
-//     <div className="add-item-container">
-//       <div className="add-item-form">
-//         <div className="add-item-part1">
-//           <p style={{ color: "blue", fontSize: "25px", marginBottom: "80px" }}>
-//             Add Item
-//           </p>
-//           <p>Date</p>
-//           <input
-//             className="form-control"
-//             type="date"
-//             placeholder="Date of entry"
-//             name="date"
-//             required
-//           />
+  const getSales = () => {
+    dispatch(getStockItem());
+  };
+  
+  console.log(stock, "stock");
+  const items = useSelector((state) => {
+    console.log(state.stocks.items);
+    return state.stocks.items;
+  });
 
-//           <p>Select category of item</p>
-//           <Select
-//             options={categories}
-//             value={selectedCategory}
-//             onChange={(selected) => setSelectedCategory(selected)}
-//             placeholder="Select category"
-//             name="category"
-//             required
-//             isSearchable
-//           />
-//           <p>Add name of Item</p>
-//           <input
-//             className="form-control"
-//             type="text"
-//             placeholder="Enter name of item"
-//             name="item"
-//             value={itemName}
-//             onChange={(e) => setItemName(e.target.value)}
-//             required
-//           />
-//         </div>
+  useEffect(() => {
+    console.log("get item from stock");
+    getSales();
+    axios({
+      method: "GET",
+      url: "https://inventory-ciul.onrender.com/api/stock/all",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((data) => {
+        console.log(data);
+        setStock(data.data);
+        console.log(data.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+  return (
+    <div
+      style={{
+        backgroundColor: "white",
+        borderRadius: "10px",
+        marginBottom: "10px",
+      }}
+    >
+      <div style={{ padding: "20px 20px 20px 20px" }}>
+        <Typography>Select item's name</Typography>
 
-//         {/* <div className="add-item-part2"  style={{padding:"20px 20px 0px 0px",marginTop:"116px"}}> */}
-//         {/* <p style={{marginLeft:"-290px"}}>Select category of item</p>
-//     <input  style={{padding:"4px 100px 4px 0px",marginLeft:"-290px"}}
-//         type="text"
-//         placeholder="Select category"
-//         name="Category"
-//         required
-//         /> */}
+        <TextField
+          fullWidth
+          id="standard-select-item"
+          variant="outlined"
+          select
+          label="Select"
+          sx={{
+            mb: 2,
+          }}
+          onChange={(itemId) => {
+            setSelectedItem(itemId.target.value);
+          }}
+        >
+          {stock?.map((option, index) => (
+            <MenuItem key={index} value={option?.item?._id}>
+              {console.log(option?.item?.name)}
+              {option?.item?.name}
+            </MenuItem>
+          ))}
+        </TextField>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <TextField
+            id="my-input"
+            type="quantity"
+            aria-describedby="my-helper-text"
+            fullWidth
+            variant="outlined"
+            label="Quantity"
+            sx={{
+              mb: 2,
+            }}
+            onChange={(quantity) => {
+              console.log(quantity, "Quantity");
+              setAddQuantity(quantity.target.value);
+            }}
+          />
 
-//         {/* <p>Select unit of item</p>
-//     <input  style={{padding:"4px 100px 4px 0px"}}
-//         type="text"
-//         placeholder="Select Unit"
-//         name="Unit"
-//         required
-//         /> */}
+          <TextField
+            fullWidth
+            id="standard-select-item"
+            variant="outlined"
+            select
+            label="Select"
+            sx={{
+              mb: 2,
+            }}
+            onChange={(itemId) => {
+              setMeasurementType(itemId.target.value);
+            }}
+          >
+            {[
+              { name: "Box", value: "box" },
+              { name: "Piece", value: "piece" },
+              { name: "1 Kg", value: "kilogram" },
+              { name: "1 Liter", value: "liter" },
+            ].map((option) => (
+              <MenuItem
+                key={option.value}
+                value={option.value}
+                style={{ flexDirection: "column" }}
+              >
+                {option.name}
+              </MenuItem>
+            ))}
+          </TextField>
 
-//         {/* <p>Price per piece</p>
-//     <input  style={{padding:"4px 100px 4px 0px"}}
-//         type="text"
-//         placeholder="Enter price per piece"
-//         name="Price"
-//         required
-//         />  */}
-//         {/* </div> */}
+          
+        </div>
 
-//         {/* <div className="add-item-part3" style={{marginTop:"135px"}}>
+        {measurementType == "box" && (
+          <div style={{ display: "flex" }}>
+        <TextField 
+        id="my-input" 
+        aria-describedby="my-helper-text" 
+        fullWidth 
+        type="numbers"
+            variant="outlined"  
+            label="Number of Boxes"
+            sx={{
+              mb: 2,}} 
+              onChange={(numberOfBoxes)=>{
+                setAddBoxNumber(numberOfBoxes.target.value);
+              }}
+              />
+              </div>
+        )}
+        {/* <Typography>Sales Price</Typography> */}
 
-//  <p>Add quantity</p>
-//     <input  style={{padding:"4px 100px 4px 0px"}}
-//         type="text"
-//         placeholder="Enter Quantity"
-//         name="Quantity"
-//         required
-//         />
+        {/* <Typography>Amount</Typography> */}
 
-// <p>Price of unit</p>
-//     <input  style={{padding:"4px 100px 4px 0px"}}
-//         type="text"
-//         placeholder="Enter price of unit"
-//         name="Price"
-//         required
-//         />
+        {/* <Typography>Status</Typography> */}
+        {/* <TextField id="my-input" aria-describedby="my-helper-text" variant="outlined" fullWidth   label="Status"
+            sx={{
+              mb: 2,
+              }}
+              
+              /> */}
 
-// <p>Total amount</p>
-//     <input  style={{padding:"4px 100px 4px 0px"}}
-//         type="text"
-//         placeholder="Enter amount"
-//         name="Amount"
-//         required
-//         />
-//         </div> */}
-//         <button
-//           type="save"
-//           className="btn btn-primary"
-//           onClick={handleItemSave}
-//         >
-//           {" "}
-//           Save{" "}
-//         </button>
-//       </div>
-//     </div>
-//   );
-// }
-// export default AddItem;
+        {/* <Typography>Customer name</Typography> */}
+        {measurementType == "box" && (
+          <div style={{ display: "flex" }}>
+            <TextField
+              id="my-input"
+              type="number"
+              aria-describedby="my-helper-text"
+              variant="outlined"
+              fullWidth
+              label=" Number of Pieces"
+              sx={{
+                mb: 2,
+              }}
+              onChange={(pieces) => {
+                setAddPiece(pieces.target.value);
+              }}
+            />
+            <TextField
+              id="my-input"
+              type="price"
+              aria-describedby="my-helper-text"
+              variant="outlined"
+              fullWidth
+              label="Price per piece"
+              sx={{
+                mb: 2,
+              }}
+              onChange={(subItems) => {
+                setAddSubItemPrice(subItems.target.value);
+              }}
+            />
+          </div>
+        )}
+
+        <TextField
+          id="my-input"
+          type="price"
+          aria-describedby="my-helper-text"
+          variant="outlined"
+          fullWidth
+          label="Sales Price"
+          sx={{
+            mb: 2,
+          }}
+          onChange={(salesPrice) => {
+            setAddSalesPrice(salesPrice.target.value);
+          }}
+        />
+
+        <div style={{ display: "flex" }}>
+          {/* <TextField id="my-input" aria-describedby="my-helper-text" variant="outlined"  fullWidth   label="Sales price per box"
+            sx={{
+              mb: 2,}}
+              onChange={(box)=>{
+                setSelectBoxPrice(box.target.value);
+              }}
+              /> */}
+
+          {/* <TextField id="my-input" aria-describedby="my-helper-text" variant="outlined"  fullWidth   label="Sales price per price"
+            sx={{
+              mb: 2,}}
+              onChange={(price)=>{
+                setAddBoxPrice(price.target.value);
+              }}
+              /> */}
+        </div>
+        <div style={{ display: "flex" }}>
+          <TextField
+          type="name"
+            id="my-input"
+            aria-describedby="my-helper-text"
+            variant="outlined"
+            fullWidth
+            label="Name of customer"
+            sx={{
+              mb: 2,
+            }}
+            onChange={(customerName) => {
+              setAddCustomerName(customerName.target.value);
+            }}
+          />
+        </div>
+        <Button onClick={handlePost} variant="contained" color="secondary">
+          Save
+        </Button>
+      </div>
+    </div>
+  );
+};
+export default AddSale;

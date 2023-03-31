@@ -1,3 +1,4 @@
+import { TextField } from '@material-ui/core';
 import React from 'react';
 import './Profile.css';
 
@@ -17,8 +18,8 @@ const Profile = () => {
         <h2>Account Details</h2>
         <form>
           <div className="form-group">
-            <label htmlFor="first-name">First Name</label>
-            <input type="text" id="first-name" name="first-name" />
+            {/* <label htmlFor="first-name">First Name</label> */}
+            <TextField type="text" id="first-name" name="first-name" />
           </div>
           <div className="form-group">
             <label htmlFor="last-name">Last Name</label>

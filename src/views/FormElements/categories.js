@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Card,
   CardContent,
@@ -11,6 +11,7 @@ import {
 
 import CategoryTable from "./CategoryTable";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Category = () => {
   const [age, setAge] = React.useState("10");
@@ -40,16 +41,7 @@ const Category = () => {
               gutterBottom
             >
               Categories
-              <button 
-              style={{display:"flex",
-              marginLeft:"730px",
-              marginTop:"-20px",
-              color:"white",
-              backgroundColor:"blue",
-              padding:"10px",
-              borderRadius:"8px",
-              border:"none",
-              }}>  <NavLink to={'/dashboard/addCategory'} style={{color:"white",textDecoration:"none"}}>Add Category</NavLink></button>
+             
             </Typography>
            
           </Box>
@@ -63,23 +55,22 @@ const Category = () => {
               },
             }}
           >
-            {/* <FormControl variant="standard" sx={{ minWidth: 120 }}>
-              <Select
-                labelId="demo-simple-select-standard-label"
-                id="demo-simple-select-standard"
-                value={age}
-                onChange={handleChange}
-                label="Age"
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={10}>March 2021</MenuItem>
-                <MenuItem value={20}>April 2021</MenuItem>
-                <MenuItem value={30}>Jun 2021</MenuItem>
-              </Select>
-            </FormControl> */}
+           
           </Box>
+
+          <button 
+              style={{
+              // marginLeft:"700px",
+              float:"right",
+              marginTop:"-5px",                            
+              width:"120px",  
+              color:"white",
+              backgroundColor:"blue",
+              padding:"10px",
+              borderRadius:"8px",
+              border:"none",
+              }}>  <NavLink to={'/dashboard/addCategory'} style={{color:"white",textDecoration:"none"}}>Add Category</NavLink></button>
+
         </Box>
         <Box
           sx={{

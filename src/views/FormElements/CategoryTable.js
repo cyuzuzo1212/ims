@@ -13,6 +13,22 @@ import {AiFillEye} from "react-icons/ai";
 import {FaPenAlt} from "react-icons/fa";
 import {RiDeleteBin6Fill} from "react-icons/ri";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Delete, EditCategory, getCategory } from "../../components/Landingpage/categoryslice";
+
+
+
+export const CategoryTable = () => {
+  const dispatch = useDispatch()
+  const categories = useSelector((state)=>state.categories.categories)
+  
+
+  useEffect(()=>{
+    console.log("On Category Table")
+    dispatch(getCategory())
+  },[])
+
+console.log(categories);
 
 const products = [
   {
@@ -93,8 +109,10 @@ const CategoryTable = () => {
         </TableRow>
       </TableHead>
       <TableBody>
-        {products.map((product) => (
-          <TableRow key={product.category}>
+      {categories?.map((item, index) => {
+        console.log("Here")
+        return (
+          <TableRow key={index}>
             <TableCell>
               <Typography
                 sx={{
@@ -159,7 +177,7 @@ const CategoryTable = () => {
               <Typography variant="h6">${product.budget}k</Typography>
             </TableCell> */}
           </TableRow>
-        ))}
+        )})}
       </TableBody>
     </Table>
   );

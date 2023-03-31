@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 
 import StockTable from "./StockTable";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 
 const Stock = () => {
@@ -65,14 +65,15 @@ const Stock = () => {
                 </Box>
                 <button 
               style={{
-              marginLeft:"850px",
+            //   marginLeft:"500px",
+            float:"right",
               marginTop:"-10px",
               color:"white",
               backgroundColor:"blue",
               width:"110px",
               borderRadius:"4px",
               border:"none",
-              }}>  <NavLink to={'/dashboard/stockform'} style={{color:"white",textDecoration:"none"}}>Add Stock</NavLink></button>
+              }}>  <NavLink to={'/dashboard/addStock'} style={{color:"white",textDecoration:"none"}}>Add Stock</NavLink></button>
                 <Box
                     sx={{
                         overflow: "auto",

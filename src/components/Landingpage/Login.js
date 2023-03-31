@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import "./Login.css";
-import { Link, NavLink, useNavigate } from "react-router-dom";
-
+import { NavLink } from "react-router-dom";
+import {useDispatch} from "react-redux";
+import { useSelector } from "react-redux";
+import {  loginUser } from "../Landingpage/authentication";
+import { useNavigate } from "react-router-dom";
+import { TextField,Button } from "@material-ui/core";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -53,20 +57,31 @@ function Login() {
         <form>
           <div>
           <label>Email</label>
-          <input
-            type="email"
+          <TextField
+            type=""
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(event) => setEmail(event.target.value)}
+            label="Enter email"
+            required
           />
-         
-          </div>
-         <div>
-         <label>Password</label>
-          <input
-            type="password"
+        </div>
+        <div className="form-group">
+          <label>Password</label>
+          <TextField
+            type=""
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(event) => setPassword(event.target.value)}
+            label="Enter password"
+            required
+            sx={{mb:2}}
           />
+
+          
+          <Button
+          //  className="login-bu tton"
+          style={{background:"blue",height:"40px"}}
+          >
+            <NavLink to="/dashboard"  onClick={handleLogin} style={{color:"white",textDecoration:"none"}}>Login</NavLink></Button>
           
          </div>
           {loading ? (
