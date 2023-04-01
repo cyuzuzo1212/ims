@@ -11,12 +11,11 @@ import {
 } from "@material-ui/core";
 import { NavLink } from 'react-router-dom';
 // import SaleTable from "./SaleTable";
-// import {SalesReportTable} from './salesReportTable';
-import DailySalesReport from "./salesReportTable";
+import { PurchaseReportTable } from "./purchaseRepTable";
 
 
 
-const SalesReport = () => {
+const PurchaseReport = () => {
   const [age, setAge] = React.useState("10");
 
   const handleChange = (event) => {
@@ -43,7 +42,7 @@ const SalesReport = () => {
               }}
               gutterBottom
             >
-              Sales Report
+              Purchase Report
               
             </Typography>
            
@@ -82,8 +81,7 @@ const SalesReport = () => {
             mt: 3,
           }}
         >
-          {/* <SalesReportTable /> */}
-          <DailySalesReport/>
+          <PurchaseReportTable />
         </Box>
       </CardContent>
     </Card>
@@ -92,4 +90,4 @@ const SalesReport = () => {
 
 
 
-export default SalesReport;
+export default PurchaseReport;

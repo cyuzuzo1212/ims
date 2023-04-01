@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 
 const initialState = {
   EstateStock: false,
@@ -33,7 +32,7 @@ export const stockSlice = createSlice({
 });
 
 export const createStocks = (data) => async (dispatch) => {
-  const navigate=useNavigate();
+  
   console.log(data.measurement);
   const token = localStorage.getItem("token");
   let stock = {
@@ -68,7 +67,7 @@ export const createStocks = (data) => async (dispatch) => {
       console.log("helooooooo");
     })
     .catch((err) => {
-      navigate("/dashboard/form-elements/stock");
+    
       console.log(err);
       
     });

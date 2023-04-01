@@ -11,12 +11,11 @@ import {
 } from "@material-ui/core";
 import { NavLink } from 'react-router-dom';
 // import SaleTable from "./SaleTable";
-// import {SalesReportTable} from './salesReportTable';
-import DailySalesReport from "./salesReportTable";
+import CapitalReportTable from "./capitalReportTable";
 
 
 
-const SalesReport = () => {
+const CapitalReport = () => {
   const [age, setAge] = React.useState("10");
 
   const handleChange = (event) => {
@@ -43,7 +42,7 @@ const SalesReport = () => {
               }}
               gutterBottom
             >
-              Sales Report
+              Capital Report
               
             </Typography>
            
@@ -60,17 +59,7 @@ const SalesReport = () => {
           >
             
           </Box>
-          {/* <button 
-              style={{
-              // marginLeft:"500px",
-              float:"right",
-              marginTop:"-5px",
-              color:"white",
-              backgroundColor:"blue",
-              width:"110px",
-              borderRadius:"8px",
-              border:"none",
-              }}>  <NavLink to={'/dashboard/addSale'} style={{color:"white",textDecoration:"none" }}>Add Sale</NavLink></button> */}
+          
         </Box>
 
 
@@ -82,8 +71,7 @@ const SalesReport = () => {
             mt: 3,
           }}
         >
-          {/* <SalesReportTable /> */}
-          <DailySalesReport/>
+          <CapitalReportTable />
         </Box>
       </CardContent>
     </Card>
@@ -92,4 +80,4 @@ const SalesReport = () => {
 
 
 
-export default SalesReport;
+export default CapitalReport;

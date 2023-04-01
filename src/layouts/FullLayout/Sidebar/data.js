@@ -62,7 +62,7 @@ const Menuitems = [
   {
     title: "Reports",
     icon: SwitchCameraOutlined,
-    href: "/dashboard/form-elements/report",
+    href: "/dashboard/form-elements/allReports",
   },
   {
     title: "Profile",

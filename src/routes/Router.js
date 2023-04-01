@@ -1,10 +1,11 @@
+import React from "react";
 import { lazy } from "react";
 import { Navigate } from "react-router-dom";
 import Category from "../views/FormElements/categories";
 import Items from "../views/FormElements/items";
 import AddCategory from "../views/FormElements/addCategory";
 import AddItem from "../views/FormElements/addItem";
-import Report from "../views/FormElements/report";
+// import Report from "../views/FormElements/report";
 import EditCategory from "../views/FormElements/editCategory";
 import EditItem from "../views/FormElements/editItem";
 import Expenses from "../views/FormElements/expenses";
@@ -18,6 +19,9 @@ import AddExpCateg from "../views/FormElements/addExpCateg";
 import EditStock from "../views/FormElements/editStock";
 import EditSale from "../views/FormElements/editSale";
 import EditExpCateg from "../views/FormElements/editExpCateg";
+import PurchaseReport from "../views/FormElements/purchaseRep";
+import AllReports from "../views/FormElements/allReports";
+import SalesReport from "../views/FormElements/salesReport";
 
 
 /****Screens *****/
@@ -146,10 +150,7 @@ const ThemeRoutes = [
       { path: "/form-elements/items", element: <Items /> },
       { path: "/form-elements/slider", element: <ExSlider /> },
       { path: "/form-elements/switch", element: <ExSwitch /> },
-      { path: "/form-elements/report", element: <Report /> },
-      { path: "/form-elements/salesReport", element: <SalesReport /> },
-      { path: "/form-elements/profile", element: <Profile /> },
-
+      { path: "/form-elements/purchaseRep", element: <PurchaseReport /> },
       { path: "/addCategory", element: <AddCategory /> },
       { path: "/addItem", element: <AddItem /> },
       { path: "/editCategory/:id", element: <EditCategory/>},
@@ -170,6 +171,8 @@ const ThemeRoutes = [
       { path: "/editSale", element: <EditSale/>},
       { path: "/editItem", element: <EditItem/>},
       { path: "/editExpCateg", element: <EditExpCateg/>},
+      { path: "/form-elements/allReports", element: <AllReports /> },
+      { path: "/salesReport", element: <SalesReport/>},
     ],
   },
 ];

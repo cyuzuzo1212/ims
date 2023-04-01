@@ -25,7 +25,7 @@ export const AddExpCateg = () => {
 <div style={{padding:"20px 100px 0px 100px"}}>
     
     <Typography style={{color:"blue",fontSize:"25px",marginBottom:"50px"}}>Add Expense's Category</Typography>
-    <Typography>Date</Typography>
+    {/* <Typography>Date</Typography>
    
         <TextField
               id="title-text"
@@ -37,7 +37,7 @@ export const AddExpCateg = () => {
               sx={{
                 mb: 1,
               }}
-            />
+            /> */}
 
 <Typography >Add Category of Expenses</Typography>
     

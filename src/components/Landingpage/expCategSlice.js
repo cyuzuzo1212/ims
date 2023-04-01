@@ -80,5 +80,21 @@ export const getExpCategory =() =>(dispatch)=> {
         })
         };
 
+
+        export const editExpCategory  = (id, data) => async(dispatch) =>{
+            console.log(data, "data")
+            console.log(id, "ID")
+            axios({
+              method:"PATCH",
+              url: `https://inventory-ciul.onrender.com/api/expensesCat/update/${id}`,
+              data: data,
+              headers:{
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+              }
+          }).then((res)=>{
+            console.log(res,"from editor");
+          }).catch((err)=>{console.log(err);})
+        };
+
         export const { expCategory, storeExpCategories,storeExpCategory} = ExpCategSlice.actions;
   export default ExpCategSlice.reducer;
