@@ -6,6 +6,7 @@ import stocksReduce from "./components/Landingpage/stockSlice";
 import expCategoriesReduce from "./components/Landingpage/expCategSlice";
 import expensesReduce from "./components/Landingpage/expensesSlice";
 
+
 export const store = configureStore({
   reducer: {
     auth: authReducer,

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch,useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { FaPenAlt } from "react-icons/fa";
 import { RiDeleteBin6Fill} from "react-icons/ri";
@@ -13,49 +14,50 @@ import {
   Chip,
   Button,
 } from "@material-ui/core";
+import { getPurchase } from "../../components/Landingpage/stockSlice";
  
 
 
-const reportItem = [
+// const stocksWithAmounts = [
 
-  {
-    id: "1",
-    item: "Sandals",
-    quantity: "30kg",
-    unitPrice:"300",
-    totalAmount:"3000",
+//   {
+//     id: "1",
+//     item: "Sandals",
+//     quantity: "30kg",
+//     unitPrice:"300",
+//     totalAmount:"3000",
     
-  },
+//   },
   
-  {
-    id: "2",
-    item: "Dresses",
-    quantity: "30m",
-    unitPrice:"300",
-    totalAmount:"2000",
+//   {
+//     id: "2",
+//     item: "Dresses",
+//     quantity: "30m",
+//     unitPrice:"300",
+//     totalAmount:"2000",
     
-  },
+//   },
 
-];
+// ];
 
 export const PurchaseReportTable = () =>{
-    // const [reportItem,setReportItem] = useState([]);
+  const dispatch = useDispatch();
+  const stocksWithAmounts = useSelector((state) => state.stocks.stocksWithAmounts);
 
-    // useEffect(() => {
-    //   fetch("https://inventory-ciul.onrender.com/api/items/capital")
-    //     .then((response) => response.json())
-    //     .then((data) => setReportItem(data));
-    // }, []);
-    
+  useEffect(() => {
+    dispatch(getPurchase());
+  },[])
+
+  const grandTotal = stocksWithAmounts.reduce((sum, stock) => sum + stock.totalAmount, 0);
+
     return(
-
-        <Table
-      aria-label="simple table"
-      sx={{
-        mt: 3,
-        whiteSpace: "nowrap",
-      }}
-    >
+      <Table
+        aria-label="simple table"
+        sx={{
+          mt: 3,
+          whiteSpace: "nowrap",
+        }}
+      >
       <TableHead>
         <TableRow style={{backgroundColor:"blue"}}>
           <TableCell>
@@ -90,7 +92,7 @@ export const PurchaseReportTable = () =>{
         </TableRow>
       </TableHead>
       <TableBody>
-        {reportItem.map((report,index) => (
+        {stocksWithAmounts.map(({stock, totalAmount}, index) => (
           <TableRow key={index}>
             <TableCell>
               <Typography>
@@ -100,37 +102,50 @@ export const PurchaseReportTable = () =>{
             </TableCell>
             
             <TableCell>
-              <Box >
-                <Box>
-                  <Typography>
-                    {report.item}
-                    
-                  </Typography>
-                  
-                </Box>
-              </Box>
-            </TableCell>
-            <TableCell>
-              <Typography >
-                {/* {product.pname} */}
-                {report.quantity}
+              <Typography>
+                {stock.item}
               </Typography>
             </TableCell>
             <TableCell>
               <Typography >
-                {report.unitPrice}
+                {/* {product.pname} */}
+                {
+                  stock.measurement === 'box' ? stock.quantity.box.numberOfBoxes :
+                  stock.measurement === 'kg' ? stock.quantity.kg : '-'
+                }
+              </Typography>
+            </TableCell>
+            <TableCell>
+              <Typography >
+                {
+                  stock.measurement === 'box' ? stock.unitPrice.box.price :
+                  stock.measurement === 'kg' ? stock.unitPrice.kg : '-'
+                }
               </Typography>
             </TableCell>
 
             <TableCell>
               <Typography >
-                {report.totalAmount}
+                {totalAmount}
               </Typography>
             </TableCell>
             
             
           </TableRow>
         ))}
+              <TableRow>
+        <TableCell  colSpan={3}></TableCell>
+        <TableCell>
+          <Typography align="center" style={{fontWeight: 600}}>
+          Total: 
+          </Typography>
+        </TableCell>
+        <TableCell>
+          <Typography style={{fontWeight: 600}}>
+            {grandTotal}
+          </Typography>
+          </TableCell>
+      </TableRow>
       </TableBody>
     </Table>
     )

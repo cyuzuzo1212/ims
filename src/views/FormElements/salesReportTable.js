@@ -14,6 +14,8 @@ import {
   Chip,
   Button,
 } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { getDailySales } from "../../components/Landingpage/salesSlice";
  
 
 
@@ -40,33 +42,23 @@ import {
 // ];
 
 export const SalesReportTable = () =>{
-const [purchase,setPurchase] = useState([]);
-    
+  const dispatch = useDispatch();
+  const purchase = useSelector((state) => state.sales.dailySales);
+  
   useEffect(() => {
-    
-    axios.get('https://inventory-ciul.onrender.com/api/sales/daily')
-    
-      .then(response => {
-        setPurchase(response.data);
-        console.log(response.data,"jjjjjjjjjjjj");
-        
-      })
-      .catch(error => {
-        console.error(error);
-    
-      });
-    
+    dispatch(getDailySales());
   }, []);
   
-    return(
+  const totalDailySales = purchase.reduce((sum, dailySale) => sum + dailySale.totalAmount, 0);
 
-        <Table
-      aria-label="simple table"
-      sx={{
-        mt: 3,
-        whiteSpace: "nowrap",
-      }}
-    >
+  return(
+      <Table
+        aria-label="simple table"
+        sx={{
+          mt: 3,
+          whiteSpace: "nowrap",
+        }}
+      >
       <TableHead>
         <TableRow style={{backgroundColor:"red"}}>
           <TableCell>
@@ -101,7 +93,7 @@ const [purchase,setPurchase] = useState([]);
         </TableRow>
       </TableHead>
       <TableBody>
-        {purchase.map((reportItem,index) => (
+        {purchase.map(({item, quantity, salesPrice, totalAmount}, index) => (
           <TableRow key={index}>
             <TableCell>
               <Typography>
@@ -111,37 +103,56 @@ const [purchase,setPurchase] = useState([]);
             </TableCell>
             
             <TableCell>               
-              <Box >
-                <Box>
-                  <Typography>
-                    {reportItem.date}
-                    
-                  </Typography>
-                  
-                </Box>
+              <Box>
+                <Typography>
+                  {item}
+                </Typography>
               </Box>
             </TableCell>
             <TableCell>
               <Typography >
-                {/* {product.pname} */}
-                {reportItem.sales}
+               {/* Quantity */}
+                {
+                  quantity.box.numberOfBoxes > 0 ? quantity.box.numberOfBoxes :
+                  quantity.kg > 0 ? quantity.kg :
+                  quantity.liters > 0 ? quantity.liters : "0"
+                }
               </Typography>
             </TableCell>
             <TableCell>
               <Typography >
-                {reportItem.numberOfSales}
+                {/* Unit Price */}
+                {
+                  salesPrice.box.price ? salesPrice.box.price :
+                  salesPrice.kg ? salesPrice.kg :
+                  salesPrice.liters ? salesPrice.liters : "0"
+                }
               </Typography>
             </TableCell>
 
             <TableCell>
               <Typography >
-                {reportItem.totalSales}
+                {/* Total */}
+                {totalAmount}
               </Typography>
             </TableCell>
             
             
           </TableRow>
         ))}
+      <TableRow>
+        <TableCell  colSpan={3}></TableCell>
+        <TableCell>
+          <Typography align="center" style={{fontWeight: 600}}>
+          Total: 
+          </Typography>
+        </TableCell>
+        <TableCell>
+          <Typography style={{fontWeight: 600}}>
+            {totalDailySales}
+          </Typography>
+          </TableCell>
+      </TableRow>
       </TableBody>
     </Table>
     )

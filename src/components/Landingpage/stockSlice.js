@@ -8,7 +8,7 @@ const initialState = {
   stocksTable: [],
   items: [],
   stock: {},
- 
+  stocksWithAmounts: []
 };
 
 export const stockSlice = createSlice({
@@ -24,6 +24,9 @@ export const stockSlice = createSlice({
     },
     storeStocks: (state, action) => {
       state.stocksTable = action.payload;
+    },
+    storePurchase: (state, action) => {
+      state.stocksWithAmounts = action.payload;
     },
     getStocks: (state, action) => {
       state.stocks = action.payload;
@@ -126,5 +129,22 @@ export const Stock = (id) => (dispatch) => {
     });
 };
 
-export const { stock, storeStocks, StoreItems } = stockSlice.actions;
+export const getPurchase = () => async(dispatch) =>{
+  await axios({
+    method:"GET",
+    url: 'https://inventory-ciul.onrender.com/api/items/capital',
+    headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`  
+    }
+    })
+  .then(response => {
+    const { stocksWithAmounts } = response.data;
+    dispatch(storePurchase(stocksWithAmounts));
+  })
+  .catch(error => {
+    console.error(error);
+  });
+}
+
+export const { stock, storeStocks, StoreItems, storePurchase } = stockSlice.actions;
 export default stockSlice.reducer;

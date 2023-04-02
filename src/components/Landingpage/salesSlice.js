@@ -8,6 +8,7 @@ const initialState ={
     salesTable: [],
     stocks: [],
     sale:{},
+    dailySales: []
 };
 
 export const salesSlice = createSlice({
@@ -26,6 +27,9 @@ export const salesSlice = createSlice({
         },
         getSales: (state,action) =>{
             state.sales = action.payload
+        },
+        storeDailySales: (state, action) => {
+            state.dailySales = action.payload
         }
     },
 });
@@ -114,5 +118,24 @@ export const getSale =() =>async(dispatch)=> {
     .catch((err)=>console.log(err));
     };
 
-    export const {sale,storeSales,storeStocks} =salesSlice.actions;
+export const getDailySales = () => async (dispatch) => {
+    await axios({
+        method:"GET",
+        url: 'https://inventory-ciul.onrender.com/api/sales/daily',
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`  
+        }
+        })
+      .then(response => {
+        const items = response.data.sales.reduce((totalItems, sale) => {
+          return totalItems.concat(sale.items);
+        }, [])
+        dispatch(storeDailySales(items));
+      })
+      .catch(error => {
+        console.error(error);
+      });
+}
+
+    export const {sale,storeSales,storeStocks, storeDailySales} =salesSlice.actions;
     export default salesSlice.reducer;
