@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { useDispatch,useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { FaPenAlt } from "react-icons/fa";
 import { RiDeleteBin6Fill} from "react-icons/ri";
@@ -14,8 +14,7 @@ import {
   Chip,
   Button,
 } from "@material-ui/core";
-import { useDispatch, useSelector } from "react-redux";
-import { getDailySales } from "../../components/Landingpage/salesSlice";
+import { getWeeklySales } from "../../components/Landingpage/salesSlice";
  
 
 
@@ -41,24 +40,26 @@ import { getDailySales } from "../../components/Landingpage/salesSlice";
 
 // ];
 
-export const SalesReportTable = () =>{
-  const dispatch = useDispatch();
-  const purchase = useSelector((state) => state.sales.dailySales);
-  
-  useEffect(() => {
-    dispatch(getDailySales());
-  }, []);
-  
-  const totalDailySales = purchase.reduce((sum, dailySale) => sum + dailySale.totalAmount, 0);
+export const WeeklyReportTable = () =>{
+    // const [reportItem,setReportItem] = useState([]);
+    const dispatch = useDispatch();
+  const purchase = useSelector((state) => state.sales.weeklySales);
 
-  return(
-      <Table
-        aria-label="simple table"
-        sx={{
-          mt: 3,
-          whiteSpace: "nowrap",
-        }}
-      >
+  useEffect(() => {
+    dispatch(getWeeklySales());
+  }, []);
+
+  const totalWeeklySales = purchase.reduce((sum, weeklySale) => sum + weeklySale.totalAmount, 0);
+    
+    return(
+
+        <Table
+      aria-label="simple table"
+      sx={{
+        mt: 3,
+        whiteSpace: "nowrap",
+      }}
+    >
       <TableHead>
         <TableRow style={{backgroundColor:"blue"}}>
           <TableCell>
@@ -69,12 +70,12 @@ export const SalesReportTable = () =>{
           
           <TableCell>
             <Typography color="white" fontWeight="600">
-              items
+              Item
             </Typography>
           </TableCell>
           <TableCell>
             <Typography color="white" fontWeight="600">
-              quantity
+              Quantity
             </Typography>
           </TableCell>
           <TableCell>
@@ -93,25 +94,30 @@ export const SalesReportTable = () =>{
         </TableRow>
       </TableHead>
       <TableBody>
-        {purchase.map(({item, quantity, salesPrice, totalAmount}, index) => (
+        {purchase.map(({item, quantity, salesPrice, totalAmount},index) => (
           <TableRow key={index}>
             <TableCell>
               <Typography>
-                
+                {/* {product.id} */}
                 {index + 1}
               </Typography>
             </TableCell>
             
-            <TableCell>               
-              <Box>
-                <Typography>
-                  {item}
-                </Typography>
+            <TableCell>
+              <Box >
+                <Box>
+                  <Typography>
+                    {item}
+                    
+                  </Typography>
+                  
+                </Box>
               </Box>
             </TableCell>
             <TableCell>
               <Typography >
-               {/* Quantity */}
+                {/* {product.pname} */}
+                {/* {reportItem.quantity} */}
                 {
                   quantity.box.numberOfBoxes > 0 ? quantity.box.numberOfBoxes :
                   quantity.kg > 0 ? quantity.kg :
@@ -121,7 +127,7 @@ export const SalesReportTable = () =>{
             </TableCell>
             <TableCell>
               <Typography >
-                {/* Unit Price */}
+                {/* {reportItem.unitPrice} */}
                 {
                   salesPrice.box.price ? salesPrice.box.price :
                   salesPrice.kg ? salesPrice.kg :
@@ -132,7 +138,6 @@ export const SalesReportTable = () =>{
 
             <TableCell>
               <Typography >
-                {/* Total */}
                 {totalAmount}
               </Typography>
             </TableCell>
@@ -140,7 +145,8 @@ export const SalesReportTable = () =>{
             
           </TableRow>
         ))}
-      <TableRow>
+
+<TableRow>
         <TableCell  colSpan={3}></TableCell>
         <TableCell>
           <Typography align="center" style={{fontWeight: 600}}>
@@ -149,7 +155,7 @@ export const SalesReportTable = () =>{
         </TableCell>
         <TableCell>
           <Typography style={{fontWeight: 600}}>
-            {totalDailySales}
+            {totalWeeklySales}
           </Typography>
           </TableCell>
       </TableRow>
@@ -157,4 +163,4 @@ export const SalesReportTable = () =>{
     </Table>
     )
 };
-export default SalesReportTable;
+export default WeeklyReportTable;

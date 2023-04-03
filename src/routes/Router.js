@@ -22,6 +22,8 @@ import EditExpCateg from "../views/FormElements/editExpCateg";
 import PurchaseReport from "../views/FormElements/purchaseRep";
 import AllReports from "../views/FormElements/allReports";
 import SalesReport from "../views/FormElements/salesReport";
+import WeeklyReport from "../views/FormElements/weeklyReport";
+import MonthlyReport from "../views/FormElements/monthlyReport";
 
 
 /****Screens *****/
@@ -150,7 +152,7 @@ const ThemeRoutes = [
       { path: "/form-elements/items", element: <Items /> },
       { path: "/form-elements/slider", element: <ExSlider /> },
       { path: "/form-elements/switch", element: <ExSwitch /> },
-      { path: "/form-elements/purchaseRep", element: <PurchaseReport /> },
+      { path: "/purchaseRep", element: <PurchaseReport /> },
       { path: "/addCategory", element: <AddCategory /> },
       { path: "/addItem", element: <AddItem /> },
       { path: "/editCategory/:id", element: <EditCategory/>},
@@ -173,6 +175,8 @@ const ThemeRoutes = [
       { path: "/editExpCateg", element: <EditExpCateg/>},
       { path: "/form-elements/allReports", element: <AllReports /> },
       { path: "/salesReport", element: <SalesReport/>},
+      { path: "/weeklyReport", element: <WeeklyReport/>},
+      { path: "/monthlyReport", element: <MonthlyReport/>},
     ],
   },
 ];

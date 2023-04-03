@@ -77,7 +77,7 @@ console.log(salesTable,"uuuuuuu");
       }}
     >
       <TableHead>
-        <TableRow style={{backgroundColor:"blue",color:"white"}}>
+        <TableRow >
           <TableCell>
             <Typography fontWeight="600" color="white">
               Id

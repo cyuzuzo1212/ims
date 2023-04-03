@@ -11,11 +11,11 @@ import {
 } from "@material-ui/core";
 import { NavLink } from 'react-router-dom';
 // import SaleTable from "./SaleTable";
-import CapitalReportTable from "./capitalReportTable";
+import WeeklyReportTable from "./weeklyReportTable";
 
 
 
-const CapitalReport = () => {
+const WeeklyReport = () => {
   const [age, setAge] = React.useState("10");
 
   const handleChange = (event) => {
@@ -42,7 +42,7 @@ const CapitalReport = () => {
               }}
               gutterBottom
             >
-              Capital Report
+              weekly sales Report
               
             </Typography>
            
@@ -71,7 +71,7 @@ const CapitalReport = () => {
             mt: 3,
           }}
         >
-          <CapitalReportTable />
+          <WeeklyReportTable />
         </Box>
       </CardContent>
     </Card>
@@ -80,4 +80,4 @@ const CapitalReport = () => {
 
 
 
-export default CapitalReport;
+export default WeeklyReport;

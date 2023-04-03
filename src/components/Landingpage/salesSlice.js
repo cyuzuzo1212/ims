@@ -8,7 +8,9 @@ const initialState ={
     salesTable: [],
     stocks: [],
     sale:{},
-    dailySales: []
+    dailySales: [],
+    weeklySales: [],
+    monthlySales:[]
 };
 
 export const salesSlice = createSlice({
@@ -30,6 +32,12 @@ export const salesSlice = createSlice({
         },
         storeDailySales: (state, action) => {
             state.dailySales = action.payload
+        },
+        storeWeeklySales: (state,action) => {
+            state.weeklySales = action.payload
+        },
+        storeMonthlySales: (state,action) => {
+            state.monthlySales = action.payload
         }
     },
 });
@@ -137,5 +145,43 @@ export const getDailySales = () => async (dispatch) => {
       });
 }
 
-    export const {sale,storeSales,storeStocks, storeDailySales} =salesSlice.actions;
+export const getWeeklySales = () => async (dispatch) => {
+    await axios({
+        method:"GET",
+        url: 'https://inventory-ciul.onrender.com/api/sales/weekly',
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`  
+        }
+        })
+      .then(response => {
+        const items = response.data.sales.reduce((totalItems, sale) => {
+          return totalItems.concat(sale.items);
+        }, [])
+        dispatch(storeWeeklySales(items));
+      })
+      .catch(error => {
+        console.error(error);
+      });
+}
+
+export const getMonthlySales = () => async (dispatch) => {
+    await axios({
+        method:"GET",
+        url: 'https://inventory-ciul.onrender.com/api/sales/monthly',
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`  
+        }
+        })
+      .then(response => {
+        const items = response.data.sales.reduce((totalItems, sale) => {
+          return totalItems.concat(sale.items);
+        }, [])
+        dispatch(storeMonthlySales(items));
+      })
+      .catch(error => {
+        console.error(error);
+      });
+}
+
+    export const {sale,storeSales,storeStocks, storeDailySales,storeWeeklySales,storeMonthlySales} =salesSlice.actions;
     export default salesSlice.reducer;

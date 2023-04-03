@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch,useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { FaPenAlt } from "react-icons/fa";
 import { RiDeleteBin6Fill} from "react-icons/ri";
@@ -13,33 +14,42 @@ import {
   Chip,
   Button,
 } from "@material-ui/core";
+import { getMonthlySales } from "../../components/Landingpage/salesSlice";
  
 
 
-const reportItem = [
+// const reportItem = [
 
-  {
-    id: "1",
-    item: "Sandals",
-    quantity: "30kg",
-    unitPrice:"300",
-    totalAmount:"3000",
+//   {
+//     id: "1",
+//     item: "Sandals",
+//     quantity: "30kg",
+//     unitPrice:"300",
+//     totalAmount:"3000",
     
-  },
+//   },
   
-  {
-    id: "2",
-    item: "Dresses",
-    quantity: "30m",
-    unitPrice:"300",
-    totalAmount:"2000",
+//   {
+//     id: "2",
+//     item: "Dresses",
+//     quantity: "30m",
+//     unitPrice:"300",
+//     totalAmount:"2000",
     
-  },
+//   },
 
-];
+// ];
 
-export const CapitalReportTable = () =>{
-    const [reportItem,setReportItem] = useState([]);
+export const MonthlyReportTable = () =>{
+    // const [reportItem,setReportItem] = useState([]);
+    const dispatch = useDispatch();
+  const purchase = useSelector((state) => state.sales.monthlySales);
+
+  useEffect(() => {
+    dispatch(getMonthlySales());
+  }, []);
+
+  const totalMonthlySales = purchase.reduce((sum, monthlySale) => sum + monthlySale.totalAmount, 0);
     
     return(
 
@@ -84,7 +94,7 @@ export const CapitalReportTable = () =>{
         </TableRow>
       </TableHead>
       <TableBody>
-        {reportItem.map((reportItem,index) => (
+        {purchase.map(({item, quantity, salesPrice, totalAmount},index) => (
           <TableRow key={index}>
             <TableCell>
               <Typography>
@@ -97,7 +107,7 @@ export const CapitalReportTable = () =>{
               <Box >
                 <Box>
                   <Typography>
-                    {reportItem.item}
+                    {item}
                     
                   </Typography>
                   
@@ -107,26 +117,52 @@ export const CapitalReportTable = () =>{
             <TableCell>
               <Typography >
                 {/* {product.pname} */}
-                {reportItem.quantity}
+                {/* {reportItem.quantity} */}
+
+                {
+                  quantity.box.numberOfBoxes > 0 ? quantity.box.numberOfBoxes :
+                  quantity.kg > 0 ? quantity.kg :
+                  quantity.liters > 0 ? quantity.liters : "0"
+                }
               </Typography>
             </TableCell>
             <TableCell>
               <Typography >
-                {reportItem.unitPrice}
+                {/* {reportItem.unitPrice} */}
+
+                {
+                  salesPrice.box.price ? salesPrice.box.price :
+                  salesPrice.kg ? salesPrice.kg :
+                  salesPrice.liters ? salesPrice.liters : "0"
+                }
               </Typography>
             </TableCell>
 
             <TableCell>
               <Typography >
-                {reportItem.totalAmount}
+                {totalAmount}
               </Typography>
             </TableCell>
             
             
           </TableRow>
         ))}
+
+<TableRow>
+        <TableCell  colSpan={3}></TableCell>
+        <TableCell>
+          <Typography align="center" style={{fontWeight: 600}}>
+          Total: 
+          </Typography>
+        </TableCell>
+        <TableCell>
+          <Typography style={{fontWeight: 600}}>
+            {totalMonthlySales}
+          </Typography>
+          </TableCell>
+      </TableRow>
       </TableBody>
     </Table>
     )
 };
-export default CapitalReportTable;
+export default MonthlyReportTable;
