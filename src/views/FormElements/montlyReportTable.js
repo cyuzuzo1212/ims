@@ -61,7 +61,7 @@ export const MonthlyReportTable = () =>{
       }}
     >
       <TableHead>
-        <TableRow style={{backgroundColor:"blue"}}>
+        <TableRow style={{backgroundColor:"#1565C0"}}>
           <TableCell>
             <Typography color="white" fontWeight="600">
               Id
@@ -104,15 +104,15 @@ export const MonthlyReportTable = () =>{
             </TableCell>
             
             <TableCell>
-              <Box >
-                <Box>
+              
+                
                   <Typography>
-                    {item}
+                    {item.name}
                     
                   </Typography>
                   
-                </Box>
-              </Box>
+                
+              
             </TableCell>
             <TableCell>
               <Typography >

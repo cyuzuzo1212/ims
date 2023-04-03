@@ -127,6 +127,7 @@ export const getSale =() =>async(dispatch)=> {
     };
 
 export const getDailySales = () => async (dispatch) => {
+   
     await axios({
         method:"GET",
         url: 'https://inventory-ciul.onrender.com/api/sales/daily',
@@ -135,10 +136,14 @@ export const getDailySales = () => async (dispatch) => {
         }
         })
       .then(response => {
+        
         const items = response.data.sales.reduce((totalItems, sale) => {
+            
           return totalItems.concat(sale.items);
+         
         }, [])
         dispatch(storeDailySales(items));
+        
       })
       .catch(error => {
         console.error(error);

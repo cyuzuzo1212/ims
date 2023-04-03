@@ -76,12 +76,8 @@ function Login() {
             sx={{mb:2}}
           />
 
-          
-          <Button
-          //  className="login-bu tton"
-          style={{background:"blue",height:"40px"}}
-          >
-            <NavLink to="/dashboard"  onClick={handleLogin} style={{color:"white",textDecoration:"none"}}>Login</NavLink></Button>
+<NavLink to="/dashboard"  onClick={handleLogin}>
+          <Button style={{background:"blue",height:"40px",color:"white"}}>Login</Button></NavLink>
           
          </div>
           {loading ? (

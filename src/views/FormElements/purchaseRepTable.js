@@ -14,7 +14,7 @@ import {
   Chip,
   Button,
 } from "@material-ui/core";
-import { getPurchase } from "../../components/Landingpage/stockSlice";
+import { getPurchase, stock } from "../../components/Landingpage/stockSlice";
  
 
 
@@ -43,13 +43,15 @@ import { getPurchase } from "../../components/Landingpage/stockSlice";
 export const PurchaseReportTable = () =>{
   const dispatch = useDispatch();
   const stocksWithAmounts = useSelector((state) => state.stocks.stocksWithAmounts);
+  
 
   useEffect(() => {
     dispatch(getPurchase());
   },[])
+ 
 
   const grandTotal = stocksWithAmounts.reduce((sum, stock) => sum + stock.totalAmount, 0);
-
+  
     return(
       <Table
         aria-label="simple table"
@@ -59,7 +61,7 @@ export const PurchaseReportTable = () =>{
         }}
       >
       <TableHead>
-        <TableRow style={{backgroundColor:"blue"}}>
+        <TableRow style={{backgroundColor:"#1565C0"}}>
           <TableCell>
             <Typography color="white" fontWeight="600">
               Id
@@ -92,7 +94,8 @@ export const PurchaseReportTable = () =>{
         </TableRow>
       </TableHead>
       <TableBody>
-        {stocksWithAmounts.map(({stock, totalAmount}, index) => (
+        {stocksWithAmounts.map(({stock,item, totalAmount}, index) => (
+          
           <TableRow key={index}>
             <TableCell>
               <Typography>
@@ -103,7 +106,7 @@ export const PurchaseReportTable = () =>{
             
             <TableCell>
               <Typography>
-                {stock.item}
+                {stock?.item?.name}
               </Typography>
             </TableCell>
             <TableCell>

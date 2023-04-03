@@ -47,6 +47,7 @@ export const SalesReportTable = () =>{
   
   useEffect(() => {
     dispatch(getDailySales());
+    
   }, []);
   
   const totalDailySales = purchase.reduce((sum, dailySale) => sum + dailySale.totalAmount, 0);
@@ -60,7 +61,7 @@ export const SalesReportTable = () =>{
         }}
       >
       <TableHead>
-        <TableRow style={{backgroundColor:"blue"}}>
+        <TableRow style={{backgroundColor:"#1565C0"}}>
           <TableCell>
             <Typography color="white" fontWeight="600">
               Id
@@ -105,7 +106,7 @@ export const SalesReportTable = () =>{
             <TableCell>               
               <Box>
                 <Typography>
-                  {item}
+                  {item.name}
                 </Typography>
               </Box>
             </TableCell>

@@ -58,7 +58,8 @@ export const ExpensesTable = () => {
   dispatch(getExpenses());
   
   },[]);
-  console.log(expenseTable,"expenseeeeeeeeee");
+  console.log(expenseTable,"expenseeeeeeeeee"); 
+  // const totalExpenses = expenseTable.reduce((sum, expenseTable) => sum + expenseTable.amount, 0);
   return (
     <Table
       aria-label="simple table"
@@ -153,6 +154,20 @@ export const ExpensesTable = () => {
             </TableCell>
           </TableRow>
         ))}
+
+{/* <TableRow>
+        <TableCell  colSpan={3}></TableCell>
+        <TableCell>
+          <Typography align="center" style={{fontWeight: 600}}>
+          Total: 
+          </Typography>
+        </TableCell>
+        <TableCell>
+          <Typography style={{fontWeight: 600}}>
+            {totalExpenses}
+          </Typography>
+          </TableCell>
+      </TableRow> */}
       </TableBody>
     </Table>
   );

@@ -50,7 +50,6 @@ export const WeeklyReportTable = () =>{
   }, []);
 
   const totalWeeklySales = purchase.reduce((sum, weeklySale) => sum + weeklySale.totalAmount, 0);
-    
     return(
 
         <Table
@@ -61,7 +60,8 @@ export const WeeklyReportTable = () =>{
       }}
     >
       <TableHead>
-        <TableRow style={{backgroundColor:"blue"}}>
+        
+        <TableRow style={{backgroundColor:"#1565C0"}}>
           <TableCell>
             <Typography color="white" fontWeight="600">
               Id
@@ -107,7 +107,7 @@ export const WeeklyReportTable = () =>{
               <Box >
                 <Box>
                   <Typography>
-                    {item}
+                    {item.name}
                     
                   </Typography>
                   
