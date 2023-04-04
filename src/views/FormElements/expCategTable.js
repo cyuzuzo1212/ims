@@ -15,7 +15,7 @@ import {RiDeleteBin6Fill} from "react-icons/ri";
 import { NavLink } from "react-router-dom";
 import { useEffect,useState } from "react";
 import { useDispatch,useSelector } from "react-redux";
-import { getExpCategory } from "../../components/Landingpage/expCategSlice";
+import { getExpCategory ,editExpCategory } from "../../components/Landingpage/expCategSlice";
 
 
 // const products = [

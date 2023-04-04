@@ -67,5 +67,7 @@ export const getExpenses =() =>async(dispatch)=> {
     .catch((err)=>console.log(err));
     };
 
+    
+
 export const {expense,storeExpCategories,storeExpenses} = expensesSlice.actions;
   export default expensesSlice.reducer;

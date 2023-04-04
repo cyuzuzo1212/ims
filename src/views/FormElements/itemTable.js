@@ -154,21 +154,10 @@ const ItemTable = ({ items, setItems }) => {
                 </Typography>
               </TableCell>
               <TableCell>
-                <Box sx={{ display: "flex", alignItems: "center" }}>
                   <Box>
                     <Typography style={{ color: "black", fontWeight: "400" }}>
                       {item.name}
                     </Typography>
-
-                    {/* <Typography
-                    color="textSecondary"
-                    sx={{
-                      fontSize: "13px",
-                    }}
-                  >
-                    {product.post}
-                  </Typography> */}
-                  </Box>
                 </Box>
               </TableCell>
 

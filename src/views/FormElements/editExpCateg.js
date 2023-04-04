@@ -53,9 +53,14 @@ export const EditExpCateg =()=> {
               sx={{
                 mb: 2,
               }}
+
+              value={editExpCategory}
+              onChange={(expCategory) => {
+                setEditExpCategory(expCategory.target.value);
+              }}
             />
 
-<Box style={{
+<Box onClick={handleEditPost} style={{
             
             backgroundColor:"blue",
             color:"white",
@@ -66,7 +71,9 @@ export const EditExpCateg =()=> {
         }}
         type="save"
         className="save-data"
-        >{" "}Save{" "}
+       
+       
+       >{" "}Save{" "}
         </Box>
         
         </div>       

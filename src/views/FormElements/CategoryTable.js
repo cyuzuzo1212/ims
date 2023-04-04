@@ -124,13 +124,8 @@ const CategoryTable = () => {
               </Typography>
             </TableCell>
             <TableCell>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <Box>
+              <Box>
+                
                   <Typography
                     
                     sx={{
@@ -139,13 +134,8 @@ const CategoryTable = () => {
                   >
                     {product.category}
                   </Typography>
-                  {/* <Typography color="textSecondary" sx={{
-                      fontSize: "15px",
-                    }}
-                  >
-                    {product.post}
-                  </Typography> */}
-                </Box>
+                  
+                
               </Box>
             </TableCell>
             <TableCell>

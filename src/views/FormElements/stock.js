@@ -41,6 +41,7 @@ const Stock = () => {
                                 variant="h3"
                                 sx={{
                                     marginBottom: "0",
+                                    color:"blue",
                                 }}
                                 gutterBottom
                             >
