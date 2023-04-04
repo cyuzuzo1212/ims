@@ -13,7 +13,7 @@ export const EditExpCateg =()=> {
     const params = useParams();
     const id = params.id;
     console.log(id,"edit expense id");
-    const [editExpCategory,setEditExpCategory] = useState("");
+    const [editExpenseCategory,setEditExpenseCategory] = useState("");
     const expCategory = useSelector((state) => state.expCategories.expCategory);
   const dispatch = useDispatch();
 
@@ -21,7 +21,7 @@ export const EditExpCateg =()=> {
     e.preventDefault();
     dispatch(
       editExpCategory( id ,{
-        categoryService: editExpCategory,
+        categoryService: editExpenseCategory,
       })
     );
   };
@@ -32,7 +32,7 @@ export const EditExpCateg =()=> {
 
   useEffect(()=>{
     if (expCategory.expCategories){
-      setEditExpCategory(expCategory.expCategories.categoryService)
+      setEditExpenseCategory(expCategory.expCategories.categoryService)
     }
   },[expCategory.expCategories])
 
@@ -45,7 +45,7 @@ export const EditExpCateg =()=> {
     <Typography>Edit Category Name</Typography>
     
         <TextField
-              id="date-text"
+              id="category-text"
               label="Category Name"
               type="name"
               variant="outlined"
@@ -54,14 +54,14 @@ export const EditExpCateg =()=> {
                 mb: 2,
               }}
 
-              value={editExpCategory}
+              value={editExpenseCategory}
               onChange={(expCategory) => {
-                setEditExpCategory(expCategory.target.value);
+                setEditExpenseCategory(expCategory.target.value);
               }}
             />
 
 <Box onClick={handleEditPost} style={{
-            
+            cursor:"pointer",
             backgroundColor:"blue",
             color:"white",
             padding:"10px 0px 10px 0px",
