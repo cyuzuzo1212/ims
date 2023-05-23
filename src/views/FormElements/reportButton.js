@@ -41,17 +41,19 @@ const ReportButton = () => {
              
            
            
-          <NavLink  to={"/dashboard/salesReport"}>
+          <NavLink  to={"/dashboard/dashboard/salesReport"}>
           <Button fullWidth  sx={{backgroundColor:"#1565C0",mb:2,color:"white",fontSize:"18px"}} >  Daily Sales Report</Button></NavLink>
-          <NavLink to={"/dashboard/weeklyReport"}>
+          <NavLink to={"/dashboard/dashboard/weeklyReport"}>
           <Button  fullWidth sx={{backgroundColor:"#1565C0",mb:2,color:"white",fontSize:"18px"}}> Weekly Sales Report</Button></NavLink>
-          <NavLink to={"/dashboard/monthlyReport"}>
+          <NavLink to={"/dashboard/dashboard/monthlyReport"}>
           <Button  fullWidth sx={{backgroundColor:"#1565C0",mb:2,color:"white",fontSize:"18px"}}> Monthly Sales Report</Button></NavLink>
-          <NavLink to={"/dashboard/purchaseRep"}>
-          <Button  fullWidth sx={{backgroundColor:"#1565C0",color:"white",fontSize:"18px"}}> Purchase Report</Button></NavLink>
-          
-        
+          <NavLink to={"/dashboard/dashboard/purchaseRep"}>
+          <Button  fullWidth sx={{backgroundColor:"#1565C0",mb:2,color:"white",fontSize:"18px"}}> Purchase Report</Button></NavLink>
 
+<NavLink to={"/dashboard/dashboard/ProfitReport"}>
+          <Button  fullWidth sx={{backgroundColor:"#1565C0",color:"white",fontSize:"18px"}}> Profit Report</Button>
+        
+          </NavLink>
 
 
 

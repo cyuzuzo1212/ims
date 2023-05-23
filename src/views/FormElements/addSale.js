@@ -6,7 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   createSales,
   getStockItem,
+  redirectAction,
 } from "../../components/Landingpage/salesSlice";
+import { useNavigate } from "react-router-dom";
 
 export const AddSale = () => {
   const [selectedItem, setSelectedItem] = useState("");
@@ -23,9 +25,11 @@ export const AddSale = () => {
   const [addSubItemPrice, setAddSubItemPrice] = useState("");
   const [measurementType, setMeasurementType] = useState("");
   const [totalAmount, setTotalAmount] = useState("");
-  const [stock, setStock] = useState([]);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { changeSaved, stocksTable: stock } = useSelector(state => state.sales);
+
   const handlePost = (e) => {
     e.preventDefault();
     const data = {
@@ -46,35 +50,25 @@ export const AddSale = () => {
     dispatch(createSales(data));
   };
 
-  console.log(measurementType.measurementType);
+  useEffect(() => {
+    if(changeSaved) {
+      dispatch(redirectAction(false));
+      navigate('/dashboard/dashboard/form-elements/sale')
+    }
+  }, [changeSaved])
 
   const getSales = () => {
     dispatch(getStockItem());
   };
   
-  console.log(stock, "stock");
   const items = useSelector((state) => {
-    console.log(state.stocks.items);
     return state.stocks.items;
   });
 
   useEffect(() => {
-    console.log("get item from stock");
     getSales();
-    axios({
-      method: "GET",
-      url: "https://inventory-ciul.onrender.com/api/stock/all",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    })
-      .then((data) => {
-        console.log(data);
-        setStock(data.data);
-        console.log(data.data);
-      })
-      .catch((err) => console.log(err));
   }, []);
+
   return (
     <div
       style={{
@@ -99,12 +93,12 @@ export const AddSale = () => {
             setSelectedItem(itemId.target.value);
           }}
         >
-          {stock?.map((option, index) => (
-            <MenuItem key={index} value={option?.item?._id}>
-              {console.log(option?.item?.name)}
-              {option?.item?.name}
+          {stock?.map((option, index) =>
+            (option.item && option.item.name) &&
+            <MenuItem key={index} value={option.item._id}>
+              {option.item.name}
             </MenuItem>
-          ))}
+          )}
         </TextField>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <TextField
@@ -118,7 +112,6 @@ export const AddSale = () => {
               mb: 2,
             }}
             onChange={(quantity) => {
-              console.log(quantity, "Quantity");
               setAddQuantity(quantity.target.value);
             }}
           />

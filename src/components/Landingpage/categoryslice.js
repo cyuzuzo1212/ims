@@ -7,6 +7,7 @@ const initialState ={
     EstateCategory: false,
     categories: [],
     category:{},
+    changeSaved: false
 };
 
 export const categSlice = createSlice({
@@ -21,6 +22,12 @@ export const categSlice = createSlice({
         },
         getCateg: (state,action) =>{
             state.categories = action.payload
+        },
+        removeCategory: (state, action) => {
+            state.categories = state.categories.filter(c => c._id !== action.payload)
+        },
+        redirect: (state, action) => {
+            state.changeSaved = action.payload;
         }
     },
 });
@@ -37,7 +44,7 @@ export const createCateg = (data) => async(dispatch) =>{
         },
     })
     .then((res)=>{
-        console.log('hyyyyyyyyyy')
+        dispatch(redirect(true))
     })
     .catch((err) =>{
         console.log(err)
@@ -81,20 +88,17 @@ export const getCateg =(id) =>(dispatch)=> {
     }
 
 
-    export const Delete =(id,data) =>(dispatch)=> {
+    export const Delete =(id) =>(dispatch)=> {
     const token = (localStorage.getItem("token"))
-    console.log(data)
     axios({
         method:"DELETE",
         url:`https://inventory-ciul.onrender.com/api/category/delete/${id}`,
-        data: data,
         headers:{
             Authorization: `Bearer ${localStorage.getItem("token")}`
         }
     })
     .then((response)=>{
-        console.log(response)
-        
+        dispatch(removeCategory(id));
     })
     .catch((err)=>{
         console.log(err)
@@ -102,8 +106,6 @@ export const getCateg =(id) =>(dispatch)=> {
     }
     
 export const editCategory  = (id, data) => async(dispatch) =>{
-    console.log(data, "data")
-    console.log(id, "ID")
     axios({
       method:"PATCH",
       url: `https://inventory-ciul.onrender.com/api/category/update/${id}`,
@@ -112,10 +114,10 @@ export const editCategory  = (id, data) => async(dispatch) =>{
         Authorization: `Bearer ${localStorage.getItem("token")}`
       }
   }).then((res)=>{
-    console.log(res,"from editor");
+    dispatch(redirect(true))
   }).catch((err)=>{console.log(err);})
 }
   
   
-  export const { category, storeCategories,storeCategory} = categSlice.actions;
+  export const { category, storeCategories,storeCategory, removeCategory, redirect} = categSlice.actions;
   export default categSlice.reducer;

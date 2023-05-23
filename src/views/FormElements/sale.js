@@ -68,7 +68,7 @@ const Sale = () => {
               width:"110px",
               borderRadius:"8px",
               border:"none",
-              }}>  <NavLink to={'/dashboard/addSale'} style={{color:"white",textDecoration:"none" }}>Add Sale</NavLink></button>
+              }}>  <NavLink to={'/dashboard/dashboard/addSale'} style={{color:"white",textDecoration:"none" }}>Add Sale</NavLink></button>
         </Box>
 
 

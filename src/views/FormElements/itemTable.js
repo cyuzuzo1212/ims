@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Typography,
   Box,
@@ -15,6 +15,8 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
 import { Delete, Edit } from "@material-ui/icons";
 import Items from "./items";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteItem, removeItem } from "../../reducers/itemsReducer";
 
 
 
@@ -84,20 +86,17 @@ import Items from "./items";
 //   },
 // ];
 
-const ItemTable = ({ items, setItems }) => {
-  const handleDelete = (id) => {
-    fetch(`https://inventory-ciul.onrender.com/api/items/delete/${id}`,{
-      method: "DELETE",
-      headers: {
-        "token": localStorage.getItem("inv-token")
-      }
-    })
-      .then((res) => res.json())
-      .then((res) => setItems(items.filter(item => item._id !== id)))
-      .catch((err) => console.log(err));
-  };
+const ItemTable = ({ items: loadedItems }) => {
+  const [items, setItems] = useState([]);
+  const dispatch = useDispatch();
+  const {role} = useSelector(state => state.auth.userData);
 
-  const handleEdit = (id) => {
+  useEffect(() => {
+    setItems(loadedItems)
+  })
+
+  const handleDelete = (id) => {
+    dispatch(deleteItem(id));
   };
 
   return (
@@ -163,13 +162,13 @@ const ItemTable = ({ items, setItems }) => {
 
               <TableCell>
                 <Typography style={{ color: "black", fontWeight: "400" }}>
-                  {item.category.numberOfItems}
+                  {item.category?.numberOfItems}
                 </Typography>
               </TableCell>
 
               <TableCell>
                 <Typography style={{ color: "black", fontWeight: "400" }}>
-                  {item.category.name}
+                  {item.category?.name}
                 </Typography>
               </TableCell>
 
@@ -199,8 +198,8 @@ const ItemTable = ({ items, setItems }) => {
                     marginRight: "10px",
                   }}>
                     {/* <div>{" "}<NavLink to={"/dashboard/editItem"}><FaPenAlt />{" "}</NavLink><RiDeleteBin6Fill />{" "}</div> */}
-                  <Delete color="danger" onClick={() => handleDelete(item._id)} />
-                  <Edit color="primary" onClick={() => handleEdit(item._id)} />
+                  {role === "admin" && <Delete color="danger" onClick={() => handleDelete(item._id)} />}
+                <NavLink to={'/dashboard/dashboard/editItem/' + item._id}>  <Edit color="primary"  /></NavLink>
                 </Typography>
               </TableCell>
             </TableRow>

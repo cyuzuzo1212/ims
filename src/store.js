@@ -5,6 +5,8 @@ import salesReduce from "./components/Landingpage/salesSlice";
 import stocksReduce from "./components/Landingpage/stockSlice";
 import expCategoriesReduce from "./components/Landingpage/expCategSlice";
 import expensesReduce from "./components/Landingpage/expensesSlice";
+import usersReducer from "./reducers/usersReducer";
+import itemsReducer from "./reducers/itemsReducer";
 
 
 export const store = configureStore({
@@ -15,5 +17,8 @@ export const store = configureStore({
     stocks: stocksReduce,
     expCategories: expCategoriesReduce,
     expenses: expensesReduce,
+    users: usersReducer,
+    items: itemsReducer,
+    // messages: messagesReducer
   },
 });

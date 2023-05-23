@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   experimentalStyled,
@@ -6,11 +6,12 @@ import {
   Container,
   Box,
 } from "@material-ui/core";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Header from "./Header/Header";
 import Sidebar from "./Sidebar/Sidebar";
 import Footer from "./Footer/Footer";
 import { TopbarHeight } from "../../assets/global/Theme-variable";
+import { useDispatch, useSelector } from "react-redux";
 
 const MainWrapper = experimentalStyled("div")(({ theme }) => ({
   display: "flex",
@@ -32,11 +33,22 @@ const PageWrapper = experimentalStyled("div")(({ theme }) => ({
 }));
 
 const FullLayout = () => {
-  //
   const [isSidebarOpen, setSidebarOpen] = useState(true);
   const [isMobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+  const [ isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isLoggedIn: loggedInGlobal } = useSelector((state) => state.auth);
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"));
-  return (
+  const navigate = useNavigate();
+  
+  // Auth?
+  useEffect(() => {
+    console.log({loggedInGlobal})
+    if(!(loggedInGlobal)) {
+      navigate('/login', {replace: true});
+    }
+  }, [loggedInGlobal])
+
+  return loggedInGlobal && (
     <MainWrapper>
       <Header
         sx={{

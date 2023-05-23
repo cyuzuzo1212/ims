@@ -1,4 +1,3 @@
-import React from "react";
 import {
   DashboardOutlined,
   AddToPhotosOutlined,
@@ -9,67 +8,74 @@ import {
   SwitchLeftOutlined,
   DescriptionOutlined,
   AutoAwesomeMosaicOutlined,
+  VerifiedUserOutlined,
+  MessageOutlined
 } from "@material-ui/icons/";
-import jwt from 'jwt-decode'
-
-const token = localStorage.getItem("inv-token");
-
-
-const userToken = jwt(token)
-console.log(userToken);
 
 const Menuitems = [
   {
     title: "Dashboard",
     icon: DashboardOutlined,
-    href: "/dashboard/home",
+    href: "/dashboard/dashboard/home",
   },
   {
     title: "Stock",
     icon: AddToPhotosOutlined,
     // href: "/dashboard/form-elements/stockpage",
-    href: "/dashboard/form-elements/stock",
+    href: "/dashboard/dashboard/form-elements/stock",
   },
   {
     title: "Sales",
     icon: AspectRatioOutlined,
-    href: "/dashboard/form-elements/sale",
+    href: "/dashboard/dashboard/form-elements/sale",
   },
   {
     title: "Categories",
     icon: AssignmentTurnedInOutlined,
-    href: "/dashboard/form-elements/category",
+    href: "/dashboard/dashboard/form-elements/category",
   },
   {
     title: "Items",
     icon: AlbumOutlined,
-    href: "/dashboard/form-elements/items",
+    href: "/dashboard/dashboard/form-elements/items",
   },
 
   {
     // title: "Form",
     title: "Expenses",
     icon: DescriptionOutlined,
-    href: "/dashboard/form-elements/expServices",
+    href: "/dashboard/dashboard/form-elements/expServices",
   },
 
   {
     title: "Expense's Category",
     icon: AutoAwesomeMosaicOutlined,
     // href: "/dashboard/tables/basic-table",
-    href: "/dashboard/form-elements/expenseCategory",
+    href: "/dashboard/dashboard/form-elements/expenseCategory",
   },
   {
     title: "Reports",
     icon: SwitchCameraOutlined,
-    href: "/dashboard/form-elements/allReports",
+    href: "/dashboard/dashboard/form-elements/allReports",
   },
   {
     title: "Profile",
     icon: SwitchLeftOutlined,
-    href: "/dashboard/form-elements/profile",
+    href: "/dashboard/dashboard/form-elements/profile",
   },
   
-  
+  {
+    title: "New users",
+    icon: VerifiedUserOutlined,
+    href: "/dashboard/dashboard/admin/newUsers",
+    admin: true
+  },
+  {
+    title: "New messages",
+    icon: MessageOutlined,
+    href: "/dashboard/dashboard/admin/newMessages",
+    admin: true
+  },
 ];
+
 export default Menuitems;

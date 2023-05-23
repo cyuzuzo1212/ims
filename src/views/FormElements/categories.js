@@ -69,7 +69,7 @@ const Category = () => {
               padding:"10px",
               borderRadius:"8px",
               border:"none",
-              }}>  <NavLink to={'/dashboard/addCategory'} style={{color:"white",textDecoration:"none"}}>Add Category</NavLink></button>
+              }}>  <NavLink to={'/dashboard/dashboard/addCategory'} style={{color:"white",textDecoration:"none"}}>Add Category</NavLink></button>
 
         </Box>
         <Box

@@ -3,16 +3,20 @@ import { NavLink } from 'react-router-dom';
 import Navbar from "./Navbar";
 import "./Signup.css";
 import { TextField ,Button, Typography} from "@material-ui/core";
+import { LoadingOutlined } from "@ant-design/icons";
 
 function Signup() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   
 
   const handleSignup = (event) => {
+    console.log("2222222")
     event.preventDefault();
+    setLoading(true);
     fetch("https://inventory-ciul.onrender.com/api/auth/register", {
       method: "POST",
       headers: {
@@ -32,21 +36,20 @@ function Signup() {
 
   return (
     <div className="signup-container">
-      <div className="signup-image-container">
+      <div className="signup-image-container" >
         <img
-          className="signup-image"
+          className="signup-image" 
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyU4UAYQLyRqkbkNgr2PW-3I7ILBsX4bZDCw&usqp=CAU"
           alt="signup"
         />
         
       </div>
-      <div className="signup-form-container">
+      <div className="signup-form-container" style={{width:"100%"}}>
         <h2>Create an Account</h2>
         <form onSubmit={handleSignup}>
           <div className="form-group">
             <div className="form-group-row">
               <div className="form-group-column">
-                {/* <label htmlFor="firstName">First Name</label> */}
                 <TextField
                   type=""
                   label="First Name"
@@ -56,7 +59,6 @@ function Signup() {
                 />
               </div>
               <div className="form-group-column">
-                {/* <label htmlFor="lastName">Last Name</label> */}
                 <TextField
                   type=""
                   label="Last Name"
@@ -68,7 +70,6 @@ function Signup() {
             </div>
             <div className="form-group-row">
               <div className="form-group-column">
-                {/* <label htmlFor="email">Email</label> */}
                 <TextField
                   type=""
                   label="Email"
@@ -78,10 +79,9 @@ function Signup() {
                 />
               </div>
               <div className="form-group-column">
-                {/* <label htmlFor="password">Password</label> */}
                 <TextField
-                  type=""
-                  id="password"
+                  type="password"
+                  // id="password"
                   label="Password"
                   value={password}
                   onChange={(event) => setPassword(event.target.value)}
@@ -90,15 +90,14 @@ function Signup() {
             </div>
             <div className="form-group-row">
               <div className="form-group-column">
-                {/* <label htmlFor="confirmPassword">Confirm Password</label> */}
-                <TextField type="" label="Confirm Your Password" id="confirmPassword" style={{width:"594px"}}/>
+                <TextField type="password" label="Confirm Your Password" id="confirmPassword" />
               </div>
             </div>
           </div>
-          <Button className=" signup-button" type="submit"  style={{paddingLeft:"10px"}}>Sign Up</Button>
-          
+          <Button className=" signup-button" type="submit"  style={{paddingLeft:"10px",width:"100%"}}>
+            {loading ? <LoadingOutlined  style={{marginRight: 5}}/> :''} Sign Up</Button>
         </form>
-        <Typography>Already have an account? <NavLink to="/login">Login</NavLink></Typography>
+        <p><Typography>Already have an account? <NavLink to="/login">Login</NavLink></Typography></p> 
       </div>
     </div>
   );

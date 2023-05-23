@@ -7,15 +7,15 @@ import {
   TableCell,
   TableHead,
   TableRow,
-  Chip,
 } from "@material-ui/core";
 import {AiFillEye} from "react-icons/ai";
 import {FaPenAlt} from "react-icons/fa";
 import {RiDeleteBin6Fill} from "react-icons/ri";
 import { NavLink } from "react-router-dom";
 import { useDispatch,useSelector } from "react-redux";
+import { Delete } from "@material-ui/icons";
 import { useEffect } from "react";
-import { getExpenses } from "../../components/Landingpage/expensesSlice";
+import { getExpenses, deleteExpense } from "../../components/Landingpage/expensesSlice";
 
 
 // const products = [
@@ -52,13 +52,18 @@ import { getExpenses } from "../../components/Landingpage/expensesSlice";
 export const ExpensesTable = () => {
   const dispatch=useDispatch()
   const expenseTable =useSelector((state)=>state.expenses.expenseTable);
+  const {role} = useSelector(state => state.auth.userData);
 
   useEffect(()=>{
     console.log("on expenses table");
   dispatch(getExpenses());
   
   },[]);
-  console.log(expenseTable,"expenseeeeeeeeee"); 
+
+  const handleDelete = (id) => {
+    dispatch(deleteExpense(id));
+  }
+
   const totalExpenses = expenseTable.reduce((sum, expenseTable) => sum + expenseTable.amount, 0);
   return (
     <Table
@@ -105,7 +110,7 @@ export const ExpensesTable = () => {
         </TableRow>
       </TableHead>
       <TableBody>
-        {expenseTable?.map((expenseCateg,index) => (
+        {expenseTable?.map((expenseCateg, index) => (
           <TableRow key={index}>
             <TableCell>
               <Typography style={{color:"black",fontWeight:"400"}}>
@@ -149,7 +154,10 @@ export const ExpensesTable = () => {
             <TableCell align="right">
               <Typography style={{color:"black",fontWeight:"600",marginRight:"10px"}}>
                 {/* {product.action} */}
-                <div><NavLink to={'/dashboard/editExpenses'}> <FaPenAlt/></NavLink> <RiDeleteBin6Fill/> </div>
+                <div>
+                  <NavLink to={'/dashboard/editExpenses'}> <FaPenAlt/></NavLink>
+                { role === "admin" && <Delete style={{cursor: 'pointer', marginLeft: '10px'}} color="danger" onClick={() => handleDelete(expenseCateg._id)} /> }
+                  </div>
                 </Typography>
             </TableCell>
           </TableRow>

@@ -54,7 +54,7 @@ export const ExpenseCategory = () => {
               width:"140px",
               borderRadius:"8px",
               border:"none",
-              }}> <NavLink to={'/dashboard/addExpCateg'} style={{color:"white",textDecoration:"none"}}>Add Expense's Category</NavLink></button>
+              }}> <NavLink to={'/dashboard/dashboard/addExpCateg'} style={{color:"white",textDecoration:"none"}}>Add Expense's Category</NavLink></button>
 
         </Box>
         <Box

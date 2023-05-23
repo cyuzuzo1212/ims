@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Forgot.css";
+import { Typography,TextField,Button } from "@material-ui/core";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -14,13 +15,15 @@ function ForgotPassword() {
       <div className="forgot-password-form-container">
         <h2>Forgot Password</h2>
         <form onSubmit={handleSubmit}>
-          <label>Email</label>
-          <input
-            type="email"
+          <Typography>Email</Typography>
+          <TextField
+            type=""
+            label="Enter your Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            sx={{mb:2}}
           />
-          <button type="submit">Reset Pswd</button>
+          <Button fullWidth type="submit">Reset Password</Button>
         </form>
       </div>
     </div>

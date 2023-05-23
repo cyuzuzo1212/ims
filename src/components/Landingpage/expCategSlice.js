@@ -1,11 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+// import { redirect } from "react-router-dom";
 
 
 const initialState ={
     EstateExpCategory: false,
     expCategories: [],
     expCategory:{},
+    changeSaved: false,
 };
 
 export const ExpCategSlice = createSlice({
@@ -20,6 +22,12 @@ export const ExpCategSlice = createSlice({
         },
         getCateg: (state,action) =>{
             state.expCategories = action.payload
+        },
+        removeExpenseCategory: (state, action) => {
+            state.expCategories = state.expCategories.filter(e => e._id !== action.payload)
+        },
+        redirect: (state,action) => {
+            state.changeSaved = action.payload;
         }
     },
 });
@@ -27,7 +35,7 @@ export const ExpCategSlice = createSlice({
 export const createExpCateg = (data) => async(dispatch) =>{
     const token = localStorage.getItem("token")
     console.log(data)
-    axios({
+    await axios({
         method:"POST",
         url:"https://inventory-ciul.onrender.com/api/expensesCat/create",
         data:data,
@@ -36,6 +44,7 @@ export const createExpCateg = (data) => async(dispatch) =>{
         },
     })
     .then((res)=>{
+        dispatch(redirect(true))
         console.log('iiiiiiiiiiiii')
     })
     .catch((err) =>{
@@ -92,9 +101,23 @@ export const getExpCategory =() =>(dispatch)=> {
                 Authorization: `Bearer ${localStorage.getItem("token")}`
               }
           }).then((res)=>{
-            console.log(res,"from editor");
+            dispatch(redirect(true))
           }).catch((err)=>{console.log(err);})
         };
 
-        export const { expCategory, storeExpCategories,storeExpCategory} = ExpCategSlice.actions;
+        export const deleteCategory = (id) => async (dispatch) => {
+            const response = await axios({
+                method:"DELETE",
+                url:`https://inventory-ciul.onrender.com/api/expensesCat/${id}`,
+                headers:{
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            }).catch(err => console.log(err))
+
+            if(response.status === 200) {
+                dispatch(removeExpenseCategory(id))
+            }
+        }
+
+        export const {expCategory, storeExpCategories,storeExpCategory, removeExpenseCategory, redirect} = ExpCategSlice.actions;
   export default ExpCategSlice.reducer;

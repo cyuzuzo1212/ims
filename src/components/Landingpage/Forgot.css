@@ -7,7 +7,7 @@
   }
   
   .forgot-password-form-container {
-    width: 400px;
+    width: 600px;
     background-color: #fff;
     padding: 40px;
     border-radius: 5px;
@@ -25,11 +25,11 @@
     width: 100%;
   }
   
-  label {
+  /* label {
     margin-bottom: 10px;
     font-weight: bold;
     color: #555;
-  }
+  } */
   
   input {
     padding: 10px;

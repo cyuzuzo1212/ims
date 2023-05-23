@@ -14,14 +14,14 @@ import { SidebarWidth } from "../../../assets/global/Theme-variable";
 import LogoIcon from "../Logo/LogoIcon";
 import Menuitems from "./data";
 import Buynow from "./Buynow";
+import { useSelector } from "react-redux";
 
 const Sidebar = (props) => {
   const [open, setOpen] = React.useState(true);
+  const {userData: {role}} = useSelector(state => state.auth);
   const { pathname } = useLocation();
   const pathDirect = pathname;
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"));
-  const invRole = localStorage.getItem("inv-role");
-  console.log(invRole);
 
   const handleClick = (index) => {
     if (open === index) {
@@ -35,7 +35,6 @@ const Sidebar = (props) => {
     <Box
       sx={{
         p: 3,
-        height: "calc(100vh - 40px)",
         backgroundColor: "#1565C0",
         marginTop: "0px",
         color: "white",
@@ -53,10 +52,8 @@ const Sidebar = (props) => {
               fontSize: "larger",
               border: "none",
               borderRadius: "10px",
-            }}
-          >
-            IMS
-          </button>
+              width:"100px"
+            }}> IMS</button>
         </Box>
       </Link>
 
@@ -71,10 +68,9 @@ const Sidebar = (props) => {
         >
           {Menuitems.map((item, index) => {
             //{/********SubHeader**********/}
-            console.log(item);
             return (
               <List component="li" disablePadding key={item.title}>
-                {invRole === "admin" && item.title === "User" ? (
+                {role === "admin" && item.admin ? (
                     <ListItem
                       onClick={() => handleClick(index)}
                       button
@@ -100,7 +96,7 @@ const Sidebar = (props) => {
                       </ListItemIcon>
                       <ListItemText>{item.title}</ListItemText>
                     </ListItem>
-                ) : (invRole !== "admin" && 
+                ) : ( !item.admin && 
                   <ListItem
                     onClick={() => handleClick(index)}
                     button

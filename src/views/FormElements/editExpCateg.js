@@ -4,7 +4,8 @@ import { TextField, MenuItem,Typography ,Box, Button } from "@material-ui/core"
 import {IoIosArrowDown} from "react-icons/io";
 import { useDispatch,useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { editExpCategory,getExpCateg} from "../../components/Landingpage/expCategSlice";
+import { useNavigate } from "react-router-dom";
+import { editExpCategory,getExpCateg, redirect as redirectAction} from "../../components/Landingpage/expCategSlice";
 
 
 
@@ -16,6 +17,16 @@ export const EditExpCateg =()=> {
     const [editExpenseCategory,setEditExpenseCategory] = useState("");
     const expCategory = useSelector((state) => state.expCategories.expCategory);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const {changeSaved} = useSelector(state => state.expCategories);
+
+  useEffect(() => {
+          if(changeSaved) {
+                  dispatch(redirectAction(false));
+                  navigate('/dashboard/dashboard/form-elements/expenseCategory')
+          }
+  }, [changeSaved])
+
 
   const handleEditPost = (e) => {
     e.preventDefault();
@@ -31,12 +42,12 @@ export const EditExpCateg =()=> {
   }, []);
 
   useEffect(()=>{
-    if (expCategory.expCategories){
-      setEditExpenseCategory(expCategory.expCategories.categoryService)
+    if (expCategory.category){
+      setEditExpenseCategory(expCategory.category.categoryService)
     }
-  },[expCategory.expCategories])
+  },[expCategory.category])
 
-  console.log(expCategory.expCategories, "category expense to edit");
+  console.log(expCategory.category, "category expense to edit");
     return (
         <div className="add-item-container" style={{backgroundColor:"white",borderRadius:"10px",justifyContent:"center",paddingBottom:"20px"}}>
 <div style={{padding:"20px 100px 0px 100px"}}>

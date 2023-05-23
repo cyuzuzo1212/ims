@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { TextField, MenuItem, Typography, Button } from "@material-ui/core";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { editCategory } from "../../components/Landingpage/categoryslice";
+import { useNavigate, useParams } from "react-router-dom";
+import { editCategory, redirect as redirectAction } from "../../components/Landingpage/categoryslice";
 import {
   getCateg,
   data,
@@ -13,10 +13,19 @@ import {
 export const EditCategory = () => {
   const params = useParams();
   const id = params.id;
-  console.log(id, "category ID");
   const [editingCategory, setEditingCategory] = useState("");
-  const category = useSelector((state) => state.categories.category);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
+  const category = useSelector((state) => state.categories.category);
+  const {changeSaved} = useSelector(state => state.categories);
+
+  useEffect(() => {
+          if(changeSaved) {
+                  dispatch(redirectAction(false));
+                  navigate('/dashboard/dashboard/form-elements/category')
+          }
+  }, [changeSaved])
 
   const handleEditPost = (e) => {
     e.preventDefault();
@@ -35,8 +44,6 @@ export const EditCategory = () => {
       setEditingCategory(category.categories.name)
     }
   },[category.categories])
-
-  console.log(category.categories, "category to edit");
 
   return (
     <div

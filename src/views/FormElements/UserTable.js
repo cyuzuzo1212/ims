@@ -23,40 +23,40 @@ import {
 import axios from "axios";
 import { Close } from "@material-ui/icons";
 
-const usersd = [
-  {
-    id: "1",
-    firstName: "Fashion",
-    lastName: "Pant",
-    email: "Fashion@gmail.com",
+// const usersd = [
+//   {
+//     id: "1",
+//     firstName: "Fashion",
+//     lastName: "Pant",
+//     email: "Fashion@gmail.com",
 
-    Actions: (
-      <div>
-        {" "}
-        <NavLink to={"/dashboard/editsale"}>
-          <FaPenAlt />
-        </NavLink>{" "}
-        <RiDeleteBin6Fill />{" "}
-      </div>
-    ),
-  },
+//     Actions: (
+//       <div>
+//         {" "}
+//         <NavLink to={"/dashboard/editsale"}>
+//           <FaPenAlt />
+//         </NavLink>{" "}
+//         <RiDeleteBin6Fill />{" "}
+//       </div>
+//     ),
+//   },
 
-  {
-    id: "2",
-    firstName: "Fashion",
-    lastName: "Pant",
-    email: "fash@gmail.com",
-    Actions: (
-      <div>
-        {" "}
-        <NavLink to={"/dashboard/editsale"}>
-          <FaPenAlt />
-        </NavLink>{" "}
-        <RiDeleteBin6Fill />{" "}
-      </div>
-    ),
-  },
-];
+//   {
+//     id: "2",
+//     firstName: "Fashion",
+//     lastName: "Pant",
+//     email: "fash@gmail.com",
+//     Actions: (
+//       <div>
+//         {" "}
+//         <NavLink to={"/dashboard/editsale"}>
+//           <FaPenAlt />
+//         </NavLink>{" "}
+//         <RiDeleteBin6Fill />{" "}
+//       </div>
+//     ),
+//   },
+// ];
 
 const UserTable = () => {
   const token = localStorage.getItem("inv-token");

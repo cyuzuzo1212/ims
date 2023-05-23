@@ -3,7 +3,8 @@ import {React} from "react"
 import { TextField, MenuItem,Typography ,Box ,Button} from "@material-ui/core"
 import { useState,useEffect } from "react";
 import { useDispatch,useSelector } from "react-redux";
-import { createExpCateg } from "../../components/Landingpage/expCategSlice";
+import { useNavigate } from "react-router-dom";
+import { createExpCateg, redirect as redirectAction } from "../../components/Landingpage/expCategSlice";
 
 
 
@@ -11,7 +12,20 @@ export const AddExpCateg = () => {
   const [addExpCategory, setAddExpCategory] = useState("");
 
 
+  const {changeSaved} = useSelector(state => state.expCategories);
+
   const dispatch=useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if(changeSaved) {
+      dispatch(redirectAction(false));
+      navigate('/dashboard/dashboard/form-elements/expenseCategory')
+    }
+  }, [changeSaved])
+
+
+  // const dispatch=useDispatch();
         const handlePost = (e) => {
                 e.preventDefault();
                 const data = {

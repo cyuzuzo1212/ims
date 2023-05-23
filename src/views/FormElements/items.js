@@ -1,40 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Card,
   CardContent,
   Typography,
-  Box, Button,
+  Box, Button, Backdrop, CircularProgress
 } from "@material-ui/core";
 
 import ItemTable from "./itemTable";
 import { NavLink } from "react-router-dom";
+import { fetchItems, setRedirect } from "../../reducers/itemsReducer";
 
 const Items = () => {
   const [age, setAge] = useState("10");
-  const [items, setItems] = useState([]);
-
+  const dispatch = useDispatch();
+  const {items, loading} = useSelector(state => state.items);
   const handleChange = (event) => {
     setAge(event.target.value);
   };
 
   useEffect(() => {
-    fetch("https://inventory-ciul.onrender.com/api/items", {
-      headers: {
-        "content-type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) =>{
-      console.log(data) 
-    
-      setItems(data.items)
-       console.log(items)
-  })
-      
-      .catch((err) => console.log(err));
-      
+    dispatch(fetchItems());
+    dispatch(setRedirect(false));
   }, []);
 
   return (
@@ -59,6 +46,15 @@ const Items = () => {
              
             </Typography>
           </Box>
+          {
+            loading
+            && <Backdrop
+                sx={{ color: '#fff', zIndex: 99}}
+                open={loading}
+                >
+                <CircularProgress color="inherit" />
+              </Backdrop>
+          }
 
           <Box
             sx={{
@@ -87,7 +83,7 @@ const Items = () => {
               >
                 {" "}
                 <NavLink
-                  to={"/dashboard/addItem"}
+                  to={"/dashboard/dashboard/addItem"}
                   style={{ color: "white", textDecoration: "none" }}
                 >
                   Add Item
@@ -100,7 +96,7 @@ const Items = () => {
             mt: 3,
           }}
         >
-          <ItemTable items={items} setItems={setItems}/>
+          <ItemTable items={items} />
         </Box>
       </CardContent>
     </Card>

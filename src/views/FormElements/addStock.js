@@ -10,11 +10,11 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   createStocks,
-  getStocks, getAllStocks,
+  getStocks, getAllStocks, redirectAction,
 } from "../../components/Landingpage/stockSlice";
+import { useNavigate } from "react-router-dom";
 
 export const AddStock = () => {
-  const dispatch = useDispatch();
   // const [selectCategory,setSelectCategory]= useState("");
   const [selectItem, setSelectItem] = useState("");
   const [selectMesurement, setSelectMesurement] = useState("");
@@ -30,6 +30,10 @@ export const AddStock = () => {
   const [addBoxSubItemPrice, setAddBoxSubItemPrice] = useState("");
   const [addBoxSubPiecesPrice, setAddBoxSubPiecesPrice] = useState("");
   const [addBoxPrice, setAddBoxPrice] = useState("");
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const {changeSaved} = useSelector(state => state.stocks)
 
   const handlePost = (e) => {
     e.preventDefault();
@@ -83,7 +87,13 @@ export const AddStock = () => {
       .catch((err) => console.log(err));
   }, []);
 
- 
+  useEffect(() => {
+    console.log({changeSaved})
+    if(changeSaved) {
+      dispatch(redirectAction(false))
+      navigate('/dashboard/dashboard/form-elements/stock')
+    }
+  }, [changeSaved]);
 
   return (
     <div

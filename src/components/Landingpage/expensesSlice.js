@@ -25,6 +25,9 @@ export const expensesSlice = createSlice({
         },
         getExpenses: (state,action) =>{
             state.expenses = action.payload
+        },
+        removeExpense: (state, action) => {
+            state.expenseTable = state.expenseTable.filter(e => e._id !== action.payload)
         }
     },
 });
@@ -60,14 +63,26 @@ export const getExpenses =() =>async(dispatch)=> {
         },
     })
     .then((data)=>{
-        console.log(data,"weee");
         dispatch(storeExpenses(data.data.data));
-        
     })
     .catch((err)=>console.log(err));
     };
 
+    export const deleteExpense = (id) => async (dispatch) => {
+        const response = await axios({
+            method:"DELETE",
+            url:`https://inventory-ciul.onrender.com/api/expenses/delete/${id}`,
+            headers:{
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        }).catch(err => console.log(err));
+
+        if(response.status === 204) {
+            dispatch(removeExpense(id));
+        }
+    };
+
     
 
-export const {expense,storeExpCategories,storeExpenses} = expensesSlice.actions;
+export const {expense,storeExpCategories,storeExpenses, removeExpense} = expensesSlice.actions;
   export default expensesSlice.reducer;

@@ -32,7 +32,7 @@ function AddItem() {
     )
       .then((response) => response.json())
       .then((data) => {
-        navigate("/dashboard/form-elements/items");
+        navigate("/dashboard/dashboard/form-elements/items");
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -76,7 +76,7 @@ function AddItem() {
           >
             Add Item
           </Typography>
-          <Typography>Date</Typography>
+          {/* <Typography>Date</Typography>
           <TextField
             fullWidth
             className="form-control"
@@ -84,7 +84,7 @@ function AddItem() {
             placeholder="Date of entry"
             name="date"
             required
-          />
+          /> */}
 
           <Typography>Select category of item</Typography>
           <Select

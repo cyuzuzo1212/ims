@@ -22,9 +22,14 @@ import {
 } from "@material-ui/core";
 
 import userimg from "../../../assets/images/users/user.jpg";
+import { logoutUser } from "../../../components/Landingpage/authentication";
+import { useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { color } from "@material-ui/system";
 
 const Header = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const dispatch = useDispatch();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -36,6 +41,11 @@ const Header = (props) => {
 
   // 4
   const [anchorEl4, setAnchorEl4] = React.useState(null);
+
+  const handleLogout = (e) => {
+    e.preventDefault()
+    dispatch(logoutUser())
+  }
 
   const handleClick4 = (event) => {
     setAnchorEl4(event.currentTarget);
@@ -68,9 +78,11 @@ const Header = (props) => {
               lg: "none",
               xs: "inline",
             },
+            width: 40,
+            height: 40
           }}
         >
-          <MenuOutlinedIcon width="20" height="20" />
+          <MenuOutlinedIcon/>
         </IconButton>
         <IconButton
           aria-label="menu"
@@ -78,6 +90,11 @@ const Header = (props) => {
           aria-controls="dd-menu"
           aria-haspopup="true"
           onClick={handleClick5}
+          sx={{
+            width: 40,
+            height: 40,
+            marginLeft: 'auto'
+          }}
         >
           <AddToPhotosOutlinedIcon />
         </IconButton>
@@ -109,7 +126,7 @@ const Header = (props) => {
                 ml: 2,
               }}
             >
-              New account
+             <NavLink to={'/signup'} style={{color:"black",textDecoration:"none"}}> New account</NavLink>
             </Box>
           </MenuItem>
           <Divider />
@@ -144,7 +161,6 @@ const Header = (props) => {
             </Box>
           </MenuItem>
         </Menu>
-        <Box flexGrow={1} />
 
         {/* ------------------------------------------- */}
         {/* Notifications Dropdown */}
@@ -155,8 +171,12 @@ const Header = (props) => {
           aria-controls="notification-menu"
           aria-haspopup="true"
           onClick={handleClick}
+          sx={{
+            width: 40,
+            height: 40
+          }}
         >
-          <NotificationsNoneOutlinedIcon width="20" height="20" />
+          <NotificationsNoneOutlinedIcon/>
         </IconButton>
         <Menu
           id="notification-menu"
@@ -259,7 +279,7 @@ const Header = (props) => {
             </ListItemIcon>
             Settings
           </MenuItem>
-          <MenuItem onClick={handleClose4}>
+          <MenuItem onClick={handleLogout}>
             <ListItemIcon>
               <Logout fontSize="small" />
             </ListItemIcon>

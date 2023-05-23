@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios, { Axios } from "axios";
 
 
 const initialState = {
@@ -8,7 +8,8 @@ const initialState = {
   stocksTable: [],
   items: [],
   stock: {},
-  stocksWithAmounts: []
+  stocksWithAmounts: [],
+  changeSaved: false
 };
 
 export const stockSlice = createSlice({
@@ -30,6 +31,9 @@ export const stockSlice = createSlice({
     },
     getStocks: (state, action) => {
       state.stocks = action.payload;
+    },
+    redirectAction: (state, action) => {
+      state.changeSaved = action.payload
     },
   },
 });
@@ -58,23 +62,18 @@ export const createStocks = (data) => async (dispatch) => {
     },
   };
   console.log(stock, "Stock sent");
-  axios({
+  const response = await axios({
     method: "PUT",
     url: `https://inventory-ciul.onrender.com/api/items/addstock/${data.item}`,
     data: stock,
     headers: {
       Authorization: `bearer ${localStorage.getItem("token")}`,
     },
-  })
-    .then((res) => {
-      console.log("helooooooo");
-    })
-    .catch((err) => {
-    
-      console.log(err);
-      
-    });
-    
+  }).catch(err => console.log(err))
+  
+  if(response?.status === 201) {
+    dispatch(redirectAction(true))
+  }
 };
 
 export const getStocks = () => (dispatch) => {
@@ -144,7 +143,9 @@ export const getPurchase = () => async(dispatch) =>{
   .catch(error => {
     console.error(error);
   });
-}
+};
 
-export const { stock, storeStocks, StoreItems, storePurchase } = stockSlice.actions;
+
+
+export const { stock, storeStocks, StoreItems, storePurchase, redirectAction } = stockSlice.actions;
 export default stockSlice.reducer;

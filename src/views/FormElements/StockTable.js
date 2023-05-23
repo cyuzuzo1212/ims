@@ -16,6 +16,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getAllStocks } from "../../components/Landingpage/stockSlice";
+import { Delete } from "@material-ui/icons";
 
 // const products = [
 //   {
@@ -43,6 +44,7 @@ import { getAllStocks } from "../../components/Landingpage/stockSlice";
 const StockTable = () => {
   const dispatch = useDispatch();
   const { stocksTable} = useSelector((state) => state.stocks);
+  const {role} = useSelector(state => state.auth.userData);
 
   useEffect(() => {
     console.log("on stock table");
@@ -82,9 +84,9 @@ const StockTable = () => {
             <Typography fontWeight="600">Unit per box</Typography>
           </TableCell>
 
-          <TableCell align="center">
+          {/* <TableCell align="center">
             <Typography fontWeight="600">Actions</Typography>
-          </TableCell>
+          </TableCell> */}
 
           <TableCell align="center" >
             <Typography fontWeight="600">
@@ -131,7 +133,7 @@ const StockTable = () => {
                   <NavLink to={"/dashboard/editStock"}>
                     <FaPenAlt />
                   </NavLink>{" "}
-                  <RiDeleteBin6Fill />{" "}
+                  <Delete style={{cursor: 'pointer', marginLeft: '10px'}} color="danger"/>
                 </div>
               </Typography>
             </TableCell>

@@ -53,7 +53,7 @@ export const Expenses = () => {
               width:"100px",
               borderRadius:"8px",
               border:"none",
-              }}> <NavLink to={'/dashboard/addExpenses'} style={{color:"white",textDecoration:"none"}}>Add Expences</NavLink></button>
+              }}> <NavLink to={'/dashboard/dashboard/addExpenses'} style={{color:"white",textDecoration:"none"}}>Add Expences</NavLink></button>
 
           </Box>
 

@@ -15,7 +15,8 @@ import {RiDeleteBin6Fill} from "react-icons/ri";
 import { NavLink } from "react-router-dom";
 import { useEffect,useState } from "react";
 import { useDispatch,useSelector } from "react-redux";
-import { getExpCategory ,editExpCategory } from "../../components/Landingpage/expCategSlice";
+import { getExpCategory ,editExpCategory, deleteCategory} from "../../components/Landingpage/expCategSlice";
+import { Delete } from "@material-ui/icons";
 
 
 // const products = [
@@ -43,14 +44,16 @@ import { getExpCategory ,editExpCategory } from "../../components/Landingpage/ex
 const ExpCategTable = () => {
   const dispatch = useDispatch()
   const expCategories = useSelector((state)=>state.expCategories.expCategories)
+  const {role} = useSelector(state => state.auth.userData);
   
 
   useEffect(()=>{
-    console.log("On Category expense Table")
     dispatch(getExpCategory())
   },[])
 
-console.log(expCategories);
+  const handleDelete = (id) => {
+    dispatch(deleteCategory(id))
+  }
 
   return (
     <Table
@@ -119,7 +122,9 @@ console.log(expCategories);
             <TableCell align="right">
               <Typography style={{color:"black",fontWeight:"600",marginRight:"10px"}}>
                 {/* {expenseCategory.action} */}
-                <div><NavLink to={'/dashboard/editExpCateg'}> <FaPenAlt/></NavLink> <RiDeleteBin6Fill/></div>
+                <div><NavLink to={`/dashboard/dashboard/editExpCateg/${expenseCategory._id}`}> <FaPenAlt/></NavLink>
+                { role === "admin" && <Delete style={{cursor: 'pointer', marginLeft: '10px'}} color="danger" onClick={() => handleDelete(expenseCategory._id)} /> }
+                 </div>
                 </Typography>
             </TableCell>
           </TableRow>

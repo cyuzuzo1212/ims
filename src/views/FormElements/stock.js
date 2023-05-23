@@ -74,7 +74,7 @@ const Stock = () => {
               width:"110px",
               borderRadius:"4px",
               border:"none",
-              }}>  <NavLink to={'/dashboard/addStock'} style={{color:"white",textDecoration:"none"}}>Add Stock</NavLink></button>
+              }}>  <NavLink to={'/dashboard/dashboard/addStock'} style={{color:"white",textDecoration:"none"}}>Add Stock</NavLink></button>
                 <Box
                     sx={{
                         overflow: "auto",

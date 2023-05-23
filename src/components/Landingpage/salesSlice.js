@@ -10,7 +10,8 @@ const initialState ={
     sale:{},
     dailySales: [],
     weeklySales: [],
-    monthlySales:[]
+    monthlySales:[],
+    changeSaved: false
 };
 
 export const salesSlice = createSlice({
@@ -38,7 +39,10 @@ export const salesSlice = createSlice({
         },
         storeMonthlySales: (state,action) => {
             state.monthlySales = action.payload
-        }
+        },
+        redirectAction: (state, action) => {
+            state.changeSaved = action.payload
+        },
     },
 });
 
@@ -48,7 +52,6 @@ export const salesSlice = createSlice({
 
 export const createSales = (data) => async(dispatch) =>{
     const token = localStorage.getItem("token")
-    console.log(data)
     const sale = {
         items: [
             {
@@ -74,21 +77,19 @@ export const createSales = (data) => async(dispatch) =>{
         ],
         customerName:data.customerName,
     }
-    console.log(data,"kkkkkkkk")
-    axios({
+
+    const response = await axios({
         method:"POST",
         url:"https://inventory-ciul.onrender.com/api/sales/create",
         data:sale,
         headers: {
             Authorization: `bearer ${localStorage.getItem("token")}`
         },
-    })
-    .then((res)=>{
-        console.log('helooooooo')
-    })
-    .catch((err) =>{
-        console.log(err)
-    });
+    }).catch(error => console.log(error))
+
+    if(response.status === 201) {
+        dispatch(redirectAction(true));
+    }
 };
 
 
@@ -188,5 +189,5 @@ export const getMonthlySales = () => async (dispatch) => {
       });
 }
 
-    export const {sale,storeSales,storeStocks, storeDailySales,storeWeeklySales,storeMonthlySales} =salesSlice.actions;
+    export const {sale,storeSales,storeStocks, storeDailySales,storeWeeklySales,storeMonthlySales, redirectAction} =salesSlice.actions;
     export default salesSlice.reducer;

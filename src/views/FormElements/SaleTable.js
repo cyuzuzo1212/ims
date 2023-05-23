@@ -15,6 +15,7 @@ import {
 } from "@material-ui/core";
 import { useDispatch,useSelector } from "react-redux";
 import { getSale } from "../../components/Landingpage/salesSlice";
+import { Delete } from "@material-ui/icons";
 
 // const products = [
 //   {
@@ -66,7 +67,6 @@ const SaleTable = () => {
 dispatch(getSale());
 
 },[]);
-console.log(salesTable,"uuuuuuu");
 
   return (
     <Table
@@ -79,8 +79,8 @@ console.log(salesTable,"uuuuuuu");
       <TableHead>
         <TableRow >
           <TableCell>
-            <Typography fontWeight="600" color="white">
-              Id
+            <Typography fontWeight="600" >
+              Id 
             </Typography>
           </TableCell>
           
@@ -134,15 +134,13 @@ console.log(salesTable,"uuuuuuu");
             </TableCell>
             
             <TableCell>
-              <Box >
-                <Box>
+              
+                
                   <Typography>
                     {salesItem?.items[0].item?.name}
                     
                   </Typography>
-                  
-                </Box>
-              </Box>
+                
             </TableCell>
             <TableCell>
               <Typography >
@@ -182,7 +180,10 @@ console.log(salesTable,"uuuuuuu");
             <TableCell align="right">
               <Typography >
                 {/* {product.actions} */}
-                <div> <NavLink to={'/dashboard/editSale'}><FaPenAlt/></NavLink> <RiDeleteBin6Fill/> </div>
+                <div>
+                  <NavLink to={'/dashboard/editSale'}><FaPenAlt/></NavLink>
+                  <Delete style={{cursor: 'pointer', marginLeft: '10px'}} color="danger"/>
+                </div>
               </Typography>
             </TableCell>
           </TableRow>
