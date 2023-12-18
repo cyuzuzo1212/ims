@@ -45,6 +45,7 @@ export const Home=()=> {
       message,
     })
     .then((Response) => {
+      console.log({Response})
       alert('Your message has been sent');
       setName('');
       setEmail('');

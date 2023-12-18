@@ -7,7 +7,7 @@ import expCategoriesReduce from "./components/Landingpage/expCategSlice";
 import expensesReduce from "./components/Landingpage/expensesSlice";
 import usersReducer from "./reducers/usersReducer";
 import itemsReducer from "./reducers/itemsReducer";
-
+import messagesReducer from "./reducers/messagesReducer";
 
 export const store = configureStore({
   reducer: {
@@ -19,6 +19,6 @@ export const store = configureStore({
     expenses: expensesReduce,
     users: usersReducer,
     items: itemsReducer,
-    // messages: messagesReducer
+    messages: messagesReducer
   },
 });

@@ -33,7 +33,7 @@ nav {
   align-items: center;
   padding: 0px 30px;
   width: 100%;
-  position: fixed;
+  /* position: fixed; */
   top: 0;
   background-color: rgba(37, 37, 110, 0.8);
   z-index: 99;
@@ -78,7 +78,7 @@ ul li {
   background-image:url("./images/background.jpg");
   height: 100vh;
   width: 100%;
-  position: absolute;
+  /* position: absolute; */
   top: 0
 }
 
@@ -119,11 +119,12 @@ ul li {
 /* about page*/
 
 .about-section-container {
-  margin-top: 1rem;
+  margin-top: 10rem;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
+ 
   
   
 }
